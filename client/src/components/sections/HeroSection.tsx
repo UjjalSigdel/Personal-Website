@@ -17,25 +17,25 @@ export default function HeroSection({ onLearnMoreClick }: HeroSectionProps) {
       const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       setIsDarkTheme(isDark);
     };
-    
+
     checkTheme();
-    
+
     // Listen for theme changes
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (e: MediaQueryListEvent) => {
       setIsDarkTheme(e.matches);
     };
-    
+
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
-  
+
   return (
     <section className="min-h-screen flex items-center bg-[#0F172A] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Hidden on mobile, visible on desktop (left side) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -52,14 +52,14 @@ export default function HeroSection({ onLearnMoreClick }: HeroSectionProps) {
               At just 18 years old, I am an aspiring Electronics and Information Communication Engineering student at Sagarmatha Engineering College, on a mission to create and innovate through technology.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button 
+              <Button
                 onClick={onLearnMoreClick}
                 className="bg-[#4ADE80] hover:bg-[#4ADE80]/90 text-[#0F172A] font-['Inter'] font-medium shadow-lg px-8 py-6"
                 size="lg"
               >
                 View Services
               </Button>
-              <Button 
+              <Button
                 variant="outline"
                 onClick={onLearnMoreClick}
                 className="border-[#3B82F6] text-[#3B82F6] font-['Inter'] font-medium hover:bg-[#3B82F6]/10"
@@ -69,9 +69,9 @@ export default function HeroSection({ onLearnMoreClick }: HeroSectionProps) {
               </Button>
             </div>
           </motion.div>
-          
+
           {/* Profile Section - Right side on desktop, above text on mobile */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -79,18 +79,18 @@ export default function HeroSection({ onLearnMoreClick }: HeroSectionProps) {
           >
             {/* Main profile */}
             <div className="relative w-full h-[400px] rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-[#1E293B] to-[#0F172A] dark:from-[#1E293B] dark:to-[#0F172A] light:from-[#F1F5F9] light:to-[#E2E8F0]">
-              
+
               {/* Profile photo */}
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <div className="relative w-[250px] h-[350px] overflow-hidden flex items-center justify-center">
                   {/* Base photo */}
-                  <img 
-                    src="/profile-photo.png" 
-                    alt="Ujjal Sigdel" 
+                  <img
+                    src="/profile-photo.png"
+                    alt="Ujjal Sigdel"
                     className="object-contain w-full h-full max-w-[250px]"
                   />
                 </div>
-                
+
                 {/* On small screens only, show name beneath photo */}
                 <div className="md:hidden mt-3">
                   <h3 className="text-2xl font-bold text-white dark:text-white light:text-gray-900">Ujjal Sigdel</h3>
@@ -100,8 +100,8 @@ export default function HeroSection({ onLearnMoreClick }: HeroSectionProps) {
             </div>
           </motion.div>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.8 }}
@@ -113,7 +113,7 @@ export default function HeroSection({ onLearnMoreClick }: HeroSectionProps) {
           </button>
         </motion.div>
       </div>
-      
+
       {/* Dynamic styling is handled by React state */}
     </section>
   );
