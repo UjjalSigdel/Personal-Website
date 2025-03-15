@@ -55,19 +55,38 @@ export default function Footer({
                 <div className="w-8 h-8 rounded-lg bg-[#3B82F6]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#3B82F6]/20">
                   <Mail className="h-4 w-4 text-[#3B82F6]" />
                 </div>
-                <span className="text-gray-300">contact@ujjalsigdel.com.np</span>
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@ujjalsigdel.com.np&su=Inquiry&body=Hello Ujjal,"
+                  className="text-gray-300 hover:text-[#3B82F6] transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  contact@ujjalsigdel.com.np
+                </a>
               </li>
               <li className="flex items-center">
                 <div className="w-8 h-8 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#4ADE80]/20">
                   <Phone className="h-4 w-4 text-[#4ADE80]" />
                 </div>
-                <span className="text-gray-300">+977 9761622468</span>
+                <a
+                  href="tel:+9779761622468"
+                  className="text-gray-300 hover:text-[#3B82F6] transition-colors"
+                >
+                  +977 9761622468
+                </a>
               </li>
               <li className="flex items-center">
                 <div className="w-8 h-8 rounded-lg bg-[#A78BFA]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#A78BFA]/20">
                   <MapPin className="h-4 w-4 text-[#A78BFA]" />
                 </div>
-                <span className="text-gray-300">Kathmandu, Nepal</span>
+                <a
+                  href="https://www.google.com/maps/place/Kathmandu,+Nepal"
+                  className="text-gray-300 hover:text-[#3B82F6] transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Kathmandu, Nepal
+                </a>
               </li>
             </ul>
 
