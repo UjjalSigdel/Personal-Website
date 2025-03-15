@@ -28,8 +28,8 @@ export default function Footer({
               First-year Electronic and Information Communication Engineering student passionate about technology and innovation.
             </p>
             <a
-              href="/assets/resume.pdf"
-              download
+              href="/MyCV.pdf"
+              download="Ujjal_Sigdel_CV.pdf"
               className="inline-flex items-center text-[#3B82F6] hover:text-[#3B82F6]/80 transition-colors"
             >
               <span>Download Resume</span>
