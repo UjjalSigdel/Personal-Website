@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <div className="font-['Roboto'] text-gray-800 bg-gray-50">
-      <Header 
+      <Header
         onHomeClick={() => scrollToSection(homeRef)}
         onAboutClick={() => scrollToSection(aboutRef)}
         onSkillsClick={() => scrollToSection(skillsRef)}
@@ -30,7 +30,10 @@ export default function Home() {
         onContactClick={() => scrollToSection(contactRef)}
       />
       <div ref={homeRef}>
-        <HeroSection onLearnMoreClick={() => scrollToSection(aboutRef)} />
+        <HeroSection
+          onLearnMoreClick={() => scrollToSection(aboutRef)}
+          onContactClick={() => scrollToSection(contactRef)}
+        />
       </div>
       <div ref={aboutRef}>
         <AboutSection />
@@ -44,7 +47,7 @@ export default function Home() {
       <div ref={contactRef}>
         <ContactSection />
       </div>
-      <Footer 
+      <Footer
         onHomeClick={() => scrollToSection(homeRef)}
         onAboutClick={() => scrollToSection(aboutRef)}
         onSkillsClick={() => scrollToSection(skillsRef)}

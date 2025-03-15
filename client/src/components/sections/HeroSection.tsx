@@ -5,9 +5,14 @@ import { useEffect, useState } from "react";
 
 interface HeroSectionProps {
   onLearnMoreClick: () => void;
+  onContactClick: () => void;
 }
 
-export default function HeroSection({ onLearnMoreClick }: HeroSectionProps) {
+export default function HeroSection({
+  onLearnMoreClick,
+  onContactClick
+}:
+  HeroSectionProps) {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   // Theme detection
@@ -61,7 +66,7 @@ export default function HeroSection({ onLearnMoreClick }: HeroSectionProps) {
               </Button>
               <Button
                 variant="outline"
-                onClick={onLearnMoreClick}
+                onClick={onContactClick}
                 className="border-[#3B82F6] text-[#3B82F6] font-['Inter'] font-medium hover:bg-[#3B82F6]/10"
                 size="lg"
               >
