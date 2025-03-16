@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.ujjalsigdel.com.np/sitemap.xml
