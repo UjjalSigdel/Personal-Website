@@ -83,16 +83,17 @@ export default function HeroSection({
             className="order-1 md:order-2 relative"
           >
             {/* Main profile */}
-            <div className="relative w-full h-[400px] rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-[#1E293B] to-[#0F172A] dark:from-[#1E293B] dark:to-[#0F172A] light:from-[#F1F5F9] light:to-[#E2E8F0]">
+            <div className="relative w-full aspect-square rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-[#1E293B] to-[#0F172A] dark:from-[#1E293B] dark:to-[#0F172A] light:from-[#F1F5F9] light:to-[#E2E8F0] lg:max-h-[550px] lg:max-w-[550x]">
 
               {/* Profile photo */}
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <div className="relative w-[250px] h-[350px] overflow-hidden flex items-center justify-center">
+                <div className="relative w-full h-full overflow-hidden flex items-center justify-center">
                   {/* Base photo */}
                   <img
                     src="/profile-photo.png"
                     alt="Ujjal Sigdel"
-                    className="object-contain w-full h-full max-w-[250px]"
+                    className="object-cover w-full h-full"
+
                   />
                 </div>
 
