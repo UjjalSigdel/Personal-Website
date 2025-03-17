@@ -76,11 +76,14 @@ export default function HeroSection({
                 <div className="relative w-full max-w-[550px] mx-auto aspect-[4/5] rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-[#1E293B] to-[#0F172A]">
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <div className="relative w-full h-full overflow-hidden flex items-center justify-center">
-                      <img
-                        src="/profile-photo.png"
-                        alt="Ujjal Sigdel"
-                        className="object-cover w-full h-full"
-                      />
+                      <picture>
+                        <source srcSet="/profile-photo.webp" type="image/webp" />
+                        <img
+                          src="/profile-photo.png"
+                          alt="Ujjal Sigdel"
+                          className="object-cover w-full h-full"
+                        />
+                      </picture>
                     </div>
                   </div>
                 </div>
