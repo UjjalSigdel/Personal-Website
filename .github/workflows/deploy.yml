@@ -1,0 +1,36 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow when code is pushed to the `main` branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    environment: github-pages  # Reference your environment
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18  # Use Node.js 18
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Build the project
+      - name: Build project
+        run: npm run build
+
+      # Step 5: Deploy to GitHub Pages
+      - name: Deploy
+        run: npm run deploy
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}  # Use the EMAIL_USER secret
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}  # Use the EMAIL_PASS secret
