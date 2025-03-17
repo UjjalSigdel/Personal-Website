@@ -26,7 +26,10 @@ export default function Header({
     if (isMenuOpen) {
       setIsMenuOpen(false);
     }
-    callback();
+    // Introduce a small delay before executing the callback
+    setTimeout(() => {
+      callback();
+    }, 25); // Adjust the delay as needed
   };
 
   return (
