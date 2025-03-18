@@ -46,9 +46,11 @@ export default function ContactSection() {
     }
   });
 
+  const API_BASE_URL = "https://personal-website-tht7.onrender.com/"; // UPDATED
+
   const { mutate, isPending } = useMutation({
     mutationFn: (data: FormValues) =>
-      apiRequest("POST", "/api/contact", data),
+      apiRequest("POST", `${API_BASE_URL}/api/contact`, data), // UPDATED
     onSuccess: () => {
       toast({
         title: "Message sent!",
