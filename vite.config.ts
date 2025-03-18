@@ -34,5 +34,4 @@ export default defineConfig({
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
   },
-  base: "/Personal-Website/",
 });
