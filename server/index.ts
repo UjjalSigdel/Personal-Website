@@ -10,12 +10,12 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://api.ujjalsigdel.com.np",
       "https://ujjalsigdel.com.np",
       "https://www.ujjalsigdel.com.np"
     ],
-    methods: ["POST"],  // Only allow POST requests
-    allowedHeaders: ["Content-Type"], // Allow only necessary headers
+    credentials: true, // Important for sending cookies/auth headers
+    methods: ["GET", "POST", "OPTIONS"], // Allow OPTIONS for preflight
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow required headers
   })
 );
 app.use(express.json());
