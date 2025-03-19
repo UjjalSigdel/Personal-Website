@@ -1,10 +1,23 @@
 import express, { type Request, Response, NextFunction } from "express";
+import cors from "cors";  // <-- Import cors
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import dotenv from "dotenv"; // <-- Added this line
 dotenv.config();        // <-- Added this line
 
 const app = express();
+
+app.use(
+  cors({
+    origin: [
+      "https://api.ujjalsigdel.com.np",
+      "https://ujjalsigdel.com.np",
+      "https://www.ujjalsigdel.com.np"
+    ],
+    methods: ["POST"],  // Only allow POST requests
+    allowedHeaders: ["Content-Type"], // Allow only necessary headers
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
