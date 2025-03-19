@@ -46,7 +46,7 @@ export default function ContactSection() {
     }
   });
 
-  const API_BASE_URL = "https://personal-website-tht7.onrender.com/"; // UPDATED
+  const API_BASE_URL = "https://api.ujjalsigdel.com.np";  // UPDATED
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: FormValues) =>
