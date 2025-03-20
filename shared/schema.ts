@@ -35,4 +35,5 @@ export const insertContactSchema = createInsertSchema(contactSubmissions).pick({
 });
 
 export type InsertContact = z.infer<typeof insertContactSchema>;
+// TypeScript types for the contact submission
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;

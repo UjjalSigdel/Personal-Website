@@ -3,10 +3,14 @@ import cors from "cors";  // <-- Import cors
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import dotenv from "dotenv"; // <-- Added this line
-dotenv.config();        // <-- Added this line
+import { db } from "./db"; // Import the database connection
+import * as schema from "@shared/schema"; // Import the schema
+
+dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 
+// CORS configuration
 app.use(
   cors({
     origin: [
@@ -18,9 +22,12 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"], // Allow required headers
   })
 );
+
+// Middleware for parsing JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Request logging middleware
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -51,6 +58,19 @@ app.use((req, res, next) => {
   next();
 });
 
+// Example database route for testing
+app.get("/api/test-db", async (req, res) => {
+  try {
+    // Example query: Replace 'users' with your actual table
+    const data = await db.select().from(schema.users);
+    res.json(data);
+  } catch (error) {
+    console.error("Database error:", error);
+    res.status(500).json({ message: "Database connection failed" });
+  }
+});
+
+// Register API routes
 (async () => {
   const server = await registerRoutes(app);
 
@@ -59,6 +79,7 @@ app.use((req, res, next) => {
     next();
   });
 
+  // Global error handler
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";

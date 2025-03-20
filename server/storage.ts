@@ -1,4 +1,6 @@
-import { users, type User, type InsertUser, type ContactSubmission, type InsertContact } from "@shared/schema";
+import { db } from "./db"; // Correct relative path
+import { users, contactSubmissions, type User, type InsertUser, type ContactSubmission, type InsertContact } from "../shared/schema";
+import { eq } from "drizzle-orm";
 
 // modify the interface with any CRUD methods
 // you might need
@@ -10,47 +12,32 @@ export interface IStorage {
   createContactSubmission(contact: InsertContact): Promise<ContactSubmission>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  private contactSubmissions: Map<number, ContactSubmission>;
-  currentId: number;
-  contactSubmissionId: number;
-
-  constructor() {
-    this.users = new Map();
-    this.contactSubmissions = new Map();
-    this.currentId = 1;
-    this.contactSubmissionId = 1;
-  }
-
+export class PgStorage implements IStorage {
   async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
+    const result = await db.select().from(users).where(eq(users.id, id)).limit(1);
+    return result[0]; // Return first user or undefined
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    const result = await db.select().from(users).where(eq(users.username, username)).limit(1);
+    return result[0]; // Return first user or undefined
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentId++;
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+    const [user] = await db.insert(users).values(insertUser).returning();
+    return user; // Return inserted user
   }
 
   async createContactSubmission(insertContact: InsertContact): Promise<ContactSubmission> {
-    const id = this.contactSubmissionId++;
     const submittedAt = new Date();
-    const contactSubmission: ContactSubmission = { 
-      ...insertContact, 
-      id, 
-      submittedAt 
-    };
-    this.contactSubmissions.set(id, contactSubmission);
-    return contactSubmission;
+    // Using `contactSubmissions` table to insert
+    const [contactSubmission] = await db.insert(contactSubmissions).values({
+      ...insertContact,
+      submittedAt
+    }).returning();
+    return contactSubmission; // Returning a single row (ContactSubmission type)
   }
 }
 
-export const storage = new MemStorage();
+// Export instance for usage
+export const storage = new PgStorage();
