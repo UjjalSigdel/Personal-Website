@@ -2,11 +2,8 @@ import express, { type Request, Response, NextFunction } from "express";
 import cors from "cors";  // <-- Import cors
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import dotenv from "dotenv"; // <-- Added this line
 import { db } from "./db"; // Import the database connection
 import * as schema from "@shared/schema"; // Import the schema
-
-dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 
