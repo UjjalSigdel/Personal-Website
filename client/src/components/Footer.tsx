@@ -40,7 +40,7 @@ export default function Footer({
               igdel
             </h3>
             <p className="text-gray-300 mb-4">
-              First-year Electronic and Information Communication Engineering
+              Second-year Electronic and Information Communication Engineering
               student passionate about technology and innovation.
             </p>
             <a
