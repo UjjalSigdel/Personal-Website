@@ -46,11 +46,11 @@ export default function ContactSection() {
     }
   });
 
-  const API_BASE_URL = "https://api.ujjalsigdel.com.np";  // UPDATED
+  const API_BASE_URL = "";  // UPDATED
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: FormValues) =>
-      apiRequest("POST", `${API_BASE_URL}/api/contact`, data), // UPDATED
+      apiRequest("POST", "/api/contact", data), // UPDATED
     onSuccess: () => {
       toast({
         title: "Message sent!",
