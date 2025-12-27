@@ -1,15 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
-import { insertContactSchema } from "../shared/schema";
-import { ZodError } from "zod";
+import { z } from "zod";
 
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: "1mb",
-    },
-  },
-};
+const insertContactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  subject: z.string().min(5, "Subject must be at least 5 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
 
 export default async function handler(
   req: NextApiRequest,
@@ -49,7 +47,7 @@ ${data.message}`,
   } catch (err) {
     console.error("CONTACT API ERROR:", err);
 
-    if (err instanceof ZodError) {
+    if (err instanceof z.ZodError) {
       return res.status(400).json({
         message: err.errors[0]?.message || "Invalid input",
       });
