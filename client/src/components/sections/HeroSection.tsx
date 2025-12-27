@@ -10,9 +10,8 @@ interface HeroSectionProps {
 
 export default function HeroSection({
   onLearnMoreClick,
-  onContactClick
-}:
-  HeroSectionProps) {
+  onContactClick,
+}: HeroSectionProps) {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   // Theme detection
@@ -52,7 +51,9 @@ export default function HeroSection({
             transition={{ duration: 0.6 }}
             className="order-1 md:order-1"
           >
-            <span className="inline-block text-[#4ADE80] font-medium mb-2">MY JOURNEY IN TECH</span>
+            <span className="inline-block text-[#4ADE80] font-medium mb-2">
+              MY JOURNEY IN TECH
+            </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-['Inter'] font-bold leading-tight">
               Ujjal Sigdel <span className="text-[#3B82F6]">Portfolio</span>
             </h1>
@@ -77,7 +78,10 @@ export default function HeroSection({
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <div className="relative w-full h-full overflow-hidden flex items-center justify-center">
                       <picture>
-                        <source srcSet="/profile-photo.webp" type="image/webp" />
+                        <source
+                          srcSet="/profile-photo.webp"
+                          type="image/webp"
+                        />
                         <img
                           src="/profile-photo.png"
                           alt="Ujjal Sigdel"
@@ -91,7 +95,9 @@ export default function HeroSection({
             </div>
 
             <p className="text-lg text-gray-300 max-w-xl mb-6">
-              At just 18 years old, I am an aspiring Electronics and Information Communication Engineering student at Sagarmatha Engineering College, on a mission to create and innovate through technology.
+              At 19 years old, I am an aspiring Electronics and Information
+              Communication Engineering student at Sagarmatha Engineering
+              College, on a mission to create and innovate through technology.
             </p>
 
             {/* Current Focus */}
@@ -101,11 +107,19 @@ export default function HeroSection({
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              <h3 className="text-[#A78BFA] font-semibold mb-2">Current Focus</h3>
+              <h3 className="text-[#A78BFA] font-semibold mb-2">
+                Current Focus
+              </h3>
               <div className="flex gap-2 flex-wrap">
-                <span className="px-2 py-1 text-xs rounded-full bg-[#3B82F6]/10 text-[#3B82F6]">Web Development</span>
-                <span className="px-2 py-1 text-xs rounded-full bg-[#4ADE80]/10 text-[#4ADE80]">Electronics</span>
-                <span className="px-2 py-1 text-xs rounded-full bg-[#A78BFA]/10 text-[#A78BFA]">Programming</span>
+                <span className="px-2 py-1 text-xs rounded-full bg-[#3B82F6]/10 text-[#3B82F6]">
+                  Web Development
+                </span>
+                <span className="px-2 py-1 text-xs rounded-full bg-[#4ADE80]/10 text-[#4ADE80]">
+                  Electronics
+                </span>
+                <span className="px-2 py-1 text-xs rounded-full bg-[#A78BFA]/10 text-[#A78BFA]">
+                  Programming
+                </span>
               </div>
             </motion.div>
 
@@ -118,7 +132,9 @@ export default function HeroSection({
                 transition={{ delay: 0.2 }}
               >
                 <h3 className="text-[#4ADE80] font-semibold mb-2">Learning</h3>
-                <p className="text-sm text-gray-400">Electronics & Programming fundamentals</p>
+                <p className="text-sm text-gray-400">
+                  Electronics & Programming fundamentals
+                </p>
               </motion.div>
               <motion.div
                 className="p-4 rounded-lg bg-[#1E293B]/50 border border-[#3B82F6]/20"
@@ -127,7 +143,9 @@ export default function HeroSection({
                 transition={{ delay: 0.3 }}
               >
                 <h3 className="text-[#3B82F6] font-semibold mb-2">Building</h3>
-                <p className="text-sm text-gray-400">Web & Electronics projects</p>
+                <p className="text-sm text-gray-400">
+                  Web & Electronics projects
+                </p>
               </motion.div>
             </div>
 
@@ -189,7 +207,10 @@ export default function HeroSection({
           transition={{ duration: 0.6, delay: 0.8 }}
           className="mt-16 md:mt-24 text-center"
         >
-          <button onClick={onLearnMoreClick} className="inline-block text-gray-400 hover:text-[#4ADE80] transition-colors">
+          <button
+            onClick={onLearnMoreClick}
+            className="inline-block text-gray-400 hover:text-[#4ADE80] transition-colors"
+          >
             <span className="block mb-2">Explore More</span>
             <ChevronDown className="h-6 w-6 mx-auto animate-bounce" />
           </button>
