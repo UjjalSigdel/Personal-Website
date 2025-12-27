@@ -56,7 +56,7 @@ export default function AboutSection() {
             </h3>
             <div className="text-gray-300 mb-6 max-w-2xl">
               <p className="mb-4">
-                At just 18 years old, I am an aspiring Electronics and
+                At 19 years old, I am an aspiring Electronics and
                 Information Communication Engineering student at Sagarmatha
                 Engineering College, affiliated with TU. My involvement with
                 SEIS (Electronic Society) has fueled my passion for technology.
