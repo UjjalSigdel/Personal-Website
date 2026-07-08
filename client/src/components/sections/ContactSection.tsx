@@ -91,8 +91,7 @@ export default function ContactSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <span className="inline-block text-[#4ADE80] font-medium mb-2">GET IN TOUCH</span>
-          <h2 className="text-4xl font-['Inter'] font-bold text-white mb-4">Let's work together</h2>
-          <div className="h-1 w-20 bg-[#3B82F6]"></div>
+          <h2 className="text-4xl font-['Inter'] font-bold text-white">Let's work together</h2>
         </div>
 
         <motion.div
@@ -117,7 +116,7 @@ export default function ContactSection() {
                           <Input
                             placeholder="John Doe"
                             {...field}
-                            className="w-full px-4 py-2 bg-[#0F172A] border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] text-white transition-colors"
+                            className="w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors"
                           />
                         </FormControl>
                         <FormMessage className="text-[#F87171]" />
@@ -136,7 +135,7 @@ export default function ContactSection() {
                             placeholder="johndoe@example.com"
                             type="email"
                             {...field}
-                            className="w-full px-4 py-2 bg-[#0F172A] border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] text-white transition-colors"
+                            className="w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors"
                           />
                         </FormControl>
                         <FormMessage className="text-[#F87171]" />
@@ -154,7 +153,7 @@ export default function ContactSection() {
                           <Input
                             placeholder="Project Inquiry"
                             {...field}
-                            className="w-full px-4 py-2 bg-[#0F172A] border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] text-white transition-colors"
+                            className="w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors"
                           />
                         </FormControl>
                         <FormMessage className="text-[#F87171]" />
@@ -173,7 +172,7 @@ export default function ContactSection() {
                             placeholder="Your message here..."
                             rows={4}
                             {...field}
-                            className="w-full px-4 py-2 bg-[#0F172A] border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] text-white transition-colors resize-none"
+                            className="w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors resize-none"
                           />
                         </FormControl>
                         <FormMessage className="text-[#F87171]" />
@@ -184,9 +183,9 @@ export default function ContactSection() {
                   <Button
                     type="submit"
                     disabled={isPending || formSubmitted}
-                    className="w-full px-6 py-3 bg-[#3B82F6] text-white font-['Inter'] font-medium rounded-lg shadow-md hover:bg-[#3B82F6]/90 transition-colors"
+                    className="w-full px-6 py-3 font-mono font-bold bg-[#173626] text-[#6EE7A8] border border-[#2b5940] rounded-lg hover:bg-[#173626]/70 transition-colors"
                   >
-                    {isPending ? "Sending..." : formSubmitted ? "Message Sent!" : "Send Message"}
+                    {isPending ? "$ sending..." : formSubmitted ? "$ message sent" : "$ send --message"}
                   </Button>
                 </form>
               </Form>
@@ -194,42 +193,47 @@ export default function ContactSection() {
           </motion.div>
 
           {/* FAQ card — replaces the old duplicate Contact Information / Connect with Me
-              cards, which just repeated the footer's email/phone/location/socials. */}
+              cards, which just repeated the footer's email/phone/location/socials.
+              Styled as a terminal window since it's read-only content (unlike the
+              form, which stays a conventional input so it's clearly fillable). */}
           <motion.div variants={itemVariants}>
-            <Card className="bg-[#1E293B] border-none rounded-lg p-8 shadow-xl">
-              <h3 className="text-2xl font-['Inter'] font-semibold text-white mb-6">
-                Before you send that message
-              </h3>
+            <div className="rounded-lg border border-[#1f3a2b] bg-[#0B1710] overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-3 bg-[#122318] border-b border-[#1f3a2b]">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
+                <span className="font-mono text-sm text-[#5f8a71] ml-2">faq.log</span>
+              </div>
 
-              <div className="space-y-6">
+              <div className="p-6 space-y-5">
                 <div>
-                  <h4 className="font-['Inter'] font-semibold text-white mb-2">
-                    Are you open to internships?
-                  </h4>
-                  <p className="text-gray-400 text-sm leading-relaxed">
+                  <p className="font-mono text-[#4ADE80] text-sm mb-1.5">
+                    Q: Are you open to internships?
+                  </p>
+                  <p className="text-gray-400 text-base leading-relaxed pl-4">
                     Yes — that's honestly most of why this form exists.
                   </p>
                 </div>
 
-                <div className="pt-6 border-t border-gray-700/50">
-                  <h4 className="font-['Inter'] font-semibold text-white mb-2">
-                    What should the subject line say?
-                  </h4>
-                  <p className="text-gray-400 text-sm leading-relaxed">
+                <div>
+                  <p className="font-mono text-[#4ADE80] text-sm mb-1.5">
+                    Q: What should the subject line say?
+                  </p>
+                  <p className="text-gray-400 text-base leading-relaxed pl-4">
                     Whatever you're reaching out about — internship, project, hackathon, or just to connect.
                   </p>
                 </div>
 
-                <div className="pt-6 border-t border-gray-700/50">
-                  <h4 className="font-['Inter'] font-semibold text-white mb-2">
-                    How fast do you reply?
-                  </h4>
-                  <p className="text-gray-400 text-sm leading-relaxed">
+                <div>
+                  <p className="font-mono text-[#4ADE80] text-sm mb-1.5">
+                    Q: How fast do you reply?
+                  </p>
+                  <p className="text-gray-400 text-base leading-relaxed pl-4">
                     Usually within a couple of days. I read every message myself.
                   </p>
                 </div>
               </div>
-            </Card>
+            </div>
           </motion.div>
         </motion.div>
       </div>

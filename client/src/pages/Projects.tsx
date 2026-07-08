@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { motion } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProjectCard from "@/components/ui/project-card";
@@ -42,6 +43,14 @@ export default function Projects() {
 
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <button
+            onClick={goHomeSection("")}
+            className="inline-flex items-center gap-2 font-mono text-sm text-gray-400 hover:text-[#4ADE80] transition-colors mb-8"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            $ cd ..
+          </button>
+
           <div className="mb-12">
             <span className="inline-block text-[#A78BFA] font-medium mb-2">
               THE FULL ARCHIVE
