@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 import nodemailer from "nodemailer";
 import { z } from "zod";
 
@@ -10,8 +10,8 @@ const insertContactSchema = z.object({
 });
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+  req: VercelRequest,
+  res: VercelResponse
 ) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });

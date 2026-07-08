@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import SectionHeading from "@/components/ui/section-heading";
 import { Card } from "@/components/ui/card";
 import {
   Form,
@@ -18,7 +17,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin, Twitter, Linkedin, Github } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
@@ -98,7 +96,7 @@ export default function ContactSection() {
         </div>
 
         <motion.div
-          className="grid md:grid-cols-2 gap-12 items-start"
+          className="grid md:grid-cols-[3fr_2fr] gap-12 items-start"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
@@ -195,98 +193,44 @@ export default function ContactSection() {
             </Card>
           </motion.div>
 
-          {/* Combined Contact Information and Connect with Me Sections */}
-          <div className="hidden md:block">
-            {/* Contact Information Section */}
-            <motion.div variants={itemVariants}>
-              <Card className="bg-[#1E293B] border-none rounded-lg p-8 shadow-xl mb-8">
-                <h3 className="text-2xl font-['Inter'] font-semibold text-white mb-6">Contact Information</h3>
+          {/* FAQ card — replaces the old duplicate Contact Information / Connect with Me
+              cards, which just repeated the footer's email/phone/location/socials. */}
+          <motion.div variants={itemVariants}>
+            <Card className="bg-[#1E293B] border-none rounded-lg p-8 shadow-xl">
+              <h3 className="text-2xl font-['Inter'] font-semibold text-white mb-6">
+                Before you send that message
+              </h3>
 
-                <div className="space-y-6">
-                  <div className="flex items-start">
-                    <div className="w-12 h-12 rounded-lg bg-[#3B82F6]/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0 border border-[#3B82F6]/20">
-                      <Mail className="h-5 w-5 text-[#3B82F6]" />
-                    </div>
-                    <div>
-                      <h4 className="font-['Inter'] font-medium text-gray-300">Email</h4>
-                      <a href="mailto:contact@ujjalsigdel.com.np" className="text-[#3B82F6] hover:text-[#3B82F6]/80 transition-colors">
-                        contact@ujjalsigdel.com.np
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start">
-                    <div className="w-12 h-12 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0 border border-[#4ADE80]/20">
-                      <Phone className="h-5 w-5 text-[#4ADE80]" />
-                    </div>
-                    <div>
-                      <h4 className="font-['Inter'] font-medium text-gray-300">Phone</h4>
-                      <a
-                        href="tel:+9779761622468"
-                        className="text-gray-400 hover:text-[#3B82F6] transition-colors"
-                      >
-                        +977 9761622468
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start">
-                    <div className="w-12 h-12 rounded-lg bg-[#A78BFA]/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0 border border-[#A78BFA]/20">
-                      <MapPin className="h-5 w-5 text-[#A78BFA]" />
-                    </div>
-                    <div>
-                      <h4 className="font-['Inter'] font-medium text-gray-300">Location</h4>
-                      <a
-                        href="https://www.google.com/maps/place/Kathmandu,+Nepal"
-                        className="text-gray-400 hover:text-[#3B82F6] transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Kathmandu, Nepal
-                      </a>
-                    </div>
-                  </div>
+              <div className="space-y-6">
+                <div>
+                  <h4 className="font-['Inter'] font-semibold text-white mb-2">
+                    Are you open to internships?
+                  </h4>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    Yes — that's honestly most of why this form exists.
+                  </p>
                 </div>
-              </Card>
-            </motion.div>
 
-            {/* Connect with Me Section */}
-            <motion.div variants={itemVariants}>
-              <Card className="bg-[#1E293B] border-none rounded-lg p-8 shadow-xl">
-                <h3 className="text-2xl font-['Inter'] font-semibold text-white mb-6">Connect with Me</h3>
-
-                <div className="flex justify-center space-x-6">
-                  <a
-                    href="https://x.com/UjjalSigdel"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-[#0F172A] border border-gray-700 flex items-center justify-center hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-colors group"
-                    aria-label="Twitter"
-                  >
-                    <Twitter className="h-5 w-5 text-[#3B82F6] group-hover:text-white transition-colors" />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/ujjal-sigdel-07a292330/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-[#0F172A] border border-gray-700 flex items-center justify-center hover:bg-[#4ADE80] hover:border-[#4ADE80] transition-colors group"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin className="h-5 w-5 text-[#4ADE80] group-hover:text-white transition-colors" />
-                  </a>
-                  <a
-                    href="https://github.com/UjjalSigdel"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-[#0F172A] border border-gray-700 flex items-center justify-center hover:bg-[#A78BFA] hover:border-[#A78BFA] transition-colors group"
-                    aria-label="GitHub"
-                  >
-                    <Github className="h-5 w-5 text-[#A78BFA] group-hover:text-white transition-colors" />
-                  </a>
+                <div className="pt-6 border-t border-gray-700/50">
+                  <h4 className="font-['Inter'] font-semibold text-white mb-2">
+                    What should the subject line say?
+                  </h4>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    Whatever you're reaching out about — internship, project, hackathon, or just to connect.
+                  </p>
                 </div>
-              </Card>
-            </motion.div>
-          </div>
+
+                <div className="pt-6 border-t border-gray-700/50">
+                  <h4 className="font-['Inter'] font-semibold text-white mb-2">
+                    How fast do you reply?
+                  </h4>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    Usually within a couple of days. I read every message myself.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
         </motion.div>
       </div>
     </section>

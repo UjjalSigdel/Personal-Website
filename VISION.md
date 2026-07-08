@@ -70,6 +70,23 @@ Animations should improve the experience rather than distract from it.
 
 ---
 
+## Visual Identity
+
+The visual identity should feel distinctive and memorable rather than following common portfolio templates.
+
+Avoid reproducing popular AI-generated portfolio patterns such as:
+
+- Large centered hero sections with little personality
+- Generic gradient backgrounds used only for visual impact
+- Glassmorphism without a functional purpose
+- Repetitive feature-card grids
+- Placeholder illustrations
+- Decorative animations that do not improve usability
+
+The design should communicate craftsmanship through thoughtful typography, spacing, layout, color, and meaningful visual hierarchy.
+
+Each section should have a clear purpose and reflect the content it presents rather than following trends.
+
 ## Projects
 
 The homepage should showcase only featured projects.
@@ -94,9 +111,20 @@ Each project should eventually include:
 
 ---
 
+## Navigation
+
+The site should feel like a single-page experience first, with `/projects` as a deliberate, secondary destination rather than a primary nav target.
+
+- The header and footer nav items (Home, About, Skills, Projects, Contact) are same-page scroll links to the homepage's sections. Clicking "Projects" in the nav scrolls to the homepage's Featured Projects section — it does not navigate to `/projects`.
+- When on a page other than the homepage (e.g. `/projects`), those same nav items navigate back to the homepage and scroll to the corresponding section, so the behavior is consistent no matter where the visitor started.
+- `/projects` is reached only through an explicit, clearly-labeled link (e.g. "View all projects") placed inside the homepage's Featured Projects section — never from the primary nav.
+- This applies to any future secondary pages (Blog, Certificates, etc.): they get their own explicit entry point from the relevant homepage section, not a permanent primary-nav slot, unless a page becomes central enough to the site's purpose to warrant one.
+
+---
+
 ## Backend
 
-The current backend using Express, Vercel Serverless Functions and Nodemailer should remain lightweight.
+The current backend using Vercel Serverless Functions and Nodemailer should remain lightweight.
 
 Only expand backend functionality when there is a clear need.
 

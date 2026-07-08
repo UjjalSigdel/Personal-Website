@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import SectionHeading from "@/components/ui/section-heading";
 import ProgressBar from "@/components/ui/progress-bar";
 import SkillCard from "@/components/ui/skill-card";
 import { Cpu, Book, Users, MessageSquare, Zap, Shield, Smartphone, Globe, CircuitBoard, BrainCircuit } from "lucide-react";

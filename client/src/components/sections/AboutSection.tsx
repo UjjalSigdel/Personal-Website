@@ -8,7 +8,6 @@ import {
   Server,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import SectionHeading from "@/components/ui/section-heading";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 

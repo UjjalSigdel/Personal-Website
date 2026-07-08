@@ -1,8 +1,7 @@
 {
   "include": [
     "client/src/**/*",
-    "shared/**/*",
-    "server/**/*"
+    "shared/**/*"
   ],
   "exclude": [
     "node_modules", // Exclude node_modules to avoid processing third-party packages
@@ -34,9 +33,6 @@
     "paths": {
       "@/*": [
         "./client/src/*"
-      ],
-      "@server/*": [
-        "./server/*"
       ],
       "@shared/*": [
         "./shared/*"

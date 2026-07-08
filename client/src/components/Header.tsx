@@ -37,7 +37,7 @@ export default function Header({
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={onHomeClick}
             className="text-2xl font-['Inter'] font-bold text-white text-left"
           >
             <span className="bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] bg-clip-text text-transparent">U</span>jjal
@@ -46,7 +46,7 @@ export default function Header({
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <button onClick={() => handleNavClick(() => window.scrollTo({ top: 0, behavior: 'smooth' }))} className="font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 px-3 py-1 rounded-md transition-colors">Home</button>
+            <button onClick={() => handleNavClick(onHomeClick)} className="font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 px-3 py-1 rounded-md transition-colors">Home</button>
             <button onClick={() => handleNavClick(onAboutClick)} className="font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 px-3 py-1 rounded-md transition-colors">About</button>
             <button onClick={() => handleNavClick(onSkillsClick)} className="font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 px-3 py-1 rounded-md transition-colors">Skills</button>
             <button onClick={() => handleNavClick(onProjectsClick)} className="font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 px-3 py-1 rounded-md transition-colors">Projects</button>
@@ -65,7 +65,7 @@ export default function Header({
 
         {/* Mobile Navigation */}
         <div className={`md:hidden pb-4 ${isMenuOpen ? 'block' : 'hidden'}`}>
-          <button onClick={() => handleNavClick(() => window.scrollTo({ top: 0, behavior: 'smooth' }))} className="block py-2 px-4 font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left">Home</button>
+          <button onClick={() => handleNavClick(onHomeClick)} className="block py-2 px-4 font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left">Home</button>
           <button onClick={() => handleNavClick(onAboutClick)} className="block py-2 px-4 font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left">About</button>
           <button onClick={() => handleNavClick(onSkillsClick)} className="block py-2 px-4 font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left">Skills</button>
           <button onClick={() => handleNavClick(onProjectsClick)} className="block py-2 px-4 font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left">Projects</button>

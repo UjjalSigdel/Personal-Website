@@ -14,11 +14,3 @@ export interface SoftSkill {
   name: string;
   icon: JSX.Element;
 }
-
-export interface Project {
-  title: string;
-  description: string;
-  icon: JSX.Element;
-  tags: string[];
-  status: string;
-}

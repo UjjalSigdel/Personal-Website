@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/sections/HeroSection";
@@ -19,6 +19,26 @@ export default function Home() {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  // Arriving from another page (e.g. /projects) with a #section hash — scroll to it once.
+  useEffect(() => {
+    const sectionRefs: Record<string, React.RefObject<HTMLDivElement>> = {
+      about: aboutRef,
+      skills: skillsRef,
+      projects: projectsRef,
+      contact: contactRef,
+    };
+    const hash = window.location.hash.replace("#", "");
+    const targetRef = sectionRefs[hash];
+    if (targetRef) {
+      scrollToSection(targetRef);
+    } else {
+      // No section hash (e.g. navigating here via client-side routing from
+      // another page) — start at the top instead of wherever that page had scrolled to.
+      window.scrollTo({ top: 0 });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="font-['Roboto'] text-gray-800 bg-gray-50">

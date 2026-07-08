@@ -1,9 +1,10 @@
 import { useRef } from "react";
+import { Link } from "wouter";
 import { motion, useInView } from "framer-motion";
-import SectionHeading from "@/components/ui/section-heading";
 import ProjectCard from "@/components/ui/project-card";
 import { Button } from "@/components/ui/button";
-import { CircuitBoard, Code, Globe } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { projects } from "@/lib/projects";
 
 interface ProjectsSectionProps {
   onContactClick: () => void;
@@ -30,32 +31,7 @@ export default function ProjectsSection({
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  const projects = [
-    {
-      title: "Basic Circuit Simulation",
-      description:
-        "A lab project simulating basic electronic circuits using software tools to understand fundamental electronic principles.",
-      icon: <CircuitBoard className="h-20 w-20 text-[#3B82F6]" />,
-      tags: ["Circuit Design", "Electronics", "Simulation"],
-      status: "In Progress",
-    },
-    {
-      title: "Simple C++ Programming Assignments",
-      description:
-        "Collection of academic assignments implementing basic algorithms and data structures in C++ to strengthen programming fundamentals.",
-      icon: <Code className="h-20 w-20 text-[#3B82F6]" />,
-      tags: ["C++", "Algorithms", "Programming"],
-      status: "Ongoing",
-    },
-    {
-      title: "Personal Portfolio Website",
-      description:
-        "Designing and developing this portfolio website to showcase my academic journey, skills, and future projects in electronic engineering.",
-      icon: <Globe className="h-20 w-20 text-[#3B82F6]" />,
-      tags: ["HTML", "CSS", "Web Design"],
-      status: "Completed",
-    },
-  ];
+  const featuredProjects = projects.filter((project) => project.featured);
 
   return (
     <section ref={sectionRef} className="py-20 bg-[#0F172A]">
@@ -65,7 +41,7 @@ export default function ProjectsSection({
             MY ACADEMIC WORK
           </span>
           <h2 className="text-4xl font-['Inter'] font-bold text-white mb-4">
-            Academic Projects
+            Featured Projects
           </h2>
           <p className="text-gray-300 max-w-3xl">
             As a second-year student, I'm working on these educational projects
@@ -80,35 +56,44 @@ export default function ProjectsSection({
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
         >
-          {projects.map((project, index) => (
-            <motion.div key={index} variants={itemVariants}>
+          {featuredProjects.map((project) => (
+            <motion.div key={project.slug} variants={itemVariants}>
               <ProjectCard
                 title={project.title}
                 description={project.description}
                 icon={project.icon}
                 tags={project.tags}
                 status={project.status}
+                githubUrl={project.githubUrl}
               />
             </motion.div>
           ))}
         </motion.div>
 
         <motion.div
-          className="mt-16 text-center"
+          className="mt-16 flex flex-col items-center gap-6"
           variants={itemVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <p className="text-gray-300 mb-6">
-            Interested in collaborating on academic projects or have
-            suggestions?
-          </p>
-          <Button
-            onClick={onContactClick}
-            className="bg-[#A78BFA] hover:bg-[#A78BFA]/90 text-[#0F172A] font-['Inter'] font-medium shadow-lg"
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-[#A78BFA] hover:text-[#A78BFA]/80 font-['Inter'] font-medium transition-colors"
           >
-            Get in Touch
-          </Button>
+            View all projects <ArrowRight className="h-4 w-4" />
+          </Link>
+          <div className="text-center">
+            <p className="text-gray-300 mb-6">
+              Interested in collaborating on academic projects or have
+              suggestions?
+            </p>
+            <Button
+              onClick={onContactClick}
+              className="bg-[#A78BFA] hover:bg-[#A78BFA]/90 text-[#0F172A] font-['Inter'] font-medium shadow-lg"
+            >
+              Get in Touch
+            </Button>
+          </div>
         </motion.div>
       </div>
     </section>
