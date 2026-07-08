@@ -1,5 +1,4 @@
 import {
-  Download,
   Mail,
   Phone,
   MapPin,
@@ -29,27 +28,21 @@ export default function Footer({
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-12">
           <div>
-            <h3 className="text-xl font-['Inter'] font-bold mb-4 text-white">
-              <span className="bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] bg-clip-text text-transparent">
-                U
-              </span>
-              jjal
-              <span className="bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] bg-clip-text text-transparent ml-1">
-                S
-              </span>
-              igdel
-            </h3>
-            <p className="text-gray-300 mb-4">
-              Second-year Electronic and Information Communication Engineering
-              student passionate about technology and innovation.
-            </p>
+            <div className="flex items-center gap-2 font-mono font-bold text-base text-[#E7ECF5] mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4ADE80]" />
+              ~/ujjal
+            </div>
+            <div className="font-mono text-sm text-[#8a9a8f] leading-relaxed mb-5">
+              <span className="text-[#6EE7A8]">$</span> echo "thanks for scrolling this far"
+              <br />
+              // EOF
+            </div>
             <a
               href="/MyCV.pdf"
               download="Ujjal_Sigdel_CV.pdf"
-              className="inline-flex items-center text-[#3B82F6] hover:text-[#3B82F6]/80 transition-colors"
+              className="inline-flex font-mono text-sm px-3 py-2 rounded-md border border-[#2b5940] bg-[#122318] text-[#6EE7A8] hover:bg-[#173626] transition-colors"
             >
-              <span>Download Resume</span>
-              <Download className="h-4 w-4 ml-1" />
+              $ download --resume
             </a>
           </div>
 
@@ -61,40 +54,45 @@ export default function Footer({
               <li>
                 <button
                   onClick={onHomeClick}
-                  className="text-gray-300 hover:text-white hover:translate-x-1 transition-all"
+                  className="group flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
                 >
+                  <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
                   Home
                 </button>
               </li>
               <li>
                 <button
                   onClick={onAboutClick}
-                  className="text-gray-300 hover:text-white hover:translate-x-1 transition-all"
+                  className="group flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
                 >
+                  <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
                   About
                 </button>
               </li>
               <li>
                 <button
                   onClick={onSkillsClick}
-                  className="text-gray-300 hover:text-white hover:translate-x-1 transition-all"
+                  className="group flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
                 >
+                  <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
                   Skills
                 </button>
               </li>
               <li>
                 <button
                   onClick={onProjectsClick}
-                  className="text-gray-300 hover:text-white hover:translate-x-1 transition-all"
+                  className="group flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
                 >
+                  <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
                   Projects
                 </button>
               </li>
               <li>
                 <button
                   onClick={onContactClick}
-                  className="text-gray-300 hover:text-white hover:translate-x-1 transition-all"
+                  className="group flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
                 >
+                  <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
                   Contact
                 </button>
               </li>
