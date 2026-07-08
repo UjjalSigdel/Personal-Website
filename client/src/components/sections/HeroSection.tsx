@@ -1,202 +1,157 @@
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
 
 interface HeroSectionProps {
   onLearnMoreClick: () => void;
+  onProjectsClick: () => void;
   onContactClick: () => void;
+}
+
+const BIRTH_DATE = new Date(2006, 5, 23); // June 23, 2006
+
+function getUptime(since: Date): string {
+  const now = new Date();
+  let years = now.getFullYear() - since.getFullYear();
+  let months = now.getMonth() - since.getMonth();
+  let days = now.getDate() - since.getDate();
+
+  if (days < 0) {
+    months -= 1;
+    days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+  }
+  if (months < 0) {
+    years -= 1;
+    months += 12;
+  }
+
+  return `${years}y ${months}mo ${days}d`;
 }
 
 export default function HeroSection({
   onLearnMoreClick,
+  onProjectsClick,
   onContactClick,
 }: HeroSectionProps) {
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
-
-  // Theme detection
-  useEffect(() => {
-    // Check initial theme
-    const checkTheme = () => {
-      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setIsDarkTheme(isDark);
-    };
-
-    checkTheme();
-
-    // Listen for theme changes
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsDarkTheme(e.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+  const uptime = getUptime(BIRTH_DATE);
 
   return (
-    <section className="min-h-[95vh] flex items-center bg-[#0F172A] text-white relative overflow-hidden">
-      {/* Animated gradient circles */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-[#3B82F6]/10 rounded-full filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-72 h-72 bg-[#4ADE80]/10 rounded-full filter blur-3xl animate-pulse delay-700"></div>
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Hidden on mobile, visible on desktop (left side) */}
+    <section className="bg-[#0F172A] text-white pt-14 pb-20 md:pt-20 md:pb-28">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-stretch">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="order-1 md:order-1"
           >
-            <span className="inline-block text-[#4ADE80] font-medium mb-2">
-              MY JOURNEY IN TECH
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-['Inter'] font-bold leading-tight">
-              Ujjal Sigdel <span className="text-[#3B82F6]">Portfolio</span>
-            </h1>
-            <motion.h2
-              className="mt-4 text-2xl sm:text-3xl font-['Inter'] font-medium bg-gradient-to-r from-[#3B82F6] to-[#4ADE80] text-transparent bg-clip-text mb-6 md:mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-            >
-              Showcasing My Tech Journey and Skills
-            </motion.h2>
-
-            {/* Profile Section - Right side on desktop, after showcase text on mobile */}
-            <div className="md:hidden block mb-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative mt-6 md:mt-0"
-              >
-                <div className="relative w-full max-w-[550px] mx-auto aspect-[4/5] rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-[#1E293B] to-[#0F172A]">
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <div className="relative w-full h-full overflow-hidden flex items-center justify-center">
-                      <picture>
-                        <source
-                          srcSet="/profile-photo.webp"
-                          type="image/webp"
-                        />
-                        <img
-                          src="/profile-photo.png"
-                          alt="Ujjal Sigdel"
-                          className="object-cover w-full h-full"
-                        />
-                      </picture>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            <p className="text-lg text-gray-300 max-w-xl mb-6">
-              At 19 years old, I am an aspiring Electronics and Information
-              Communication Engineering student at Sagarmatha Engineering
-              College, on a mission to create and innovate through technology.
-            </p>
-
-            {/* Current Focus */}
-            <motion.div
-              className="mb-6 p-4 rounded-lg bg-[#1E293B]/50 border border-[#3B82F6]/20"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <h3 className="text-[#A78BFA] font-semibold mb-2">
-                Current Focus
-              </h3>
-              <div className="flex gap-2 flex-wrap">
-                <span className="px-2 py-1 text-xs rounded-full bg-[#3B82F6]/10 text-[#3B82F6]">
-                  Web Development
+            {/* Byline */}
+            <div className="flex items-center gap-4 lg:gap-5 mb-8 lg:mb-10">
+              <picture>
+                <source srcSet="/profile-photo.webp" type="image/webp" />
+                <img
+                  src="/profile-photo.png"
+                  alt="Ujjal Sigdel"
+                  className="w-14 h-14 lg:w-20 lg:h-20 rounded-full object-cover object-[center_15%] border border-[#2b5940] bg-[#0e1f16]"
+                />
+              </picture>
+              <div className="leading-tight">
+                <span className="block font-['Inter'] font-semibold text-[#DCEFE3] text-base lg:text-xl">
+                  Ujjal Sigdel
                 </span>
-                <span className="px-2 py-1 text-xs rounded-full bg-[#4ADE80]/10 text-[#4ADE80]">
-                  Electronics
-                </span>
-                <span className="px-2 py-1 text-xs rounded-full bg-[#A78BFA]/10 text-[#A78BFA]">
-                  Programming
+                <span className="text-sm lg:text-base text-[#7f9d8c]">
+                  BEI, Sagarmatha Engineering College
                 </span>
               </div>
-            </motion.div>
-
-            {/* Key Focus Areas */}
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <motion.div
-                className="p-4 rounded-lg bg-[#1E293B]/50 border border-[#3B82F6]/20"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <h3 className="text-[#4ADE80] font-semibold mb-2">Learning</h3>
-                <p className="text-sm text-gray-400">
-                  Electronics & Programming fundamentals
-                </p>
-              </motion.div>
-              <motion.div
-                className="p-4 rounded-lg bg-[#1E293B]/50 border border-[#3B82F6]/20"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                <h3 className="text-[#3B82F6] font-semibold mb-2">Building</h3>
-                <p className="text-sm text-gray-400">
-                  Web & Electronics projects
-                </p>
-              </motion.div>
             </div>
 
+            <h1 className="font-mono font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6 text-[#F2F7F4]">
+              // still compiling
+              <span
+                aria-hidden="true"
+                className="inline-block w-[0.5em] h-[0.75em] bg-[#4ADE80] ml-2 align-middle animate-blink"
+              />
+            </h1>
+
+            <p className="text-[#9FB3A8] text-lg leading-relaxed max-w-lg mb-7">
+              I'm twenty, in my second year, and most of what's here is still
+              in progress. This site is less a highlight reel and more a
+              running log of what I'm building, breaking, and figuring out —
+              from basic circuits to my first lines of C++.
+            </p>
+
+            <p className="font-serif italic text-lg text-[#CBD9D0] border-l-[3px] border-[#2b5940] pl-5 max-w-lg mb-9">
+              Turns out engineering is mostly learning in public.
+            </p>
+
             <div className="flex flex-wrap gap-4">
-              <Button
-                onClick={onLearnMoreClick}
-                className="bg-[#4ADE80] hover:bg-[#4ADE80]/90 text-[#0F172A] font-['Inter'] font-medium shadow-lg px-8 py-6"
-                size="lg"
+              <button
+                onClick={onProjectsClick}
+                className="font-mono font-bold text-base px-6 py-3.5 rounded-md bg-[#173626] text-[#6EE7A8] border border-[#2b5940] hover:bg-[#173626]/70 transition-colors"
               >
-                View Services
-              </Button>
-              <Button
-                variant="outline"
+                $ view --projects
+              </button>
+              <button
                 onClick={onContactClick}
-                className="border-[#3B82F6] text-[#3B82F6] font-['Inter'] font-medium hover:bg-[#3B82F6]/10 bg-[#1E293B]/50"
-                size="lg"
+                className="font-mono font-bold text-base px-6 py-3.5 rounded-md text-[#B9C7BE] border border-[#24402f] hover:bg-[#173626]/40 transition-colors"
               >
-                Get in Touch
-              </Button>
+                $ contact --me
+              </button>
             </div>
           </motion.div>
 
-          {/* Profile Section - Right side on desktop only */}
+          {/* Status terminal */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden md:block order-2 relative mt-6 md:mt-0"
+            className="h-full flex flex-col"
           >
-            {/* Profile container */}
-            <div className="relative w-full max-w-[400px] mx-auto aspect-[3/4] rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-[#1E293B] to-[#0F172A]">
-              {/* Floating icons */}
-              <div className="absolute w-12 h-12 left-4 top-8 bg-[#1E293B]/80 rounded-full flex items-center justify-center animate-float-slow">
-                <span className="text-[#4ADE80] text-2xl">&lt;/&gt;</span>
+            <div className="flex-1 flex flex-col rounded-lg border border-[#1f3a2b] bg-[#0B1710] shadow-xl overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-3.5 bg-[#122318] border-b border-[#1f3a2b]">
+                <span className="w-3 h-3 rounded-full bg-[#20402e]" />
+                <span className="w-3 h-3 rounded-full bg-[#20402e]" />
+                <span className="w-3 h-3 rounded-full bg-[#20402e]" />
+                <span className="font-mono text-sm text-[#5f8a71] ml-2">
+                  ujjal@sagarmatha:~
+                </span>
               </div>
-              <div className="absolute w-10 h-10 right-8 top-16 bg-[#1E293B]/80 rounded-full flex items-center justify-center animate-float-medium">
-                <span className="text-[#3B82F6] text-xl">⚡</span>
-              </div>
-              <div className="absolute w-8 h-8 left-12 bottom-20 bg-[#1E293B]/80 rounded-full flex items-center justify-center animate-float-fast">
-                <span className="text-[#A78BFA] text-lg">⚙️</span>
-              </div>
-              {/* Profile photo */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <div className="relative w-full h-full overflow-hidden flex items-center justify-center">
-                  <img
-                    src="/profile-photo.png"
-                    alt="Ujjal Sigdel"
-                    className="object-cover w-full h-full"
-                  />
+              <div className="font-mono text-base leading-[2.15] px-6 py-10 flex-1 flex flex-col justify-center">
+                <div className="flex gap-4">
+                  <span className="text-[#5f8a71] w-28 flex-shrink-0">whoami</span>
+                  <span className="text-[#DCEFE3]">Ujjal Sigdel</span>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-[#5f8a71] w-28 flex-shrink-0">role</span>
+                  <span className="text-[#DCEFE3]">BEI Student, Year 2</span>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-[#5f8a71] w-28 flex-shrink-0">college</span>
+                  <span className="text-[#DCEFE3]">Sagarmatha Eng. College (TU)</span>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-[#5f8a71] w-28 flex-shrink-0">member</span>
+                  <span className="text-[#DCEFE3]">SEIS — Electronic Society</span>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-[#5f8a71] w-28 flex-shrink-0">status</span>
+                  <span className="text-[#4ADE80] flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#4ADE80]" />
+                    learning
+                  </span>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-[#5f8a71] w-28 flex-shrink-0">uptime</span>
+                  <span className="text-[#DCEFE3]">{uptime}</span>
                 </div>
               </div>
+            </div>
+
+            <div className="mt-5 rounded-lg border border-[#1f3a2b] bg-[#0B1710] px-6 py-5">
+              <div className="font-mono text-sm text-[#5f8a71] mb-2">
+                // next up
+              </div>
+              <p className="text-[#DCEFE3] text-base leading-relaxed">
+                Getting the circuit simulation actually working end to end.
+              </p>
             </div>
           </motion.div>
         </div>
@@ -205,7 +160,7 @@ export default function HeroSection({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 md:mt-24 text-center"
+          className="mt-16 md:mt-20 text-center"
         >
           <button
             onClick={onLearnMoreClick}

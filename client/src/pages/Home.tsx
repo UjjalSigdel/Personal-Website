@@ -52,6 +52,7 @@ export default function Home() {
       <div ref={homeRef}>
         <HeroSection
           onLearnMoreClick={() => scrollToSection(aboutRef)}
+          onProjectsClick={() => scrollToSection(projectsRef)}
           onContactClick={() => scrollToSection(contactRef)}
         />
       </div>

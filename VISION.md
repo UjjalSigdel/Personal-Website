@@ -46,6 +46,23 @@ Features should only be added when they provide real value.
 
 ---
 
+## Content Strategy
+
+Each section should have a single, well-defined purpose.
+
+Avoid repeating the same information across multiple sections.
+
+Information should complement other sections rather than duplicate them.
+
+Examples:
+
+- Skills should describe technical abilities and competencies.
+- Projects should demonstrate those skills through real work rather than listing them again.
+- Experience should focus on responsibilities, achievements, and impact.
+- About should introduce who I am, my interests, and my goals without repeating my resume.
+
+Whenever possible, reference information instead of restating it.
+
 ## Design Philosophy
 
 The design should feel:
