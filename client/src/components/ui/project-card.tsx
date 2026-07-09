@@ -38,26 +38,26 @@ export default function ProjectCard({
   const figNumber = String(index + 1).padStart(2, "0");
 
   return (
-    <div className="relative border border-dashed border-[#1f3a2b] rounded bg-[#0B1710]/35 p-5 pt-6 h-full flex flex-col transition-colors duration-200 hover:border-[#4ADE80]/70">
+    <div className="relative border border-dashed border-[#1f3a2b] rounded bg-[#0B1710]/35 p-6 pt-7 h-full flex flex-col transition-colors duration-200 hover:border-[#4ADE80]/70">
       <span className="absolute -top-px -left-px w-2.5 h-2.5 border-t-2 border-l-2 border-[#4ADE80]" />
       <span className="absolute -top-px -right-px w-2.5 h-2.5 border-t-2 border-r-2 border-[#4ADE80]" />
       <span className="absolute -bottom-px -left-px w-2.5 h-2.5 border-b-2 border-l-2 border-[#4ADE80]" />
       <span className="absolute -bottom-px -right-px w-2.5 h-2.5 border-b-2 border-r-2 border-[#4ADE80]" />
 
       <span
-        className={`absolute top-4 right-3.5 font-mono text-[10px] tracking-wide uppercase px-1.5 py-0.5 border rounded-sm ${statusMeta.className}`}
+        className={`absolute top-4 right-4 font-mono text-[11px] tracking-wide uppercase px-2 py-0.5 border rounded-sm ${statusMeta.className}`}
       >
         {statusMeta.label}
       </span>
 
-      <span className="font-mono text-[10.5px] tracking-wider uppercase text-[#5f8a71] mb-2.5 pr-20">
+      <span className="font-mono text-xs tracking-wider uppercase text-[#5f8a71] mb-3 pr-24">
         FIG. {figNumber} — {category}
       </span>
 
-      <h3 className="text-[15.5px] font-semibold text-white mb-2.5">{title}</h3>
-      <p className="text-gray-300 text-[13px] leading-relaxed mb-4 flex-grow">{description}</p>
+      <h3 className="text-lg font-semibold text-white mb-3">{title}</h3>
+      <p className="text-gray-300 text-sm leading-relaxed mb-5 flex-grow">{description}</p>
 
-      <div className="font-mono text-[11px] text-[#5f8a71] border-t border-dashed border-[#1f3a2b] pt-2.5">
+      <div className="font-mono text-xs text-[#5f8a71] border-t border-dashed border-[#1f3a2b] pt-3">
         <span className="text-[#DCEFE3]">REF</span>{" "}
         {tags.join(" · ")}
         {githubUrl && (
@@ -69,7 +69,7 @@ export default function ProjectCard({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-[#5f8a71] hover:text-[#4ADE80] transition-colors"
             >
-              github <ExternalLink className="h-2.5 w-2.5" />
+              github <ExternalLink className="h-3 w-3" />
             </a>
           </>
         )}

@@ -67,13 +67,13 @@ export default function Projects() {
       </div>
 
       <motion.div
-        className="p-1.5 rounded-lg"
+        className="p-2 rounded-lg"
         style={blueprintFieldStyle}
         initial="hidden"
         animate="visible"
         variants={staggerContainer(0.1)}
       >
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 p-3.5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
           {visibleProjects.map((project, index) => (
             <motion.div key={project.slug} variants={fadeUpItem(0.4)}>
               <ProjectCard

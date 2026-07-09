@@ -32,7 +32,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const inputClass =
-  "w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors";
+  "w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg placeholder:text-gray-500 focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors";
 
 export default function ContactSection() {
   const { toast } = useToast();
@@ -92,7 +92,7 @@ export default function ContactSection() {
         >
           <motion.div variants={fadeUpItem()}>
             <Card className="bg-[#1E293B] border-none rounded-lg p-8 shadow-xl">
-              <h3 className="text-2xl font-semibold text-white mb-6">Send a Message</h3>
+              <h3 className="text-2xl font-semibold text-[#4ADE80] mb-6">Send a Message</h3>
 
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -101,7 +101,7 @@ export default function ContactSection() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-300">Your Name</FormLabel>
+                        <FormLabel className="text-sm font-medium text-[#4ADE80]">Your Name</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="John Doe"
@@ -119,7 +119,7 @@ export default function ContactSection() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-300">Your Email</FormLabel>
+                        <FormLabel className="text-sm font-medium text-[#4ADE80]">Your Email</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="johndoe@example.com"
@@ -138,7 +138,7 @@ export default function ContactSection() {
                     name="subject"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-300">Subject</FormLabel>
+                        <FormLabel className="text-sm font-medium text-[#4ADE80]">Subject</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="Project Inquiry"
@@ -156,7 +156,7 @@ export default function ContactSection() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-300">Message</FormLabel>
+                        <FormLabel className="text-sm font-medium text-[#4ADE80]">Message</FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="Your message here..."
