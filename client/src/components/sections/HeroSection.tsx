@@ -48,14 +48,11 @@ export default function HeroSection({
           >
             {/* Byline */}
             <div className="flex items-center gap-4 lg:gap-5 mb-8 lg:mb-10">
-              <picture>
-                <source srcSet="/profile-photo.webp" type="image/webp" />
-                <img
-                  src="/profile-photo.png"
-                  alt="Ujjal Sigdel"
-                  className="w-14 h-14 lg:w-20 lg:h-20 rounded-full object-cover object-[center_15%] border border-[#2b5940] bg-[#0e1f16]"
-                />
-              </picture>
+              <img
+                src="/profile-photo.webp"
+                alt="Ujjal Sigdel"
+                className="w-16 h-16 lg:w-24 lg:h-24 rounded-full object-cover object-top border border-[#2b5940] bg-[#0e1f16]"
+              />
               <div className="leading-tight">
                 <span className="block font-semibold text-[#DCEFE3] text-base lg:text-xl">
                   Ujjal Sigdel
