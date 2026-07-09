@@ -52,27 +52,43 @@ export default function SkillsSection() {
             </div>
           </motion.div>
 
-          {/* skills.yaml */}
+          {/* skills.yaml — one file, opened in two tmux panes */}
           <motion.div variants={fadeUpItem(0.6)}>
-            <TerminalWindow title="~/skills.yaml">
-
-              <div className="p-6 font-mono text-sm leading-loose whitespace-pre">
-                <div><span className="text-[#4ADE80]">electronics:</span></div>
-                <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">circuit design</span></div>
-                <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">microcontrollers</span></div>
-
-                <div className="mt-2"><span className="text-[#4ADE80]">programming:</span></div>
-                <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">C / C++</span></div>
-                <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">HTML / CSS</span></div>
-
-                <div className="mt-2"><span className="text-[#4ADE80]">still_learning:</span></div>
-                <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">web development</span></div>
-                <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">computer networks</span></div>
-
-                <div className="mt-2"><span className="text-[#4ADE80]">strengths:</span></div>
-                <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">problem solving</span></div>
-                <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">communication</span></div>
-
+            <TerminalWindow title="ujjal@sagarmatha: tmux">
+              <div className="grid sm:grid-cols-2">
+                <div className="p-5 pb-6">
+                  <div className="font-mono text-[10.5px] tracking-wider text-[#5f8a71] mb-3">
+                    <span className="text-[#4ADE80]">[0]</span> ~/skills.yaml:1
+                  </div>
+                  <div className="font-mono text-sm leading-loose whitespace-pre">
+                    <div><span className="text-[#4ADE80]">electronics:</span></div>
+                    <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">circuit design</span></div>
+                    <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">microcontrollers</span></div>
+                    <div className="mt-2"><span className="text-[#4ADE80]">programming:</span></div>
+                    <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">C / C++</span></div>
+                    <div><span className="text-[#3f6a50]">    # first language</span></div>
+                    <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">HTML / CSS</span></div>
+                    <div><span className="text-[#3f6a50]">    # via this site</span></div>
+                  </div>
+                </div>
+                <div className="p-5 pb-6 border-t border-dashed border-[#1f3a2b] sm:border-t-0 sm:border-l">
+                  <div className="font-mono text-[10.5px] tracking-wider text-[#5f8a71] mb-3">
+                    <span className="text-[#4ADE80]">[1]</span> ~/skills.yaml:9
+                  </div>
+                  <div className="font-mono text-sm leading-loose whitespace-pre">
+                    <div><span className="text-[#4ADE80]">still_learning:</span></div>
+                    <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">web development</span></div>
+                    <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">computer networks</span></div>
+                    <div className="mt-2"><span className="text-[#4ADE80]">strengths:</span></div>
+                    <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">problem solving</span></div>
+                    <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">communication</span></div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center justify-between gap-3 font-mono text-[10.5px] text-[#5f8a71] bg-[#122318] border-t border-[#1f3a2b] px-4 py-1.5">
+                <span className="text-[#4ADE80]">[tmux]</span>
+                <span>2 panes · ~/skills.yaml</span>
+                <span>learning…</span>
               </div>
             </TerminalWindow>
           </motion.div>
