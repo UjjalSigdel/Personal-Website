@@ -55,8 +55,9 @@ export default function ContactSection() {
       apiRequest("POST", "/api/contact", data),
     onSuccess: () => {
       toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+        title: "$ message sent ✓",
+        description:
+          "Thanks — I read every message myself. Expect a reply within a couple of days.",
         variant: "default"
       });
       form.reset();
@@ -80,7 +81,7 @@ export default function ContactSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <span className="inline-block text-[#4ADE80] font-medium mb-2">GET IN TOUCH</span>
-          <h2 className="text-4xl font-['Inter'] font-bold text-white">Let's work together</h2>
+          <h2 className="text-4xl font-bold text-white">Let's work together</h2>
         </div>
 
         <motion.div
@@ -91,7 +92,7 @@ export default function ContactSection() {
         >
           <motion.div variants={fadeUpItem()}>
             <Card className="bg-[#1E293B] border-none rounded-lg p-8 shadow-xl">
-              <h3 className="text-2xl font-['Inter'] font-semibold text-white mb-6">Send a Message</h3>
+              <h3 className="text-2xl font-semibold text-white mb-6">Send a Message</h3>
 
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

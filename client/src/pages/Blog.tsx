@@ -32,7 +32,7 @@ export default function Blog() {
             <span className="inline-block font-mono text-xs tracking-wider uppercase text-[#4ADE80] mb-2">
               The Blog
             </span>
-            <h1 className="text-4xl font-['Inter'] font-bold text-white mb-4">
+            <h1 className="text-4xl font-bold text-white mb-4">
               Notes &amp; Writing
             </h1>
           </div>
@@ -43,7 +43,7 @@ export default function Blog() {
                 className="bg-[#1E293B] rounded-lg p-6 border border-gray-800 flex flex-col"
               >
                 <time className="text-xs text-gray-500 mb-2">{post.date}</time>
-                <h2 className="text-lg font-['Inter'] font-semibold text-white mb-2">
+                <h2 className="text-lg font-semibold text-white mb-2">
                   {post.title}
                 </h2>
                 <p className="text-gray-400 text-sm mb-4 flex-grow">{post.excerpt}</p>

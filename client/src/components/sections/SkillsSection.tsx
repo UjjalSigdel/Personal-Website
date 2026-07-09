@@ -19,9 +19,9 @@ export default function SkillsSection() {
           {/* How I got here */}
           <motion.div variants={fadeUpItem(0.6)}>
             <span className="inline-block text-[#4ADE80] font-medium mb-2">MY SKILL SET</span>
-            <h2 className="text-4xl font-['Inter'] font-bold text-white mb-8">What I can actually do</h2>
+            <h2 className="text-4xl font-bold text-white mb-8">What I can actually do</h2>
 
-            <h3 className="text-2xl font-['Inter'] font-semibold text-white mb-6">
+            <h3 className="text-2xl font-semibold text-white mb-6">
               How I got here
             </h3>
             <div className="space-y-1">

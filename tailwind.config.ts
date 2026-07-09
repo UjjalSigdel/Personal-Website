@@ -1,10 +1,15 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
   darkMode: ["class"],
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["'IBM Plex Sans'", ...defaultTheme.fontFamily.sans],
+        mono: ["'IBM Plex Mono'", ...defaultTheme.fontFamily.mono],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

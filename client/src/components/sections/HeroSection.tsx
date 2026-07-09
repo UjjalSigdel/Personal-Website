@@ -57,7 +57,7 @@ export default function HeroSection({
                 />
               </picture>
               <div className="leading-tight">
-                <span className="block font-['Inter'] font-semibold text-[#DCEFE3] text-base lg:text-xl">
+                <span className="block font-semibold text-[#DCEFE3] text-base lg:text-xl">
                   Ujjal Sigdel
                 </span>
                 <span className="text-sm lg:text-base text-[#7f9d8c]">
@@ -66,7 +66,7 @@ export default function HeroSection({
               </div>
             </div>
 
-            <h1 className="font-mono font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6 text-[#F2F7F4]">
+            <h1 className="font-mono font-semibold text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6 text-[#F2F7F4]">
               // still compiling
               <span
                 aria-hidden="true"

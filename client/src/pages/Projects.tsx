@@ -26,7 +26,7 @@ export default function Projects() {
         <span className="inline-block font-mono text-xs tracking-wider uppercase text-[#4ADE80] mb-2">
           The Full Archive
         </span>
-        <h1 className="text-4xl font-['Inter'] font-bold text-white mb-4">
+        <h1 className="text-4xl font-bold text-white mb-4">
           All Projects
         </h1>
         <p className="text-gray-300 max-w-3xl">

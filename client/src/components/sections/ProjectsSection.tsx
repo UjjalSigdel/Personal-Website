@@ -25,7 +25,7 @@ export default function ProjectsSection({
           <span className="inline-block font-mono text-xs tracking-wider uppercase text-[#4ADE80] mb-2">
             Featured Projects
           </span>
-          <h2 className="text-4xl font-['Inter'] font-bold text-white mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4">
             What I've been building
           </h2>
           <p className="text-gray-300 max-w-3xl">

@@ -49,7 +49,7 @@ export default function Header({ onNavigate }: HeaderProps) {
               <button
                 key={id}
                 onClick={() => handleNavClick(id)}
-                className="group flex items-center gap-1 font-['Inter'] font-medium text-gray-300 hover:text-white transition-colors"
+                className="group flex items-center gap-1 font-medium text-gray-300 hover:text-white transition-colors"
               >
                 <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
                 {label}
@@ -89,7 +89,7 @@ export default function Header({ onNavigate }: HeaderProps) {
             <button
               key={id}
               onClick={() => handleNavClick(id)}
-              className="group flex items-center gap-2 py-3 px-2 font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left"
+              className="group flex items-center gap-2 py-3 px-2 font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left"
             >
               <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
               {label}

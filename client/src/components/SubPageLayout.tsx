@@ -20,7 +20,7 @@ export default function SubPageLayout({ children }: SubPageLayoutProps) {
   }, []);
 
   return (
-    <div className="font-['Roboto'] text-gray-800 bg-[#0F172A] min-h-screen">
+    <div className="text-gray-800 bg-[#0F172A] min-h-screen">
       <Header onNavigate={navigate} />
 
       <section className="py-20">

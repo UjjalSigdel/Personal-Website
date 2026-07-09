@@ -15,7 +15,7 @@ export default function AboutSection() {
           <span className="inline-block text-[#4ADE80] font-medium mb-2">
             MY JOURNEY IN TECH
           </span>
-          <h2 className="text-4xl font-['Inter'] font-bold text-white">
+          <h2 className="text-4xl font-bold text-white">
             Still figuring things out
           </h2>
         </div>
@@ -27,7 +27,7 @@ export default function AboutSection() {
           variants={staggerContainer()}
         >
           <motion.div variants={fadeUpItem(0.6)}>
-            <h3 className="text-2xl font-['Inter'] font-semibold text-[#4ADE80] mb-4">
+            <h3 className="text-2xl font-semibold text-[#4ADE80] mb-4">
               Who am I?
             </h3>
             <p className="text-gray-300 mb-6 max-w-xl">
@@ -37,7 +37,7 @@ export default function AboutSection() {
               figuring out.
             </p>
 
-            <h3 className="text-2xl sm:text-2xl font-['Inter'] font-semibold text-white mt-10 mb-2">
+            <h3 className="text-2xl sm:text-2xl font-semibold text-white mt-10 mb-2">
               A few things about me
             </h3>
             <p className="text-gray-400 text-sm mb-3">
@@ -77,7 +77,7 @@ export default function AboutSection() {
               <span className="inline-block w-fit font-mono text-[11px] text-[#F59E0B] border border-[#F59E0B]/30 bg-[#F59E0B]/10 rounded-full px-2 py-1 mb-4">
                 under construction
               </span>
-              <h4 className="text-lg font-['Inter'] font-semibold text-white mb-2">
+              <h4 className="text-lg font-semibold text-white mb-2">
                 Know more about me
               </h4>
               <p className="text-gray-400 text-sm mb-6">

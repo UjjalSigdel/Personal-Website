@@ -41,7 +41,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="font-['Roboto'] text-gray-800 bg-gray-50">
+    <div className="text-gray-800 bg-gray-50">
       <Header onNavigate={scrollToSection} />
       <div ref={homeRef}>
         <HeroSection

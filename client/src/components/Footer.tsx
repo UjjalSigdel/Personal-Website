@@ -39,7 +39,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div>
-            <h3 className="text-xl font-['Inter'] font-bold mb-4 text-[#4ADE80]">
+            <h3 className="text-xl font-bold mb-4 text-[#4ADE80]">
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -58,7 +58,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div>
-            <h3 className="text-xl font-['Inter'] font-bold mb-4 text-[#A78BFA]">
+            <h3 className="text-xl font-bold mb-4 text-[#A78BFA]">
               Contact
             </h3>
             <ul className="space-y-3">
@@ -102,7 +102,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             </ul>
 
             <div className="mt-8">
-              <h4 className="font-['Inter'] font-medium mb-3 text-white">
+              <h4 className="font-medium mb-3 text-white">
                 Connect With Me
               </h4>
               <div className="flex space-x-3">
