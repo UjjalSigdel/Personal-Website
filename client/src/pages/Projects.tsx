@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ProjectCard from "@/components/ui/project-card";
+import ProjectCard, { blueprintFieldStyle } from "@/components/ui/project-card";
 import { projects, type Project } from "@/lib/projects";
 
 const CATEGORIES: Array<Project["category"] | "All"> = [
@@ -51,9 +51,9 @@ export default function Projects() {
             $ cd ..
           </button>
 
-          <div className="mb-12">
-            <span className="inline-block text-[#A78BFA] font-medium mb-2">
-              THE FULL ARCHIVE
+          <div className="mb-10">
+            <span className="inline-block font-mono text-xs tracking-wider uppercase text-[#4ADE80] mb-2">
+              The Full Archive
             </span>
             <h1 className="text-4xl font-['Inter'] font-bold text-white mb-4">
               All Projects
@@ -61,27 +61,43 @@ export default function Projects() {
             <p className="text-gray-300 max-w-3xl">
               Every academic and personal project I've worked on so far, in one place.
             </p>
-            <div className="h-1 w-20 bg-[#A78BFA] mt-4"></div>
           </div>
 
-          <div className="flex flex-wrap gap-3 mb-10">
-            {CATEGORIES.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-['Inter'] font-medium transition-colors border ${
-                  activeCategory === category
-                    ? "bg-[#3B82F6] text-white border-[#3B82F6]"
-                    : "bg-transparent text-gray-300 border-gray-700 hover:border-gray-500"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+          <div className="flex flex-wrap gap-6 mb-8">
+            {CATEGORIES.map((category) => {
+              const isActive = activeCategory === category;
+              return (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className="group flex items-center gap-2 font-mono text-[11px] tracking-wide uppercase"
+                >
+                  <span
+                    className={`relative inline-block w-[30px] h-4 rounded-sm border transition-colors bg-[#081109] ${
+                      isActive ? "border-[#4ADE80]" : "border-[#1f3a2b]"
+                    }`}
+                  >
+                    <span
+                      className={`absolute top-[1px] bottom-[1px] w-[13px] rounded-[1px] transition-all ${
+                        isActive ? "left-[15px] bg-[#4ADE80]" : "left-[1px] bg-gray-700"
+                      }`}
+                    />
+                  </span>
+                  <span
+                    className={
+                      isActive ? "text-[#4ADE80]" : "text-gray-400 group-hover:text-gray-300"
+                    }
+                  >
+                    {category}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
           <motion.div
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="p-1.5 rounded-lg"
+            style={blueprintFieldStyle}
             initial="hidden"
             animate="visible"
             variants={{
@@ -89,24 +105,27 @@ export default function Projects() {
               visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
             }}
           >
-            {visibleProjects.map((project) => (
-              <motion.div
-                key={project.slug}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-                }}
-              >
-                <ProjectCard
-                  title={project.title}
-                  description={project.description}
-                  icon={project.icon}
-                  tags={project.tags}
-                  status={project.status}
-                  githubUrl={project.githubUrl}
-                />
-              </motion.div>
-            ))}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 p-3.5">
+              {visibleProjects.map((project, index) => (
+                <motion.div
+                  key={project.slug}
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+                  }}
+                >
+                  <ProjectCard
+                    index={index}
+                    title={project.title}
+                    description={project.description}
+                    category={project.category}
+                    tags={project.tags}
+                    status={project.status}
+                    githubUrl={project.githubUrl}
+                  />
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
           {visibleProjects.length === 0 && (
