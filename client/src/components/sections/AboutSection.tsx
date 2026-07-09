@@ -50,7 +50,7 @@ export default function AboutSection() {
               figuring out.
             </p>
 
-            <h3 className="text-3xl sm:text-4xl font-['Inter'] font-bold text-white mt-10 mb-2">
+            <h3 className="text-2xl sm:text-2xl font-['Inter'] font-semibold text-white mt-10 mb-2">
               A few things about me
             </h3>
             <p className="text-gray-400 text-sm mb-3">
