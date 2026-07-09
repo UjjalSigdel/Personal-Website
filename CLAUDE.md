@@ -45,7 +45,8 @@ This is a Vite + React SPA with a **separate serverless backend** deployed on Ve
 - Secondary pages (`/projects`, `/blog`) render inside `components/SubPageLayout.tsx`, which provides the Header/Footer wiring, the `$ cd ..` back link, and scroll-to-top on mount.
 - `components/ui/` is a small shadcn/ui-style component set (Radix primitives + `class-variance-authority` + `tailwind-merge`), pruned in the Phase 1 cleanup to only the components actually rendered: `card`, `form`, `input`, `label`, `textarea`, `toast`/`toaster`, plus the site-specific `project-card`, `terminal-window` (the three-dot terminal chrome used by Hero/Skills/Contact), and `terminal-button` (a cva factory for the `$ command`-style buttons/links). Re-add other shadcn components (and their Radix deps) only when something actually uses them.
 - Shared page data lives in `client/src/lib/` (`projects.ts`, `posts.ts`) as plain typed arrays. Shared Framer Motion scroll-reveal variants (`staggerContainer`, `fadeUpItem`) live in `lib/motion.ts`.
-- Data fetching uses `@tanstack/react-query`; `client/src/lib/queryClient.ts` sets up a shared `QueryClient` and `apiRequest`/`getQueryFn` helpers used for any calls to the `/api/*` endpoints.
+- API calls go through the small `apiRequest` fetch helper in `client/src/lib/api.ts` (the only consumer is the contact form). There is no data-fetching library.
+- Framer Motion is loaded via `LazyMotion`/`m` (App.tsx wraps everything in `<LazyMotion features={domAnimation} strict>`) — always use `m.div` etc., never `motion.div`; `strict` makes the full component throw. Secondary pages are code-split with `React.lazy` in `App.tsx`; only Home ships in the main bundle.
 - Path alias (defined in both `vite.config.ts` and `tsconfig.json`): `@/*` → `client/src/*`.
 
 ### Backend (`api/`)

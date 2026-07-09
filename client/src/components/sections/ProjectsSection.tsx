@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Link } from "wouter";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import ProjectCard, { blueprintFieldStyle } from "@/components/ui/project-card";
 import { terminalButton } from "@/components/ui/terminal-button";
 import { staggerContainer, fadeUpItem } from "@/lib/motion";
@@ -33,7 +33,7 @@ export default function ProjectsSection({
           </p>
         </div>
 
-        <motion.div
+        <m.div
           className="p-2 rounded-lg"
           style={blueprintFieldStyle}
           initial="hidden"
@@ -42,7 +42,7 @@ export default function ProjectsSection({
         >
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
             {featuredProjects.map((project, index) => (
-              <motion.div key={project.slug} variants={fadeUpItem()}>
+              <m.div key={project.slug} variants={fadeUpItem()}>
                 <ProjectCard
                   index={index}
                   title={project.title}
@@ -52,12 +52,12 @@ export default function ProjectsSection({
                   status={project.status}
                   githubUrl={project.githubUrl}
                 />
-              </motion.div>
+              </m.div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="mt-12 flex flex-col items-center gap-6"
           variants={fadeUpItem()}
           initial="hidden"
@@ -81,7 +81,7 @@ export default function ProjectsSection({
               $ get --in-touch
             </button>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

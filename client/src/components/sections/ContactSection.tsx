@@ -1,10 +1,9 @@
 import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest } from "@/lib/api";
 import { Card } from "@/components/ui/card";
 import {
   Form,
@@ -50,10 +49,12 @@ export default function ContactSection() {
     }
   });
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: (data: FormValues) =>
-      apiRequest("POST", "/api/contact", data),
-    onSuccess: () => {
+  const [isPending, setIsPending] = useState(false);
+
+  const onSubmit = async (data: FormValues) => {
+    setIsPending(true);
+    try {
+      await apiRequest("POST", "/api/contact", data);
       toast({
         title: "$ message sent ✓",
         description:
@@ -62,18 +63,15 @@ export default function ContactSection() {
       });
       form.reset();
       setFormSubmitted(true);
-    },
-    onError: (error) => {
+    } catch (error) {
       toast({
         title: "Error sending message",
-        description: error.message || "Please try again later.",
+        description: error instanceof Error ? error.message : "Please try again later.",
         variant: "destructive"
       });
+    } finally {
+      setIsPending(false);
     }
-  });
-
-  const onSubmit = (data: FormValues) => {
-    mutate(data);
   };
 
   return (
@@ -84,13 +82,13 @@ export default function ContactSection() {
           <h2 className="text-4xl font-bold text-white">Let's work together</h2>
         </div>
 
-        <motion.div
+        <m.div
           className="grid md:grid-cols-[3fr_2fr] gap-12 items-start"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer()}
         >
-          <motion.div variants={fadeUpItem()}>
+          <m.div variants={fadeUpItem()}>
             <Card className="bg-[#1E293B] border-none rounded-lg p-8 shadow-xl">
               <h3 className="text-2xl font-semibold text-[#4ADE80] mb-6">Send a Message</h3>
 
@@ -183,13 +181,13 @@ export default function ContactSection() {
                 </form>
               </Form>
             </Card>
-          </motion.div>
+          </m.div>
 
           {/* FAQ card — replaces the old duplicate Contact Information / Connect with Me
               cards, which just repeated the footer's email/phone/location/socials.
               Styled as a terminal window since it's read-only content (unlike the
               form, which stays a conventional input so it's clearly fillable). */}
-          <motion.div variants={fadeUpItem()}>
+          <m.div variants={fadeUpItem()}>
             <TerminalWindow title="faq.log">
               <div className="p-6 space-y-5">
                 <div>
@@ -220,8 +218,8 @@ export default function ContactSection() {
                 </div>
               </div>
             </TerminalWindow>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
     </section>
   );

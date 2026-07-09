@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import TerminalWindow from "@/components/ui/terminal-window";
 import { terminalButton } from "@/components/ui/terminal-button";
@@ -41,7 +41,7 @@ export default function HeroSection({
     <section className="bg-[#0F172A] text-white pt-14 pb-20 md:pt-20 md:pb-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-stretch">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -99,10 +99,10 @@ export default function HeroSection({
                 $ contact --me
               </button>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Status terminal */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -151,10 +151,10 @@ export default function HeroSection({
                 Getting the circuit simulation actually working end to end.
               </p>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.8 }}
@@ -167,7 +167,7 @@ export default function HeroSection({
             <span className="block mb-2">Explore More</span>
             <ChevronDown className="h-6 w-6 mx-auto animate-bounce" />
           </button>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

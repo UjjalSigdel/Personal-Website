@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import TerminalWindow from "@/components/ui/terminal-window";
 import { staggerContainer, fadeUpItem } from "@/lib/motion";
 
@@ -10,14 +10,14 @@ export default function SkillsSection() {
   return (
     <section ref={sectionRef} className="py-20 bg-[#0F172A]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           className="grid md:grid-cols-2 gap-12 items-start"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer()}
         >
           {/* How I got here */}
-          <motion.div variants={fadeUpItem(0.6)}>
+          <m.div variants={fadeUpItem(0.6)}>
             <span className="inline-block text-[#4ADE80] font-medium mb-2">MY SKILL SET</span>
             <h2 className="text-4xl font-bold text-white mb-8">What I can actually do</h2>
 
@@ -50,10 +50,10 @@ export default function SkillsSection() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* skills.yaml — one file, opened in two tmux panes */}
-          <motion.div variants={fadeUpItem(0.6)}>
+          <m.div variants={fadeUpItem(0.6)}>
             <TerminalWindow title="ujjal@sagarmatha: tmux">
               <div className="grid sm:grid-cols-2">
                 <div className="p-5 pb-6">
@@ -91,8 +91,8 @@ export default function SkillsSection() {
                 <span>learning…</span>
               </div>
             </TerminalWindow>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
     </section>
   );

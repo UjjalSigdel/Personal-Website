@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import SubPageLayout from "@/components/SubPageLayout";
 import ProjectCard, { blueprintFieldStyle } from "@/components/ui/project-card";
 import { staggerContainer, fadeUpItem } from "@/lib/motion";
@@ -74,7 +74,7 @@ export default function Projects() {
         })}
       </div>
 
-      <motion.div
+      <m.div
         className="p-2 rounded-lg"
         style={blueprintFieldStyle}
         initial="hidden"
@@ -83,7 +83,7 @@ export default function Projects() {
       >
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
           {visibleProjects.map((project, index) => (
-            <motion.div key={project.slug} variants={fadeUpItem(0.4)}>
+            <m.div key={project.slug} variants={fadeUpItem(0.4)}>
               <ProjectCard
                 index={index}
                 title={project.title}
@@ -94,10 +94,10 @@ export default function Projects() {
                 githubUrl={project.githubUrl}
                 detailHref={project.overview ? `/projects/${project.slug}` : undefined}
               />
-            </motion.div>
+            </m.div>
           ))}
         </div>
-      </motion.div>
+      </m.div>
 
       {visibleProjects.length === 0 && (
         <p className="text-gray-400 text-center py-16">

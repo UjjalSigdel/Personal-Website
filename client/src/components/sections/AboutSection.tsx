@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { Link } from "wouter";
 import { useRef } from "react";
 import { terminalButton } from "@/components/ui/terminal-button";
@@ -20,13 +20,13 @@ export default function AboutSection() {
           </h2>
         </div>
 
-        <motion.div
+        <m.div
           className="grid md:grid-cols-2 gap-12 items-start"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer()}
         >
-          <motion.div variants={fadeUpItem(0.6)}>
+          <m.div variants={fadeUpItem(0.6)}>
             <h3 className="text-2xl font-semibold text-[#4ADE80] mb-4">
               Who am I?
             </h3>
@@ -67,9 +67,9 @@ export default function AboutSection() {
             >
               $ download --resume
             </a>
-          </motion.div>
+          </m.div>
 
-          <motion.div variants={fadeUpItem(0.6)}>
+          <m.div variants={fadeUpItem(0.6)}>
             <div className="rounded-lg border border-[#1f3a2b] bg-[#0B1710] p-6">
               <div className="font-mono text-xs text-[#5f8a71] mb-3">
                 // the blog
@@ -91,8 +91,8 @@ export default function AboutSection() {
                 $ visit /blog
               </Link>
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
     </section>
   );
