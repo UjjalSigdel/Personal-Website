@@ -6,6 +6,7 @@ import AboutSection from "@/components/sections/AboutSection";
 import SkillsSection from "@/components/sections/SkillsSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import ContactSection from "@/components/sections/ContactSection";
+import type { SectionId } from "@/lib/navigation";
 
 export default function Home() {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -14,24 +15,23 @@ export default function Home() {
   const projectsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth" });
-    }
+  const sectionRefs: Record<SectionId, React.RefObject<HTMLDivElement>> = {
+    home: homeRef,
+    about: aboutRef,
+    skills: skillsRef,
+    projects: projectsRef,
+    contact: contactRef,
+  };
+
+  const scrollToSection = (section: SectionId) => {
+    sectionRefs[section].current?.scrollIntoView({ behavior: "smooth" });
   };
 
   // Arriving from another page (e.g. /projects) with a #section hash — scroll to it once.
   useEffect(() => {
-    const sectionRefs: Record<string, React.RefObject<HTMLDivElement>> = {
-      about: aboutRef,
-      skills: skillsRef,
-      projects: projectsRef,
-      contact: contactRef,
-    };
     const hash = window.location.hash.replace("#", "");
-    const targetRef = sectionRefs[hash];
-    if (targetRef) {
-      scrollToSection(targetRef);
+    if (hash && hash in sectionRefs) {
+      scrollToSection(hash as SectionId);
     } else {
       // No section hash (e.g. navigating here via client-side routing from
       // another page) — start at the top instead of wherever that page had scrolled to.
@@ -42,18 +42,12 @@ export default function Home() {
 
   return (
     <div className="font-['Roboto'] text-gray-800 bg-gray-50">
-      <Header
-        onHomeClick={() => scrollToSection(homeRef)}
-        onAboutClick={() => scrollToSection(aboutRef)}
-        onSkillsClick={() => scrollToSection(skillsRef)}
-        onProjectsClick={() => scrollToSection(projectsRef)}
-        onContactClick={() => scrollToSection(contactRef)}
-      />
+      <Header onNavigate={scrollToSection} />
       <div ref={homeRef}>
         <HeroSection
-          onLearnMoreClick={() => scrollToSection(aboutRef)}
-          onProjectsClick={() => scrollToSection(projectsRef)}
-          onContactClick={() => scrollToSection(contactRef)}
+          onLearnMoreClick={() => scrollToSection("about")}
+          onProjectsClick={() => scrollToSection("projects")}
+          onContactClick={() => scrollToSection("contact")}
         />
       </div>
       <div ref={aboutRef}>
@@ -63,18 +57,12 @@ export default function Home() {
         <SkillsSection />
       </div>
       <div ref={projectsRef}>
-        <ProjectsSection onContactClick={() => scrollToSection(contactRef)} />
+        <ProjectsSection onContactClick={() => scrollToSection("contact")} />
       </div>
       <div ref={contactRef}>
         <ContactSection />
       </div>
-      <Footer
-        onHomeClick={() => scrollToSection(homeRef)}
-        onAboutClick={() => scrollToSection(aboutRef)}
-        onSkillsClick={() => scrollToSection(skillsRef)}
-        onProjectsClick={() => scrollToSection(projectsRef)}
-        onContactClick={() => scrollToSection(contactRef)}
-      />
+      <Footer onNavigate={scrollToSection} />
     </div>
   );
 }

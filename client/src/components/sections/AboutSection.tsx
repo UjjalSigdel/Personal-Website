@@ -1,25 +1,12 @@
 import { motion, useInView } from "framer-motion";
 import { Link } from "wouter";
 import { useRef } from "react";
+import { terminalButton } from "@/components/ui/terminal-button";
+import { staggerContainer, fadeUpItem } from "@/lib/motion";
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
 
   return (
     <section ref={sectionRef} className="py-20 bg-[#0F172A]">
@@ -37,9 +24,9 @@ export default function AboutSection() {
           className="grid md:grid-cols-2 gap-12 items-start"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          variants={containerVariants}
+          variants={staggerContainer()}
         >
-          <motion.div variants={itemVariants}>
+          <motion.div variants={fadeUpItem(0.6)}>
             <h3 className="text-2xl font-['Inter'] font-semibold text-[#4ADE80] mb-4">
               Who am I?
             </h3>
@@ -76,13 +63,13 @@ export default function AboutSection() {
             <a
               href="/MyCV.pdf"
               download="Ujjal_Sigdel_CV.pdf"
-              className="inline-flex font-mono text-sm px-4 py-3 rounded-md border border-[#2b5940] bg-[#122318] text-[#6EE7A8] hover:bg-[#173626] transition-colors"
+              className={terminalButton({ size: "md" })}
             >
               $ download --resume
             </a>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
+          <motion.div variants={fadeUpItem(0.6)}>
             <div className="rounded-lg border border-[#1f3a2b] bg-[#0B1710] p-6">
               <div className="font-mono text-xs text-[#5f8a71] mb-3">
                 // the blog
@@ -99,7 +86,7 @@ export default function AboutSection() {
               </p>
               <Link
                 href="/blog"
-                className="font-mono text-sm w-fit px-3 py-2 rounded-md border border-[#2b5940] text-[#6EE7A8] hover:bg-[#173626]/40 transition-colors"
+                className={terminalButton({ tone: "outline" })}
               >
                 $ visit /blog
               </Link>

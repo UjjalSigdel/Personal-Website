@@ -16,7 +16,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+import TerminalWindow from "@/components/ui/terminal-window";
+import { terminalButton } from "@/components/ui/terminal-button";
+import { staggerContainer, fadeUpItem } from "@/lib/motion";
+import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
@@ -27,6 +30,9 @@ const formSchema = z.object({
 });
 
 type FormValues = z.infer<typeof formSchema>;
+
+const inputClass =
+  "w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors";
 
 export default function ContactSection() {
   const { toast } = useToast();
@@ -44,11 +50,9 @@ export default function ContactSection() {
     }
   });
 
-  const API_BASE_URL = "";  // UPDATED
-
   const { mutate, isPending } = useMutation({
     mutationFn: (data: FormValues) =>
-      apiRequest("POST", "/api/contact", data), // UPDATED
+      apiRequest("POST", "/api/contact", data),
     onSuccess: () => {
       toast({
         title: "Message sent!",
@@ -71,21 +75,6 @@ export default function ContactSection() {
     mutate(data);
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  };
-
   return (
     <section ref={sectionRef} className="py-20 bg-[#0F172A]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -98,9 +87,9 @@ export default function ContactSection() {
           className="grid md:grid-cols-[3fr_2fr] gap-12 items-start"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          variants={containerVariants}
+          variants={staggerContainer()}
         >
-          <motion.div variants={itemVariants}>
+          <motion.div variants={fadeUpItem()}>
             <Card className="bg-[#1E293B] border-none rounded-lg p-8 shadow-xl">
               <h3 className="text-2xl font-['Inter'] font-semibold text-white mb-6">Send a Message</h3>
 
@@ -116,7 +105,7 @@ export default function ContactSection() {
                           <Input
                             placeholder="John Doe"
                             {...field}
-                            className="w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors"
+                            className={inputClass}
                           />
                         </FormControl>
                         <FormMessage className="text-[#F87171]" />
@@ -135,7 +124,7 @@ export default function ContactSection() {
                             placeholder="johndoe@example.com"
                             type="email"
                             {...field}
-                            className="w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors"
+                            className={inputClass}
                           />
                         </FormControl>
                         <FormMessage className="text-[#F87171]" />
@@ -153,7 +142,7 @@ export default function ContactSection() {
                           <Input
                             placeholder="Project Inquiry"
                             {...field}
-                            className="w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors"
+                            className={inputClass}
                           />
                         </FormControl>
                         <FormMessage className="text-[#F87171]" />
@@ -172,7 +161,7 @@ export default function ContactSection() {
                             placeholder="Your message here..."
                             rows={4}
                             {...field}
-                            className="w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors resize-none"
+                            className={cn(inputClass, "resize-none")}
                           />
                         </FormControl>
                         <FormMessage className="text-[#F87171]" />
@@ -180,13 +169,16 @@ export default function ContactSection() {
                     )}
                   />
 
-                  <Button
+                  <button
                     type="submit"
                     disabled={isPending || formSubmitted}
-                    className="w-full px-6 py-3 font-mono font-bold bg-[#173626] text-[#6EE7A8] border border-[#2b5940] rounded-lg hover:bg-[#173626]/70 transition-colors"
+                    className={cn(
+                      terminalButton({ tone: "solid" }),
+                      "w-full px-6 py-3 font-bold rounded-lg",
+                    )}
                   >
                     {isPending ? "$ sending..." : formSubmitted ? "$ message sent" : "$ send --message"}
-                  </Button>
+                  </button>
                 </form>
               </Form>
             </Card>
@@ -196,15 +188,8 @@ export default function ContactSection() {
               cards, which just repeated the footer's email/phone/location/socials.
               Styled as a terminal window since it's read-only content (unlike the
               form, which stays a conventional input so it's clearly fillable). */}
-          <motion.div variants={itemVariants}>
-            <div className="rounded-lg border border-[#1f3a2b] bg-[#0B1710] overflow-hidden">
-              <div className="flex items-center gap-2 px-4 py-3 bg-[#122318] border-b border-[#1f3a2b]">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
-                <span className="font-mono text-sm text-[#5f8a71] ml-2">faq.log</span>
-              </div>
-
+          <motion.div variants={fadeUpItem()}>
+            <TerminalWindow title="faq.log">
               <div className="p-6 space-y-5">
                 <div>
                   <p className="font-mono text-[#4ADE80] text-sm mb-1.5">
@@ -233,7 +218,7 @@ export default function ContactSection() {
                   </p>
                 </div>
               </div>
-            </div>
+            </TerminalWindow>
           </motion.div>
         </motion.div>
       </div>

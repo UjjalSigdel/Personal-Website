@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import TerminalWindow from "@/components/ui/terminal-window";
+import { terminalButton } from "@/components/ui/terminal-button";
+import { cn } from "@/lib/utils";
 
 interface HeroSectionProps {
   onLearnMoreClick: () => void;
@@ -85,13 +88,16 @@ export default function HeroSection({
             <div className="flex flex-wrap gap-4">
               <button
                 onClick={onProjectsClick}
-                className="font-mono font-bold text-base px-6 py-3.5 rounded-md bg-[#173626] text-[#6EE7A8] border border-[#2b5940] hover:bg-[#173626]/70 transition-colors"
+                className={terminalButton({ tone: "solid", size: "lg" })}
               >
                 $ view --projects
               </button>
               <button
                 onClick={onContactClick}
-                className="font-mono font-bold text-base px-6 py-3.5 rounded-md text-[#B9C7BE] border border-[#24402f] hover:bg-[#173626]/40 transition-colors"
+                className={cn(
+                  terminalButton({ tone: "outline", size: "lg" }),
+                  "text-[#B9C7BE] border-[#24402f]",
+                )}
               >
                 $ contact --me
               </button>
@@ -105,15 +111,10 @@ export default function HeroSection({
             transition={{ duration: 0.6, delay: 0.2 }}
             className="h-full flex flex-col"
           >
-            <div className="flex-1 flex flex-col rounded-lg border border-[#1f3a2b] bg-[#0B1710] shadow-xl overflow-hidden">
-              <div className="flex items-center gap-2 px-4 py-3.5 bg-[#122318] border-b border-[#1f3a2b]">
-                <span className="w-3 h-3 rounded-full bg-[#20402e]" />
-                <span className="w-3 h-3 rounded-full bg-[#20402e]" />
-                <span className="w-3 h-3 rounded-full bg-[#20402e]" />
-                <span className="font-mono text-sm text-[#5f8a71] ml-2">
-                  ujjal@sagarmatha:~
-                </span>
-              </div>
+            <TerminalWindow
+              title="ujjal@sagarmatha:~"
+              className="flex-1 flex flex-col shadow-xl"
+            >
               <div className="font-mono text-base leading-[2.15] px-6 py-10 flex-1 flex flex-col justify-center">
                 <div className="flex gap-4">
                   <span className="text-[#5f8a71] w-28 flex-shrink-0">whoami</span>
@@ -143,7 +144,7 @@ export default function HeroSection({
                   <span className="text-[#DCEFE3]">{uptime}</span>
                 </div>
               </div>
-            </div>
+            </TerminalWindow>
 
             <div className="mt-5 rounded-lg border border-[#1f3a2b] bg-[#0B1710] px-6 py-5">
               <div className="font-mono text-sm text-[#5f8a71] mb-2">

@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { Link } from "wouter";
 import { motion, useInView } from "framer-motion";
 import ProjectCard, { blueprintFieldStyle } from "@/components/ui/project-card";
+import { terminalButton } from "@/components/ui/terminal-button";
+import { staggerContainer, fadeUpItem } from "@/lib/motion";
 import { projects } from "@/lib/projects";
 
 interface ProjectsSectionProps {
@@ -13,21 +15,6 @@ export default function ProjectsSection({
 }: ProjectsSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
 
   const featuredProjects = projects.filter((project) => project.featured);
 
@@ -51,11 +38,11 @@ export default function ProjectsSection({
           style={blueprintFieldStyle}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          variants={containerVariants}
+          variants={staggerContainer()}
         >
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 p-3.5">
             {featuredProjects.map((project, index) => (
-              <motion.div key={project.slug} variants={itemVariants}>
+              <motion.div key={project.slug} variants={fadeUpItem()}>
                 <ProjectCard
                   index={index}
                   title={project.title}
@@ -72,13 +59,13 @@ export default function ProjectsSection({
 
         <motion.div
           className="mt-12 flex flex-col items-center gap-6"
-          variants={itemVariants}
+          variants={fadeUpItem()}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
           <Link
             href="/projects"
-            className="inline-flex font-mono text-sm px-3 py-2 rounded-md border border-[#2b5940] bg-[#122318] text-[#6EE7A8] hover:bg-[#173626] transition-colors"
+            className={terminalButton()}
           >
             $ cd /projects
           </Link>
@@ -89,7 +76,7 @@ export default function ProjectsSection({
             </p>
             <button
               onClick={onContactClick}
-              className="inline-flex font-mono text-sm px-4 py-2.5 rounded-md border border-[#2b5940] bg-[#122318] text-[#6EE7A8] hover:bg-[#173626] transition-colors"
+              className={terminalButton({ size: "md" })}
             >
               $ get --in-touch
             </button>

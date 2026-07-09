@@ -7,22 +7,14 @@ import {
   Instagram,
   Linkedin,
 } from "lucide-react";
+import { NAV_ITEMS, type SectionId } from "@/lib/navigation";
+import { terminalButton } from "@/components/ui/terminal-button";
 
 interface FooterProps {
-  onHomeClick: () => void;
-  onAboutClick: () => void;
-  onSkillsClick: () => void;
-  onProjectsClick: () => void;
-  onContactClick: () => void;
+  onNavigate: (section: SectionId) => void;
 }
 
-export default function Footer({
-  onHomeClick,
-  onAboutClick,
-  onSkillsClick,
-  onProjectsClick,
-  onContactClick,
-}: FooterProps) {
+export default function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="bg-[#0B1120] text-white py-16 border-t border-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,7 +32,7 @@ export default function Footer({
             <a
               href="/MyCV.pdf"
               download="Ujjal_Sigdel_CV.pdf"
-              className="inline-flex font-mono text-sm px-3 py-2 rounded-md border border-[#2b5940] bg-[#122318] text-[#6EE7A8] hover:bg-[#173626] transition-colors"
+              className={terminalButton()}
             >
               $ download --resume
             </a>
@@ -51,51 +43,17 @@ export default function Footer({
               Quick Links
             </h3>
             <ul className="space-y-3">
-              <li>
-                <button
-                  onClick={onHomeClick}
-                  className="group flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
-                >
-                  <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-                  Home
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={onAboutClick}
-                  className="group flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
-                >
-                  <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-                  About
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={onSkillsClick}
-                  className="group flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
-                >
-                  <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-                  Skills
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={onProjectsClick}
-                  className="group flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
-                >
-                  <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-                  Projects
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={onContactClick}
-                  className="group flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
-                >
-                  <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-                  Contact
-                </button>
-              </li>
+              {NAV_ITEMS.map(({ id, label }) => (
+                <li key={id}>
+                  <button
+                    onClick={() => onNavigate(id)}
+                    className="group flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
+                  >
+                    <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+                    {label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 

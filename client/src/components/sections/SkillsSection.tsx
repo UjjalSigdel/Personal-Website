@@ -1,24 +1,11 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import TerminalWindow from "@/components/ui/terminal-window";
+import { staggerContainer, fadeUpItem } from "@/lib/motion";
 
 export default function SkillsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
 
   return (
     <section ref={sectionRef} className="py-20 bg-[#0F172A]">
@@ -27,10 +14,10 @@ export default function SkillsSection() {
           className="grid md:grid-cols-2 gap-12 items-start"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          variants={containerVariants}
+          variants={staggerContainer()}
         >
           {/* How I got here */}
-          <motion.div variants={itemVariants}>
+          <motion.div variants={fadeUpItem(0.6)}>
             <span className="inline-block text-[#4ADE80] font-medium mb-2">MY SKILL SET</span>
             <h2 className="text-4xl font-['Inter'] font-bold text-white mb-8">What I can actually do</h2>
 
@@ -66,14 +53,8 @@ export default function SkillsSection() {
           </motion.div>
 
           {/* skills.yaml */}
-          <motion.div variants={itemVariants}>
-            <div className="rounded-lg border border-[#1f3a2b] bg-[#0B1710] overflow-hidden">
-              <div className="flex items-center gap-2 px-4 py-3 bg-[#122318] border-b border-[#1f3a2b]">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
-                <span className="font-mono text-sm text-[#5f8a71] ml-2">~/skills.yaml</span>
-              </div>
+          <motion.div variants={fadeUpItem(0.6)}>
+            <TerminalWindow title="~/skills.yaml">
 
               <div className="p-6 font-mono text-sm leading-loose whitespace-pre">
                 <div><span className="text-[#4ADE80]">electronics:</span></div>
@@ -94,7 +75,7 @@ export default function SkillsSection() {
                 <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">adaptability</span></div>
 
               </div>
-            </div>
+            </TerminalWindow>
           </motion.div>
         </motion.div>
       </div>

@@ -1,21 +1,12 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { NAV_ITEMS, type SectionId } from "@/lib/navigation";
 
 interface HeaderProps {
-  onHomeClick: () => void;
-  onAboutClick: () => void;
-  onSkillsClick: () => void;
-  onProjectsClick: () => void;
-  onContactClick: () => void;
+  onNavigate: (section: SectionId) => void;
 }
 
-export default function Header({
-  onHomeClick,
-  onAboutClick,
-  onSkillsClick,
-  onProjectsClick,
-  onContactClick
-}: HeaderProps) {
+export default function Header({ onNavigate }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -29,14 +20,14 @@ export default function Header({
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleNavClick = (callback: () => void) => {
+  const handleNavClick = (section: SectionId) => {
     if (isMenuOpen) {
       setIsMenuOpen(false);
     }
-    // Introduce a small delay before executing the callback
+    // Small delay so the drawer-close animation starts before any navigation.
     setTimeout(() => {
-      callback();
-    }, 25); // Adjust the delay as needed
+      onNavigate(section);
+    }, 25);
   };
 
   return (
@@ -45,7 +36,7 @@ export default function Header({
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <button
-            onClick={onHomeClick}
+            onClick={() => onNavigate("home")}
             className="flex items-center gap-2 font-mono font-bold text-xl text-[#E7ECF5] text-left"
           >
             <span className="w-2 h-2 rounded-full bg-[#4ADE80] shadow-[0_0_0_3px_rgba(74,222,128,0.2)]" />
@@ -54,26 +45,16 @@ export default function Header({
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <button onClick={() => handleNavClick(onHomeClick)} className="group flex items-center gap-1 font-['Inter'] font-medium text-gray-300 hover:text-white transition-colors">
-              <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-              Home
-            </button>
-            <button onClick={() => handleNavClick(onAboutClick)} className="group flex items-center gap-1 font-['Inter'] font-medium text-gray-300 hover:text-white transition-colors">
-              <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-              About
-            </button>
-            <button onClick={() => handleNavClick(onSkillsClick)} className="group flex items-center gap-1 font-['Inter'] font-medium text-gray-300 hover:text-white transition-colors">
-              <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-              Skills
-            </button>
-            <button onClick={() => handleNavClick(onProjectsClick)} className="group flex items-center gap-1 font-['Inter'] font-medium text-gray-300 hover:text-white transition-colors">
-              <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-              Projects
-            </button>
-            <button onClick={() => handleNavClick(onContactClick)} className="group flex items-center gap-1 font-['Inter'] font-medium text-gray-300 hover:text-white transition-colors">
-              <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-              Contact
-            </button>
+            {NAV_ITEMS.map(({ id, label }) => (
+              <button
+                key={id}
+                onClick={() => handleNavClick(id)}
+                className="group flex items-center gap-1 font-['Inter'] font-medium text-gray-300 hover:text-white transition-colors"
+              >
+                <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+                {label}
+              </button>
+            ))}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -104,26 +85,16 @@ export default function Header({
         }`}
       >
         <nav className="flex flex-col px-4 pt-24 gap-1">
-          <button onClick={() => handleNavClick(onHomeClick)} className="group flex items-center gap-2 py-3 px-2 font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left">
-            <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-            Home
-          </button>
-          <button onClick={() => handleNavClick(onAboutClick)} className="group flex items-center gap-2 py-3 px-2 font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left">
-            <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-            About
-          </button>
-          <button onClick={() => handleNavClick(onSkillsClick)} className="group flex items-center gap-2 py-3 px-2 font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left">
-            <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-            Skills
-          </button>
-          <button onClick={() => handleNavClick(onProjectsClick)} className="group flex items-center gap-2 py-3 px-2 font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left">
-            <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-            Projects
-          </button>
-          <button onClick={() => handleNavClick(onContactClick)} className="group flex items-center gap-2 py-3 px-2 font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left">
-            <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
-            Contact
-          </button>
+          {NAV_ITEMS.map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => handleNavClick(id)}
+              className="group flex items-center gap-2 py-3 px-2 font-['Inter'] font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left"
+            >
+              <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+              {label}
+            </button>
+          ))}
         </nav>
       </div>
     </>
