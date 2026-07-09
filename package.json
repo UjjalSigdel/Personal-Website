@@ -15,7 +15,6 @@
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.2",
-    "@replit/vite-plugin-shadcn-theme-json": "^0.0.4",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "^0.7.0",
@@ -32,8 +31,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@replit/vite-plugin-cartographer": "^0.0.11",
-    "@replit/vite-plugin-runtime-error-modal": "^0.0.3",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "20.16.11",
     "@types/nodemailer": "^6.4.17",

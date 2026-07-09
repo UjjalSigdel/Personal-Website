@@ -56,5 +56,5 @@ This is a Vite + React SPA with a **separate serverless backend** deployed on Ve
 
 ### Config files worth knowing about
 
-- `vite.config.ts` sets `root` to `client/`, `publicDir` to the top-level `public/`, and build output to `dist/public`. Several plugins (`@replit/vite-plugin-*`) are Replit-environment integrations from the project's original Replit-based scaffolding and are conditionally loaded only when `REPL_ID` is set.
-- `theme.json` / `tailwind.config.ts` drive the shadcn/ui theme tokens used across `components/ui/`.
+- `vite.config.ts` sets `root` to `client/`, `publicDir` to the top-level `public/`, and build output to `dist/public`. Just the React plugin — no Replit-environment integrations remain (removed in the Phase 1 cleanup follow-up along with `.replit`).
+- The shadcn/ui theme tokens (`--background`, `--primary`, etc., consumed by `tailwind.config.ts`) are static CSS custom properties defined directly at the top of `client/src/index.css` (light `:root` + `prefers-color-scheme: dark` + `.light`/`.dark` overrides for manual toggling). They used to be generated at build time from a `theme.json` via `@replit/vite-plugin-shadcn-theme-json`; that plugin and `theme.json` are gone and the values are now hardcoded — edit `index.css` directly to retheme.
