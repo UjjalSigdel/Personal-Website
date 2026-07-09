@@ -95,6 +95,7 @@ Follow the format below.
   - The `/projects` DIP-switch filters expose state via `aria-pressed` (and got the focus ring).
   - Per-route `document.title`: "All Projects — Ujjal Sigdel", "&lt;project&gt; — Ujjal Sigdel", "Blog — …", "404 — …" (via a `title` prop on SubPageLayout); Home resets the default.
   - Verified against the production build: titles per route, skip link as first Tab stop, cursor animation `none` under emulated reduce-motion, drawer open/Esc/focus-restore/tab-order behavior, and Lighthouse 100/100/100/100.
+- `/projects` DIP switches now behave like actual DIP switches: each category toggles on/off independently (multiple can be on at once — the grid shows their union), instead of the old radio behavior where selecting one silently deselected the previous. "All" is the default and the automatic fallback: turning the last active category off flips All back on, and pressing All clears every category switch. `aria-pressed` reflects the real multi-toggle state.
 - Synced stale docs: `CLAUDE.md` no longer claims Express is a dependency, describes the removed Drizzle/Postgres schema, references the deleted `lib/animation.ts` / duplicate `not-found.tsx`, or lists the `@shared` alias; it now documents the actual routes (`/`, `/projects`, `/blog`) and the pruned `components/ui/` set. `README.md` dropped Express from the tech stack and the nonexistent "Experience timeline" feature, and now lists the `/projects` archive.
 
 ---

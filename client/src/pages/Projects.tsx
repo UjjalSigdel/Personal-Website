@@ -13,12 +13,36 @@ const CATEGORIES: Array<Project["category"] | "All"> = [
 ];
 
 export default function Projects() {
-  const [activeCategory, setActiveCategory] = useState<Project["category"] | "All">("All");
+  // Real DIP-switch semantics: each category switch toggles independently
+  // (several can be on at once — the filter is their union). No categories
+  // on means "All" is on; turning the last category off falls back to All.
+  const [activeCategories, setActiveCategories] = useState<Set<Project["category"]>>(
+    new Set(),
+  );
+
+  const toggleCategory = (category: Project["category"] | "All") => {
+    if (category === "All") {
+      setActiveCategories(new Set());
+      return;
+    }
+    setActiveCategories((prev) => {
+      const next = new Set(prev);
+      if (next.has(category)) {
+        next.delete(category);
+      } else {
+        next.add(category);
+      }
+      return next;
+    });
+  };
+
+  const isOn = (category: Project["category"] | "All") =>
+    category === "All" ? activeCategories.size === 0 : activeCategories.has(category);
 
   const visibleProjects =
-    activeCategory === "All"
+    activeCategories.size === 0
       ? projects
-      : projects.filter((project) => project.category === activeCategory);
+      : projects.filter((project) => activeCategories.has(project.category));
 
   const categoryCount = (category: Project["category"] | "All") =>
     category === "All"
@@ -41,11 +65,11 @@ export default function Projects() {
 
       <div className="flex flex-wrap gap-6 mb-8">
         {CATEGORIES.map((category) => {
-          const isActive = activeCategory === category;
+          const isActive = isOn(category);
           return (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => toggleCategory(category)}
               aria-pressed={isActive}
               className="group flex items-center gap-2 font-mono text-[11px] tracking-wide uppercase rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A]"
             >
