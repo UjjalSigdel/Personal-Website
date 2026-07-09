@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { useLocation } from "wouter";
+import { usePageMeta } from "@/lib/seo";
 import { ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,13 +12,15 @@ interface SubPageLayoutProps {
   backTo?: string;
   /** Document title for this page. */
   title?: string;
+  /** Meta description for this page. */
+  description?: string;
 }
 
 // Shared shell for secondary pages (/projects, /blog, ...): Header/Footer
 // wired to navigate back to the homepage's sections, a `$ cd ..` back link,
 // and scroll-to-top on mount (client-side routing otherwise preserves the
 // previous page's scroll position).
-export default function SubPageLayout({ children, backTo, title }: SubPageLayoutProps) {
+export default function SubPageLayout({ children, backTo, title, description }: SubPageLayoutProps) {
   const navigate = useHomeSectionNavigate();
   const [, setLocation] = useLocation();
 
@@ -25,9 +28,8 @@ export default function SubPageLayout({ children, backTo, title }: SubPageLayout
     window.scrollTo({ top: 0 });
   }, []);
 
-  useEffect(() => {
-    if (title) document.title = title;
-  }, [title]);
+  const [location] = useLocation();
+  usePageMeta({ title, description, path: location });
 
   return (
     <div className="text-gray-800 bg-[#0F172A] min-h-screen">

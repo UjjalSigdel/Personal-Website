@@ -1,14 +1,17 @@
-import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
+import { usePageMeta } from "@/lib/seo";
 import TerminalWindow from "@/components/ui/terminal-window";
 import { terminalButton } from "@/components/ui/terminal-button";
 
 export default function NotFound() {
   const [location] = useLocation();
 
-  useEffect(() => {
-    document.title = "404 — Ujjal Sigdel";
-  }, []);
+  usePageMeta({
+    title: "404 — Ujjal Sigdel",
+    description: "This page doesn't exist.",
+    path: location,
+    noindex: true,
+  });
 
   return (
     <main className="min-h-screen w-full flex items-center justify-center bg-[#0F172A] px-4">

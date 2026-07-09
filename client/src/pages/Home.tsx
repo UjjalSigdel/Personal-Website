@@ -7,6 +7,7 @@ import SkillsSection from "@/components/sections/SkillsSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import ContactSection from "@/components/sections/ContactSection";
 import type { SectionId } from "@/lib/navigation";
+import { usePageMeta } from "@/lib/seo";
 
 export default function Home() {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -27,9 +28,7 @@ export default function Home() {
     sectionRefs[section].current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  useEffect(() => {
-    document.title = "Ujjal Sigdel | Portfolio";
-  }, []);
+  usePageMeta({ path: "/" });
 
   // Arriving from another page (e.g. /projects) with a #section hash — scroll to it once.
   useEffect(() => {

@@ -50,7 +50,10 @@ export default function Projects() {
       : projects.filter((project) => project.category === category).length;
 
   return (
-    <SubPageLayout title="All Projects — Ujjal Sigdel">
+    <SubPageLayout
+      title="All Projects — Ujjal Sigdel"
+      description="The full archive of Ujjal Sigdel's academic and personal projects — electronics, programming, and web development."
+    >
       <div className="mb-10">
         <span className="inline-block font-mono text-xs tracking-wider uppercase text-[#4ADE80] mb-2">
           The Full Archive

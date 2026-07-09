@@ -8,7 +8,10 @@ export default function Blog() {
   const navigate = useHomeSectionNavigate();
 
   return (
-    <SubPageLayout title="Blog — Ujjal Sigdel">
+    <SubPageLayout
+      title="Blog — Ujjal Sigdel"
+      description="Notes on what Ujjal Sigdel is learning and building — coming soon."
+    >
       {posts.length === 0 ? (
         <div className="max-w-xl mx-auto text-center py-16">
           <p className="font-mono text-sm text-[#5f8a71] mb-4">~/blog</p>
