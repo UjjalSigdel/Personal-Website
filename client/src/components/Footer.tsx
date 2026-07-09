@@ -58,13 +58,13 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div>
-            <p className="text-xl font-bold mb-4 text-[#A78BFA]">
+            <p className="text-xl font-bold mb-4 text-[#4ADE80]">
               Contact
             </p>
             <ul className="space-y-3">
               <li className="flex items-center">
                 <div className="w-8 h-8 rounded-lg bg-[#3B82F6]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#3B82F6]/20">
-                  <Mail className="h-4 w-4 text-[#3B82F6]" />
+                  <Mail className="h-4 w-4 text-[#4ADE80]" />
                 </div>
                 <a
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@ujjalsigdel.com.np&su=Inquiry&body=Hello Ujjal,"
@@ -87,8 +87,8 @@ export default function Footer({ onNavigate }: FooterProps) {
                 </a>
               </li>
               <li className="flex items-center">
-                <div className="w-8 h-8 rounded-lg bg-[#A78BFA]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#A78BFA]/20">
-                  <MapPin className="h-4 w-4 text-[#A78BFA]" />
+                <div className="w-8 h-8 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#A78BFA]/20">
+                  <MapPin className="h-4 w-4 text-[#4ADE80]" />
                 </div>
                 <a
                   href="https://www.google.com/maps/place/Kathmandu,+Nepal"
