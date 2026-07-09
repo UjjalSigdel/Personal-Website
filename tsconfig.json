@@ -24,7 +24,6 @@
     "skipLibCheck": true, // Skip type checking for declaration files in node_modules
     "allowImportingTsExtensions": true,
     "moduleResolution": "bundler",
-    "baseUrl": ".",
     "types": [
       "node",
       "vite/client"
