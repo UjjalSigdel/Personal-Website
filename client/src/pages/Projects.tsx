@@ -20,6 +20,11 @@ export default function Projects() {
       ? projects
       : projects.filter((project) => project.category === activeCategory);
 
+  const categoryCount = (category: Project["category"] | "All") =>
+    category === "All"
+      ? projects.length
+      : projects.filter((project) => project.category === category).length;
+
   return (
     <SubPageLayout>
       <div className="mb-10">
@@ -59,7 +64,10 @@ export default function Projects() {
                   isActive ? "text-[#4ADE80]" : "text-gray-400 group-hover:text-gray-300"
                 }
               >
-                {category}
+                {category}{" "}
+                <span className={isActive ? "text-[#6EE7A8]" : "text-[#5f8a71]"}>
+                  [{categoryCount(category)}]
+                </span>
               </span>
             </button>
           );
@@ -84,6 +92,7 @@ export default function Projects() {
                 tags={project.tags}
                 status={project.status}
                 githubUrl={project.githubUrl}
+                detailHref={project.overview ? `/projects/${project.slug}` : undefined}
               />
             </motion.div>
           ))}

@@ -72,7 +72,6 @@ export default function SkillsSection() {
                 <div className="mt-2"><span className="text-[#4ADE80]">strengths:</span></div>
                 <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">problem solving</span></div>
                 <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">communication</span></div>
-                <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">adaptability</span></div>
 
               </div>
             </TerminalWindow>

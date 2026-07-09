@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/NotFound";
 import Home from "@/pages/Home";
 import Projects from "@/pages/Projects";
+import ProjectDetail from "@/pages/ProjectDetail";
 import Blog from "@/pages/Blog";
 import { Analytics } from "@vercel/analytics/react"; // Import Vercel Analytics
 import { SpeedInsights } from "@vercel/speed-insights/react"; // Import Vercel Speed Insights
@@ -14,6 +15,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/projects" component={Projects} />
+      <Route path="/projects/:slug" component={ProjectDetail} />
       <Route path="/blog" component={Blog} />
       <Route component={NotFound} />
     </Switch>
