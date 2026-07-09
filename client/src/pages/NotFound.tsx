@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import TerminalWindow from "@/components/ui/terminal-window";
 import { terminalButton } from "@/components/ui/terminal-button";
@@ -5,8 +6,12 @@ import { terminalButton } from "@/components/ui/terminal-button";
 export default function NotFound() {
   const [location] = useLocation();
 
+  useEffect(() => {
+    document.title = "404 — Ujjal Sigdel";
+  }, []);
+
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[#0F172A] px-4">
+    <main className="min-h-screen w-full flex items-center justify-center bg-[#0F172A] px-4">
       <TerminalWindow title="ujjal@sagarmatha:~" className="w-full max-w-xl">
         <div className="px-6 py-7 font-mono text-sm leading-loose">
           <p>
@@ -26,11 +31,11 @@ export default function NotFound() {
             </Link>
             <span
               aria-hidden="true"
-              className="inline-block w-2 h-4 bg-[#4ADE80] ml-2 animate-blink"
+              className="inline-block w-2 h-4 bg-[#4ADE80] ml-2 animate-blink motion-reduce:animate-none"
             />
           </p>
         </div>
       </TerminalWindow>
-    </div>
+    </main>
   );
 }

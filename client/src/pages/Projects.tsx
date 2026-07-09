@@ -26,7 +26,7 @@ export default function Projects() {
       : projects.filter((project) => project.category === category).length;
 
   return (
-    <SubPageLayout>
+    <SubPageLayout title="All Projects — Ujjal Sigdel">
       <div className="mb-10">
         <span className="inline-block font-mono text-xs tracking-wider uppercase text-[#4ADE80] mb-2">
           The Full Archive
@@ -46,7 +46,8 @@ export default function Projects() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className="group flex items-center gap-2 font-mono text-[11px] tracking-wide uppercase"
+              aria-pressed={isActive}
+              className="group flex items-center gap-2 font-mono text-[11px] tracking-wide uppercase rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A]"
             >
               <span
                 className={`relative inline-block w-[30px] h-4 rounded-sm border transition-colors bg-[#081109] ${
@@ -93,6 +94,7 @@ export default function Projects() {
                 status={project.status}
                 githubUrl={project.githubUrl}
                 detailHref={project.overview ? `/projects/${project.slug}` : undefined}
+                titleAs="h2"
               />
             </m.div>
           ))}

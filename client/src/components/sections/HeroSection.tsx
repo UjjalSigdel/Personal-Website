@@ -67,7 +67,7 @@ export default function HeroSection({
               // still compiling
               <span
                 aria-hidden="true"
-                className="inline-block w-[0.5em] h-[0.75em] bg-[#4ADE80] ml-2 align-middle animate-blink"
+                className="inline-block w-[0.5em] h-[0.75em] bg-[#4ADE80] ml-2 align-middle animate-blink motion-reduce:animate-none"
               />
             </h1>
 
@@ -165,7 +165,7 @@ export default function HeroSection({
             className="inline-block text-gray-400 hover:text-[#4ADE80] transition-colors"
           >
             <span className="block mb-2">Explore More</span>
-            <ChevronDown className="h-6 w-6 mx-auto animate-bounce" />
+            <ChevronDown className="h-6 w-6 mx-auto animate-bounce motion-reduce:animate-none" />
           </button>
         </m.div>
       </div>

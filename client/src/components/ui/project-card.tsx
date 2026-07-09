@@ -26,6 +26,8 @@ interface ProjectCardProps {
   status: Project["status"];
   githubUrl?: string;
   detailHref?: string;
+  /** Heading level for the title — h3 under a section h2 (homepage), h2 under a page h1 (/projects). */
+  titleAs?: "h2" | "h3";
 }
 
 export default function ProjectCard({
@@ -37,6 +39,7 @@ export default function ProjectCard({
   status,
   githubUrl,
   detailHref,
+  titleAs: TitleTag = "h3",
 }: ProjectCardProps) {
   const [, setLocation] = useLocation();
   const statusMeta = STATUS_META[status];
@@ -65,7 +68,7 @@ export default function ProjectCard({
         FIG. {figNumber} — {category}
       </span>
 
-      <h3 className="text-lg font-semibold text-white mb-3">{title}</h3>
+      <TitleTag className="text-lg font-semibold text-white mb-3">{title}</TitleTag>
       <p className="text-gray-300 text-sm leading-relaxed mb-5 flex-grow">{description}</p>
 
       <div className="font-mono text-xs text-[#5f8a71] border-t border-dashed border-[#1f3a2b] pt-3">

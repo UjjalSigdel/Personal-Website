@@ -27,6 +27,10 @@ export default function Home() {
     sectionRefs[section].current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  useEffect(() => {
+    document.title = "Ujjal Sigdel | Portfolio";
+  }, []);
+
   // Arriving from another page (e.g. /projects) with a #section hash — scroll to it once.
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
@@ -43,6 +47,7 @@ export default function Home() {
   return (
     <div className="text-gray-800 bg-gray-50">
       <Header onNavigate={scrollToSection} />
+      <main id="main-content">
       <div ref={homeRef}>
         <HeroSection
           onLearnMoreClick={() => scrollToSection("about")}
@@ -62,6 +67,7 @@ export default function Home() {
       <div ref={contactRef}>
         <ContactSection />
       </div>
+      </main>
       <Footer onNavigate={scrollToSection} />
     </div>
   );

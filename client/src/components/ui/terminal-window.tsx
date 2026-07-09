@@ -17,7 +17,7 @@ export default function TerminalWindow({ title, children, className }: TerminalW
         <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
-        <span className="font-mono text-sm text-[#5f8a71] ml-2">{title}</span>
+        <span className="font-mono text-sm text-[#74a68a] ml-2">{title}</span>
       </div>
       {children}
     </div>

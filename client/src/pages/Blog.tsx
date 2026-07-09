@@ -8,7 +8,7 @@ export default function Blog() {
   const navigate = useHomeSectionNavigate();
 
   return (
-    <SubPageLayout>
+    <SubPageLayout title="Blog — Ujjal Sigdel">
       {posts.length === 0 ? (
         <div className="max-w-xl mx-auto text-center py-16">
           <p className="font-mono text-sm text-[#5f8a71] mb-4">~/blog</p>

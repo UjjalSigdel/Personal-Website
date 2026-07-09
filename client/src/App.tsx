@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Switch, Route } from "wouter";
-import { LazyMotion, domAnimation } from "framer-motion";
+import { LazyMotion, MotionConfig, domAnimation } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
 import Home from "@/pages/Home";
 import { Analytics } from "@vercel/analytics/react";
@@ -39,10 +39,12 @@ function App() {
     // `strict` makes any leftover full `motion.*` component a build-time error,
     // so the LazyMotion bundle saving can't silently regress.
     <LazyMotion features={domAnimation} strict>
-      <Router />
-      <Toaster />
-      <Analytics />
-      <SpeedInsights />
+      <MotionConfig reducedMotion="user">
+        <Router />
+        <Toaster />
+        <Analytics />
+        <SpeedInsights />
+      </MotionConfig>
     </LazyMotion>
   );
 }

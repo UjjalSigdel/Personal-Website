@@ -20,7 +20,7 @@ export default function ProjectDetail() {
   const figNumber = String(index + 1).padStart(2, "0");
 
   return (
-    <SubPageLayout backTo="/projects">
+    <SubPageLayout backTo="/projects" title={`${project.title} — Ujjal Sigdel`}>
       {/* Header */}
       <div className="border-b border-dashed border-[#1f3a2b] pb-7 mb-8">
         <span className="block font-mono text-xs tracking-wider uppercase text-[#5f8a71] mb-2">

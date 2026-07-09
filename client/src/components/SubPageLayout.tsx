@@ -9,13 +9,15 @@ interface SubPageLayoutProps {
   children: ReactNode;
   /** Where `$ cd ..` goes — defaults to the homepage. */
   backTo?: string;
+  /** Document title for this page. */
+  title?: string;
 }
 
 // Shared shell for secondary pages (/projects, /blog, ...): Header/Footer
 // wired to navigate back to the homepage's sections, a `$ cd ..` back link,
 // and scroll-to-top on mount (client-side routing otherwise preserves the
 // previous page's scroll position).
-export default function SubPageLayout({ children, backTo }: SubPageLayoutProps) {
+export default function SubPageLayout({ children, backTo, title }: SubPageLayoutProps) {
   const navigate = useHomeSectionNavigate();
   const [, setLocation] = useLocation();
 
@@ -23,11 +25,15 @@ export default function SubPageLayout({ children, backTo }: SubPageLayoutProps) 
     window.scrollTo({ top: 0 });
   }, []);
 
+  useEffect(() => {
+    if (title) document.title = title;
+  }, [title]);
+
   return (
     <div className="text-gray-800 bg-[#0F172A] min-h-screen">
       <Header onNavigate={navigate} />
 
-      <section className="py-20">
+      <main id="main-content" className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => (backTo ? setLocation(backTo) : navigate("home"))}
@@ -39,7 +45,7 @@ export default function SubPageLayout({ children, backTo }: SubPageLayoutProps) 
 
           {children}
         </div>
-      </section>
+      </main>
 
       <Footer onNavigate={navigate} />
     </div>

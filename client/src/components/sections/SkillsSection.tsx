@@ -66,9 +66,9 @@ export default function SkillsSection() {
                     <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">microcontrollers</span></div>
                     <div className="mt-2"><span className="text-[#4ADE80]">programming:</span></div>
                     <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">C / C++</span></div>
-                    <div><span className="text-[#3f6a50]">    # first language</span></div>
+                    <div><span className="text-[#558a68]">    # first language</span></div>
                     <div><span className="text-[#5f8a71]">  -</span> <span className="text-[#DCEFE3]">HTML / CSS</span></div>
-                    <div><span className="text-[#3f6a50]">    # via this site</span></div>
+                    <div><span className="text-[#558a68]">    # via this site</span></div>
                   </div>
                 </div>
                 <div className="p-5 pb-6 border-t border-dashed border-[#1f3a2b] sm:border-t-0 sm:border-l">
@@ -85,7 +85,7 @@ export default function SkillsSection() {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-between gap-3 font-mono text-[10.5px] text-[#5f8a71] bg-[#122318] border-t border-[#1f3a2b] px-4 py-1.5">
+              <div className="flex items-center justify-between gap-3 font-mono text-[10.5px] text-[#74a68a] bg-[#122318] border-t border-[#1f3a2b] px-4 py-1.5">
                 <span className="text-[#4ADE80]">[tmux]</span>
                 <span>2 panes · ~/skills.yaml</span>
                 <span>learning…</span>

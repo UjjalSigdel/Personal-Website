@@ -39,9 +39,9 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div>
-            <h3 className="text-xl font-bold mb-4 text-[#4ADE80]">
+            <p className="text-xl font-bold mb-4 text-[#4ADE80]">
               Quick Links
-            </h3>
+            </p>
             <ul className="space-y-3">
               {NAV_ITEMS.map(({ id, label }) => (
                 <li key={id}>
@@ -58,9 +58,9 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div>
-            <h3 className="text-xl font-bold mb-4 text-[#A78BFA]">
+            <p className="text-xl font-bold mb-4 text-[#A78BFA]">
               Contact
-            </h3>
+            </p>
             <ul className="space-y-3">
               <li className="flex items-center">
                 <div className="w-8 h-8 rounded-lg bg-[#3B82F6]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#3B82F6]/20">
@@ -102,9 +102,9 @@ export default function Footer({ onNavigate }: FooterProps) {
             </ul>
 
             <div className="mt-8">
-              <h4 className="font-medium mb-3 text-white">
+              <p className="font-medium mb-3 text-white">
                 Connect With Me
-              </h4>
+              </p>
               <div className="flex space-x-3">
                 <a
                   href="https://github.com/UjjalSigdel"

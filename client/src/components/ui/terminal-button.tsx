@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 // A factory rather than a component so it works on <button>, <a>, and
 // wouter's <Link> alike; pair with cn() when adding per-case overrides.
 export const terminalButton = cva(
-  "inline-flex items-center justify-center font-mono rounded-md border transition-colors disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center font-mono rounded-md border transition-colors disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A]",
   {
     variants: {
       tone: {
