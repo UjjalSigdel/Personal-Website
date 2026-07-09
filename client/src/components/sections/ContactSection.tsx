@@ -25,7 +25,9 @@ const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
   subject: z.string().min(5, { message: "Subject must be at least 5 characters" }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters" })
+  message: z.string().min(10, { message: "Message must be at least 10 characters" }),
+  // Honeypot — always empty for real visitors, see the field's own comment below.
+  company: z.string().optional()
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -45,7 +47,8 @@ export default function ContactSection() {
       name: "",
       email: "",
       subject: "",
-      message: ""
+      message: "",
+      company: ""
     }
   });
 
@@ -94,6 +97,17 @@ export default function ContactSection() {
 
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  {/* Honeypot — invisible to sighted users and screen readers;
+                      bots that autofill every input they find will trip it. */}
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute left-[-9999px] w-px h-px overflow-hidden"
+                    {...form.register("company")}
+                  />
+
                   <FormField
                     control={form.control}
                     name="name"

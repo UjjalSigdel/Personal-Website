@@ -21,7 +21,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
     "lucide-react": "^0.453.0",
-    "nodemailer": "^6.10.0",
+    "nodemailer": "^9.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.1",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "20.16.11",
-    "@types/nodemailer": "^6.4.17",
+    "@types/nodemailer": "^8.0.1",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
     "@vercel/node": "^5.5.16",
