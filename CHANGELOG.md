@@ -54,6 +54,10 @@ Follow the format below.
 - Removed the duplicate, unused `client/src/pages/not-found.tsx` (the app routes 404s through `NotFound.tsx`).
 - Removed `client/src/components/ui/section-heading.tsx` and its dead imports from the section components — it was never rendered and didn't match the current design.
 - Removed the `@server/*` tsconfig path alias and `server/**/*` include, which pointed at a directory that no longer exists.
+- Phase 1 completion pass: deleted the 39 `components/ui/` files with no importers outside `components/ui/` itself (everything except `button`, `card`, `form`, `input`, `label`, `project-card`, `textarea`, `toast`, `toaster`) — this includes chains like `sidebar` → `tooltip`/`sheet`/`skeleton`/`separator` and `command` → `dialog`, where the only importer was itself dead. Also deleted `lib/types.ts` (zero importers), `lib/animation.ts` (zero importers — every section defines its Framer Motion variants inline, despite `CLAUDE.md` claiming otherwise), and `hooks/use-mobile.tsx` (only imported by the deleted `sidebar`).
+- Uninstalled the 35 npm dependencies those files were the last users of: 24 `@radix-ui/*` packages (keeping `react-slot`, `react-label`, `react-toast`), plus `cmdk`, `embla-carousel-react`, `input-otp`, `react-day-picker`, `react-resizable-panels`, `recharts`, `vaul`, and four with no imports anywhere (`react-icons`, `date-fns`, `zod-validation-error`, `@jridgewell/trace-mapping`). Dependencies went from 55 to 20.
+- Removed the empty leftover `shared/` directory and the `@shared/*` alias from both `tsconfig.json` and `vite.config.ts` (same holdover category as the previously-removed `@server/*` alias).
+- Synced stale docs: `CLAUDE.md` no longer claims Express is a dependency, describes the removed Drizzle/Postgres schema, references the deleted `lib/animation.ts` / duplicate `not-found.tsx`, or lists the `@shared` alias; it now documents the actual routes (`/`, `/projects`, `/blog`) and the pruned `components/ui/` set. `README.md` dropped Express from the tech stack and the nonexistent "Experience timeline" feature, and now lists the `/projects` archive.
 
 ---
 

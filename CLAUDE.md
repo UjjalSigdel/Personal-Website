@@ -34,23 +34,22 @@ There is no lint script and no test runner configured in this repo.
 
 ## Architecture
 
-This is a Vite + React SPA with a **separate serverless backend** deployed on Vercel — there is no long-running Express server despite `express` still being a dependency (see history below).
+This is a Vite + React SPA with a **separate serverless backend** deployed on Vercel — there is no long-running server; the earlier Express/Postgres backend was fully removed in the Phase 1 cleanup.
 
 ### Frontend (`client/`)
 
 - Entry: `client/index.html` → `client/src/main.tsx` → `client/src/App.tsx`.
 - Routing uses `wouter`, not react-router. `App.tsx` defines routes with `<Switch>`/`<Route>`; currently just `/` (`pages/Home.tsx`) and a catch-all 404.
-- `pages/Home.tsx` composes the whole page from section components (`components/sections/HeroSection`, `AboutSection`, `SkillsSection`, `ProjectsSection`, `ContactSection`) plus `Header`/`Footer`. Navigation is same-page scrolling via refs passed down as `onXClick` handlers, not routed sub-pages.
-- `components/ui/` is a shadcn/ui-style component library (Radix primitives + `class-variance-authority` + `tailwind-merge`). Treat these as generic building blocks, not page-specific code.
-- Animation conventions live in `client/src/lib/animation.ts` (Framer Motion `Variants` factories like `fadeIn(direction, delay)`, `staggerContainer`, `textVariant`) — reuse these rather than hand-rolling new variants.
+- Routes: `/` (`pages/Home.tsx`), `/projects` (full project archive), `/blog` (under-construction state), and a catch-all 404 (`pages/NotFound.tsx`).
+- `pages/Home.tsx` composes the homepage from section components (`components/sections/HeroSection`, `AboutSection`, `SkillsSection`, `ProjectsSection`, `ContactSection`) plus `Header`/`Footer`. Navigation is same-page scrolling via refs passed down as `onXClick` handlers; from other pages the same nav items navigate back to `/` with a `#section` hash that `Home.tsx` picks up on mount.
+- `components/ui/` is a small shadcn/ui-style component set (Radix primitives + `class-variance-authority` + `tailwind-merge`), pruned in the Phase 1 cleanup to only the components actually rendered: `button`, `card`, `form`, `input`, `label`, `textarea`, `toast`/`toaster`, and the page-specific `project-card`. Re-add other shadcn components (and their Radix deps) only when something actually uses them.
+- Shared page data lives in `client/src/lib/` (`projects.ts`, `posts.ts`) as plain typed arrays. Framer Motion variants are defined inline in each section component.
 - Data fetching uses `@tanstack/react-query`; `client/src/lib/queryClient.ts` sets up a shared `QueryClient` and `apiRequest`/`getQueryFn` helpers used for any calls to the `/api/*` endpoints.
-- Path aliases (defined in both `vite.config.ts` and `tsconfig.json`): `@/*` → `client/src/*`, `@shared/*` → `shared/*`. `tsconfig.json` also declares `@server/*` → `server/*`, but no `server/` directory currently exists — it's a holdover from an earlier Express-based layout.
-- Known duplication: `pages/NotFound.tsx` (used by `App.tsx`, has a "return home" button) and `pages/not-found.tsx` (unused leftover) both exist — be aware when touching 404 behavior.
+- Path alias (defined in both `vite.config.ts` and `tsconfig.json`): `@/*` → `client/src/*`.
 
 ### Backend (`api/`)
 
-- `api/contact.ts` is a Vercel serverless function (Next.js-style `NextApiRequest`/`NextApiResponse` handler) handling `POST` for the contact form. It validates input with `zod` inline and sends mail directly via `nodemailer` (Gmail SMTP, credentials from `EMAIL_USER`/`EMAIL_PASS` env vars). It does **not** touch the database — form submissions are emailed, not persisted, despite the schema below.
-- `shared/schema.ts` defines Drizzle ORM tables (`users`, `contact_submissions`) and Zod insert schemas via `drizzle-zod`, intended for a Postgres (Neon) database (`DATABASE_URL` env var, config in `drizzle.config.ts`, migrations in `migrations/`). This schema/migration setup exists but is **not currently wired up** to any live code path — the project is mid-migration away from an Express+session+Postgres backend toward lightweight Vercel functions (see `CHANGELOG.md`/git history: "Backend change from Railway to Vercel No Express but Serverless", "Trying to make database work"). Don't assume the DB is actually in use; verify before building on top of it.
+- `api/contact.ts` is a Vercel serverless function (typed with `@vercel/node`'s `VercelRequest`/`VercelResponse`) handling `POST` for the contact form. It validates input with `zod` inline and sends mail directly via `nodemailer` (Gmail SMTP, credentials from `EMAIL_USER`/`EMAIL_PASS` env vars). There is no database — form submissions are emailed, not persisted. The earlier Drizzle/Postgres persistence layer was removed in the Phase 1 cleanup.
 - Deployment target is Vercel (see `.vercel/`, `homepage` field in `package.json`, custom domain via `public/CNAME`). `vite build` outputs the static client to `dist/public`; `api/*.ts` files are deployed as Vercel serverless functions.
 
 ### Config files worth knowing about

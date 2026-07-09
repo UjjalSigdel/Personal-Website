@@ -25,7 +25,6 @@ This repository is intended to evolve continuously throughout my academic and pr
 
 ### Backend
 
-- Express
 - Node.js
 - Vercel Serverless Functions
 - Nodemailer
@@ -47,9 +46,9 @@ This repository is intended to evolve continuously throughout my academic and pr
 - Contact form
 - Email delivery
 - Downloadable CV
-- Project showcase
+- Featured projects showcase
+- Full project archive with category filtering (`/projects`)
 - Skills section
-- Experience timeline
 - Smooth animations
 
 ---
