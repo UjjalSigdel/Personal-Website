@@ -12,8 +12,8 @@ interface TerminalWindowProps {
 // faq.log, the Hero status terminal) — not for things visitors fill in.
 export default function TerminalWindow({ title, children, className }: TerminalWindowProps) {
   return (
-    <div className={cn("rounded-lg border border-[#1f3a2b] bg-[#0B1710] overflow-hidden", className)}>
-      <div className="flex items-center gap-2 px-4 py-3 bg-[#122318] border-b border-[#1f3a2b]">
+    <div className={cn("rounded-lg border border-border bg-surface overflow-hidden", className)}>
+      <div className="flex items-center gap-2 px-4 py-3 bg-surface-raised border-b border-border">
         <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#20402e]" />

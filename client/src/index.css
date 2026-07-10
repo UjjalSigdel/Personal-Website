@@ -59,6 +59,9 @@
  *   danger → --destructive(-foreground)
  *   ring → --ring                  radius → --radius
  *   font-sans / font-mono → tailwind.config.ts fontFamily
+ * Theme extensions beyond the contract (permitted by §5), added in M7:
+ *   --surface-raised (panel title bars)   --border-strong (interactive borders)
+ *   --accent-strong (hover accents)       --text-faint (dim annotation text)
  * Values are HSL triples consumed as hsl(var(--x)) via tailwind.config.ts.
  * The current design is dark-only, so the contract tokens added in M6
  * (--surface/--success/--warning, corrected --accent) carry the same design
@@ -67,7 +70,7 @@
  * predate the redesign — reconcile or retire them as components migrate.
  */
 :root {
-  --background: 135 42% 68%;
+  --background: 222.2 47.4% 11.2%;
   --foreground: 139 100% 5%;
   --muted: 140 44% 50%;
   --muted-foreground: 139 100% 5%;
@@ -75,15 +78,19 @@
   --popover-foreground: 139 100% 5%;
   --card: 133 100% 95%;
   --card-foreground: 139 100% 5%;
-  --border: 140 44% 50%;
+  --border: 146.7 30.3% 17.5%;
   --input: 140 44% 50%;
-  --primary: 151 100% 36%;
-  --primary-foreground: 131 54% 99%;
+  --primary: 149 40.3% 15.1%;
+  --primary-foreground: 148.8 71.6% 66.9%;
   --secondary: 135 53% 75%;
   --secondary-foreground: 139 100% 5%;
   --accent: 141.9 69.2% 58%;
   --accent-foreground: 222.2 47.4% 11.2%;
   --surface: 145 35.3% 6.7%;
+  --surface-raised: 141.2 32.1% 10.4%;
+  --border-strong: 147.4 34.8% 25.9%;
+  --accent-strong: 148.8 71.6% 66.9%;
+  --text-faint: 145.1 18.5% 45.7%;
   --success: 141.9 69.2% 58%;
   --warning: 45.4 93.4% 47.5%;
   --destructive: 0 84.2% 60.2%;
@@ -94,7 +101,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: 136 100% 0%;
+    --background: 222.2 47.4% 11.2%;
     --foreground: 135 100% 86%;
     --muted: 149 100% 16%;
     --muted-foreground: 135 100% 86%;
@@ -102,15 +109,19 @@
     --popover-foreground: 135 100% 86%;
     --card: 139 100% 5%;
     --card-foreground: 135 100% 86%;
-    --border: 149 100% 16%;
+    --border: 146.7 30.3% 17.5%;
     --input: 149 100% 16%;
-    --primary: 151 100% 29%;
-    --primary-foreground: 131 43% 98%;
+    --primary: 149 40.3% 15.1%;
+    --primary-foreground: 148.8 71.6% 66.9%;
     --secondary: 149 100% 16%;
     --secondary-foreground: 135 100% 86%;
     --accent: 141.9 69.2% 58%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --surface: 145 35.3% 6.7%;
+    --surface-raised: 141.2 32.1% 10.4%;
+    --border-strong: 147.4 34.8% 25.9%;
+    --accent-strong: 148.8 71.6% 66.9%;
+    --text-faint: 145.1 18.5% 45.7%;
     --success: 141.9 69.2% 58%;
     --warning: 45.4 93.4% 47.5%;
     --destructive: 0 62.8% 30.6%;
@@ -121,7 +132,7 @@
 }
 
 .light {
-  --background: 135 42% 68%;
+  --background: 222.2 47.4% 11.2%;
   --foreground: 139 100% 5%;
   --muted: 140 44% 50%;
   --muted-foreground: 139 100% 5%;
@@ -129,15 +140,19 @@
   --popover-foreground: 139 100% 5%;
   --card: 133 100% 95%;
   --card-foreground: 139 100% 5%;
-  --border: 140 44% 50%;
+  --border: 146.7 30.3% 17.5%;
   --input: 140 44% 50%;
-  --primary: 151 100% 36%;
-  --primary-foreground: 131 54% 99%;
+  --primary: 149 40.3% 15.1%;
+  --primary-foreground: 148.8 71.6% 66.9%;
   --secondary: 135 53% 75%;
   --secondary-foreground: 139 100% 5%;
   --accent: 141.9 69.2% 58%;
   --accent-foreground: 222.2 47.4% 11.2%;
   --surface: 145 35.3% 6.7%;
+  --surface-raised: 141.2 32.1% 10.4%;
+  --border-strong: 147.4 34.8% 25.9%;
+  --accent-strong: 148.8 71.6% 66.9%;
+  --text-faint: 145.1 18.5% 45.7%;
   --success: 141.9 69.2% 58%;
   --warning: 45.4 93.4% 47.5%;
   --destructive: 0 84.2% 60.2%;
@@ -147,7 +162,7 @@
 }
 
 .dark {
-  --background: 136 100% 0%;
+  --background: 222.2 47.4% 11.2%;
   --foreground: 135 100% 86%;
   --muted: 149 100% 16%;
   --muted-foreground: 135 100% 86%;
@@ -155,15 +170,19 @@
   --popover-foreground: 135 100% 86%;
   --card: 139 100% 5%;
   --card-foreground: 135 100% 86%;
-  --border: 149 100% 16%;
+  --border: 146.7 30.3% 17.5%;
   --input: 149 100% 16%;
-  --primary: 151 100% 29%;
-  --primary-foreground: 131 43% 98%;
+  --primary: 149 40.3% 15.1%;
+  --primary-foreground: 148.8 71.6% 66.9%;
   --secondary: 149 100% 16%;
   --secondary-foreground: 135 100% 86%;
   --accent: 141.9 69.2% 58%;
   --accent-foreground: 222.2 47.4% 11.2%;
   --surface: 145 35.3% 6.7%;
+  --surface-raised: 141.2 32.1% 10.4%;
+  --border-strong: 147.4 34.8% 25.9%;
+  --accent-strong: 148.8 71.6% 66.9%;
+  --text-faint: 145.1 18.5% 45.7%;
   --success: 141.9 69.2% 58%;
   --warning: 45.4 93.4% 47.5%;
   --destructive: 0 62.8% 30.6%;

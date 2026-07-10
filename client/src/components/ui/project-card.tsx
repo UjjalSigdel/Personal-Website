@@ -5,15 +5,18 @@ import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/projects";
 
 // Faint graph-paper grid used behind any grid of ProjectCards.
+// Accent-tinted via the theme token so a retheme carries the grid with it.
 export const blueprintFieldStyle: CSSProperties = {
   backgroundImage:
-    "linear-gradient(to right, rgba(74,222,128,0.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(74,222,128,0.055) 1px, transparent 1px)",
+    "linear-gradient(to right, hsl(var(--accent) / 0.055) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--accent) / 0.055) 1px, transparent 1px)",
   backgroundSize: "28px 28px",
 };
 
 export const STATUS_META: Record<Project["status"], { label: string; className: string }> = {
-  Completed: { label: "completed", className: "text-[#4ADE80] border-[#4ADE80]" },
-  "In Progress": { label: "in progress", className: "text-[#eab308] border-[#eab308]" },
+  Completed: { label: "completed", className: "text-success border-success" },
+  "In Progress": { label: "in progress", className: "text-warning border-warning" },
+  // "Ongoing" blue has no contract token yet (an info-style status) — the one
+  // deliberate hex holdout here; promote to a token if a second consumer appears.
   Ongoing: { label: "ongoing", className: "text-[#60a5fa] border-[#60a5fa]" },
 };
 
@@ -49,14 +52,14 @@ export default function ProjectCard({
     <div
       onClick={detailHref ? () => setLocation(detailHref) : undefined}
       className={cn(
-        "relative border border-dashed border-[#1f3a2b] rounded bg-[#0B1710]/35 p-6 pt-7 h-full flex flex-col transition-colors duration-200 hover:border-[#4ADE80]/70",
+        "relative border border-dashed border-border rounded bg-surface/35 p-6 pt-7 h-full flex flex-col transition-colors duration-200 hover:border-accent/70",
         detailHref && "cursor-pointer",
       )}
     >
-      <span className="absolute -top-px -left-px w-2.5 h-2.5 border-t-2 border-l-2 border-[#4ADE80]" />
-      <span className="absolute -top-px -right-px w-2.5 h-2.5 border-t-2 border-r-2 border-[#4ADE80]" />
-      <span className="absolute -bottom-px -left-px w-2.5 h-2.5 border-b-2 border-l-2 border-[#4ADE80]" />
-      <span className="absolute -bottom-px -right-px w-2.5 h-2.5 border-b-2 border-r-2 border-[#4ADE80]" />
+      <span className="absolute -top-px -left-px w-2.5 h-2.5 border-t-2 border-l-2 border-accent" />
+      <span className="absolute -top-px -right-px w-2.5 h-2.5 border-t-2 border-r-2 border-accent" />
+      <span className="absolute -bottom-px -left-px w-2.5 h-2.5 border-b-2 border-l-2 border-accent" />
+      <span className="absolute -bottom-px -right-px w-2.5 h-2.5 border-b-2 border-r-2 border-accent" />
 
       <span
         className={`absolute top-4 right-4 font-mono text-[11px] tracking-wide uppercase px-2 py-0.5 border rounded-sm ${statusMeta.className}`}
@@ -64,14 +67,14 @@ export default function ProjectCard({
         {statusMeta.label}
       </span>
 
-      <span className="font-mono text-xs tracking-wider uppercase text-[#5f8a71] mb-3 pr-24">
+      <span className="font-mono text-xs tracking-wider uppercase text-faint mb-3 pr-24">
         FIG. {figNumber} — {category}
       </span>
 
       <TitleTag className="text-lg font-semibold text-white mb-3">{title}</TitleTag>
       <p className="text-gray-300 text-sm leading-relaxed mb-5 flex-grow">{description}</p>
 
-      <div className="font-mono text-xs text-[#5f8a71] border-t border-dashed border-[#1f3a2b] pt-3">
+      <div className="font-mono text-xs text-faint border-t border-dashed border-border pt-3">
         <span className="text-[#DCEFE3]">REF</span>{" "}
         {tags.join(" · ")}
         {githubUrl && (
@@ -82,7 +85,7 @@ export default function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1 text-[#5f8a71] hover:text-[#4ADE80] transition-colors"
+              className="inline-flex items-center gap-1 text-faint hover:text-accent transition-colors"
             >
               github <ExternalLink className="h-3 w-3" />
             </a>
@@ -94,7 +97,7 @@ export default function ProjectCard({
             <Link
               href={detailHref}
               onClick={(e) => e.stopPropagation()}
-              className="text-[#4ADE80] hover:text-[#6EE7A8] transition-colors"
+              className="text-accent hover:text-accent-strong transition-colors"
             >
               read more →
             </Link>
