@@ -49,6 +49,14 @@ export default {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        // FOUNDATION.md §5 contract tokens (M6). The `/ <alpha-value>` form
+        // (unlike the legacy mappings above) lets these take opacity
+        // modifiers, e.g. bg-surface/35 — needed when hardcoded hex values
+        // migrate to tokens. `danger` is implemented by `destructive` above;
+        // `text`/`text-muted` by `foreground`/`muted-foreground`.
+        surface: "hsl(var(--surface) / <alpha-value>)",
+        success: "hsl(var(--success) / <alpha-value>)",
+        warning: "hsl(var(--warning) / <alpha-value>)",
       },
       keyframes: {
         blink: {

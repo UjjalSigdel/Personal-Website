@@ -48,6 +48,24 @@
   src: url("/fonts/ibm-plex-sans-700.woff2") format("woff2");
 }
 
+/*
+ * Theme tokens — the implementation of FOUNDATION.md §5's contract.
+ * Contract name → variable here:
+ *   background → --background      surface → --surface
+ *   border → --border              text → --foreground
+ *   text-muted → --muted-foreground
+ *   accent → --accent              primary → --primary(-foreground)
+ *   success → --success            warning → --warning
+ *   danger → --destructive(-foreground)
+ *   ring → --ring                  radius → --radius
+ *   font-sans / font-mono → tailwind.config.ts fontFamily
+ * Values are HSL triples consumed as hsl(var(--x)) via tailwind.config.ts.
+ * The current design is dark-only, so the contract tokens added in M6
+ * (--surface/--success/--warning, corrected --accent) carry the same design
+ * values in all four blocks; a real light variant is a design decision.
+ * Legacy generated tokens (--muted, --popover, --card, --secondary, --input)
+ * predate the redesign — reconcile or retire them as components migrate.
+ */
 :root {
   --background: 135 42% 68%;
   --foreground: 139 100% 5%;
@@ -63,8 +81,11 @@
   --primary-foreground: 131 54% 99%;
   --secondary: 135 53% 75%;
   --secondary-foreground: 139 100% 5%;
-  --accent: 135 53% 75%;
-  --accent-foreground: 139 100% 5%;
+  --accent: 141.9 69.2% 58%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --surface: 145 35.3% 6.7%;
+  --success: 141.9 69.2% 58%;
+  --warning: 45.4 93.4% 47.5%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 60 9.1% 97.8%;
   --ring: 151 100% 36%;
@@ -87,8 +108,11 @@
     --primary-foreground: 131 43% 98%;
     --secondary: 149 100% 16%;
     --secondary-foreground: 135 100% 86%;
-    --accent: 149 100% 16%;
-    --accent-foreground: 135 100% 86%;
+    --accent: 141.9 69.2% 58%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --surface: 145 35.3% 6.7%;
+    --success: 141.9 69.2% 58%;
+    --warning: 45.4 93.4% 47.5%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --ring: 151 100% 29%;
@@ -111,8 +135,11 @@
   --primary-foreground: 131 54% 99%;
   --secondary: 135 53% 75%;
   --secondary-foreground: 139 100% 5%;
-  --accent: 135 53% 75%;
-  --accent-foreground: 139 100% 5%;
+  --accent: 141.9 69.2% 58%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --surface: 145 35.3% 6.7%;
+  --success: 141.9 69.2% 58%;
+  --warning: 45.4 93.4% 47.5%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 60 9.1% 97.8%;
   --ring: 151 100% 36%;
@@ -134,8 +161,11 @@
   --primary-foreground: 131 43% 98%;
   --secondary: 149 100% 16%;
   --secondary-foreground: 135 100% 86%;
-  --accent: 149 100% 16%;
-  --accent-foreground: 135 100% 86%;
+  --accent: 141.9 69.2% 58%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --surface: 145 35.3% 6.7%;
+  --success: 141.9 69.2% 58%;
+  --warning: 45.4 93.4% 47.5%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
   --ring: 151 100% 29%;
