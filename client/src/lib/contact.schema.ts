@@ -2,9 +2,11 @@ import { z } from "zod";
 
 // Single source of truth for contact-form validation (FOUNDATION.md §3.4):
 // consumed by the form (client/src/components/sections/ContactSection.tsx)
-// for inline errors and by the serverless function (api/contact.ts) as the
-// real gate. Never define these rules anywhere else — the two sides drifting
-// apart is exactly the hazard this module exists to prevent.
+// for its field errors and by the serverless function (api/contact.ts) as
+// the real gate. Never define these rules anywhere else — the two sides
+// drifting apart is exactly the hazard this module exists to prevent.
+// (NB: this file is in Tailwind's content scan; a bare word that collides
+// with a utility class name in a comment here becomes a phantom CSS rule.)
 //
 // The rules are the server's original strict set: `.trim()` throughout,
 // upper bounds on every field, and no line breaks in `name`/`subject`
