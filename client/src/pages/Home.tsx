@@ -1,59 +1,32 @@
-import { useRef } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import HeroSection from "@/components/sections/HeroSection";
-import AboutSection from "@/components/sections/AboutSection";
-import SkillsSection from "@/components/sections/SkillsSection";
-import ProjectsSection from "@/components/sections/ProjectsSection";
-import ContactSection from "@/components/sections/ContactSection";
+import { usePageMeta } from "@/lib/seo";
+import { SITE } from "@/lib/site.config";
 
+// main's placeholder page. The engineering foundation deliberately has no
+// visual identity (FOUNDATION.md §7) — design branches replace this route
+// with their own composition. This page only needs to build, render
+// legibly, and say what main is.
 export default function Home() {
-  const homeRef = useRef<HTMLDivElement>(null);
-  const aboutRef = useRef<HTMLDivElement>(null);
-  const skillsRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
-  const contactRef = useRef<HTMLDivElement>(null);
-
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  usePageMeta({ path: "/" });
 
   return (
-    <div className="font-['Roboto'] text-gray-800 bg-gray-50">
-      <Header
-        onHomeClick={() => scrollToSection(homeRef)}
-        onAboutClick={() => scrollToSection(aboutRef)}
-        onSkillsClick={() => scrollToSection(skillsRef)}
-        onProjectsClick={() => scrollToSection(projectsRef)}
-        onContactClick={() => scrollToSection(contactRef)}
-      />
-      <div ref={homeRef}>
-        <HeroSection
-          onLearnMoreClick={() => scrollToSection(aboutRef)}
-          onContactClick={() => scrollToSection(contactRef)}
-        />
+    <main
+      id="main-content"
+      className="min-h-screen bg-background text-foreground font-sans px-6 py-16"
+    >
+      <div className="mx-auto max-w-xl space-y-4">
+        <h1 className="text-2xl font-semibold">{SITE.title}</h1>
+        <p>
+          This is the <code>main</code> branch — the engineering foundation of
+          this repository: backend, shared logic and configuration,
+          design-system primitives, the theme contract, and content. No visual
+          identity lives here.
+        </p>
+        <p>
+          The public website is built from a design branch. See{" "}
+          <code>FOUNDATION.md</code> for the architecture and{" "}
+          <code>ARCHITECTURE.md</code> for the current structure.
+        </p>
       </div>
-      <div ref={aboutRef}>
-        <AboutSection />
-      </div>
-      <div ref={skillsRef}>
-        <SkillsSection />
-      </div>
-      <div ref={projectsRef}>
-        <ProjectsSection onContactClick={() => scrollToSection(contactRef)} />
-      </div>
-      <div ref={contactRef}>
-        <ContactSection />
-      </div>
-      <Footer
-        onHomeClick={() => scrollToSection(homeRef)}
-        onAboutClick={() => scrollToSection(aboutRef)}
-        onSkillsClick={() => scrollToSection(skillsRef)}
-        onProjectsClick={() => scrollToSection(projectsRef)}
-        onContactClick={() => scrollToSection(contactRef)}
-      />
-    </div>
+    </main>
   );
 }

@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="title" content="Ujjal Sigdel | Portfolio">
-  <meta name="description"
-    content="Portfolio of Ujjal Sigdel, a first-year Electronic and Information Communication Engineering student showcasing academic projects, skills, and aspirations.">
+  <meta name="description" content="Portfolio of Ujjal Sigdel, a second-year Electronics, Communication and Information Engineering (BEI) student at Sagarmatha Engineering College — projects, skills, and a learning-in-public log.">
+  <meta name="theme-color" content="#0F172A">
   <meta name="keywords"
     content="Ujjal Sigdel, Engineering student, Electronics, Information communication, Engineering, Portfolio">
   <meta name="robots" content="index, follow" />
@@ -17,18 +17,19 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Ujjal Sigdel">
   <meta property="og:title" content="Ujjal Sigdel | Portfolio" />
-  <meta property="og:description"
-    content="Explore my projects, skills, and experience in electronics and information communication." />
+  <meta property="og:description" content="Portfolio of Ujjal Sigdel, a second-year Electronics, Communication and Information Engineering (BEI) student at Sagarmatha Engineering College — projects, skills, and a learning-in-public log." />
   <meta property="og:url" content="https://www.ujjalsigdel.com.np/" />
-  <!-- <meta property="og:image" content="https://www.ujjalsigdel.com.np/profile-photo.webp" /> -->
+  <meta property="og:image" content="https://www.ujjalsigdel.com.np/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Terminal window reading '// still compiling' — Ujjal Sigdel, BEI, Sagarmatha Engineering College" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://www.ujjalsigdel.com.np/" />
   <meta property="twitter:title" content="Ujjal Sigdel | Portfolio" />
-  <meta property="twitter:description"
-    content="Explore my projects, skills, and experience in electronics and information communication." />
-  <!-- <meta property="twitter:image" content="https://www.ujjalsigdel.com.np/me.png" /> -->
+  <meta property="twitter:description" content="Portfolio of Ujjal Sigdel, a second-year Electronics, Communication and Information Engineering (BEI) student at Sagarmatha Engineering College — projects, skills, and a learning-in-public log." />
+  <meta property="twitter:image" content="https://www.ujjalsigdel.com.np/og-image.png" />
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://www.ujjalsigdel.com.np/" />
@@ -42,7 +43,7 @@
           "@type": "Person",
           "name": "Ujjal Sigdel",
           "url": "https://www.ujjalsigdel.com.np",
-          "image": "https://www.ujjalsigdel.com.np/me.png",
+          "image": "https://www.ujjalsigdel.com.np/profile-photo.webp",
           "sameAs": [
             "https://github.com/UjjalSigdel",
             "https://www.linkedin.com/in/ujjal-sigdel-07a292330/",
@@ -50,7 +51,11 @@
             "https://stackoverflow.com/users/28962275/ujjal-sigdel"
           ],
           "jobTitle": "Electronic and Information Communication Engineering Student",
-          "description": "Passionate about coding, electronics, and technology. Check out my projects on GitHub and connect with me on LinkedIn."
+          "description": "Second-year BEI (Electronics, Communication and Information Engineering) student at Sagarmatha Engineering College. Builds circuits and code; documents the learning in public.",
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Sagarmatha Engineering College"
+          }
         },
         {
           "@type": "WebSite",
@@ -63,24 +68,13 @@
     </script>
 
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- <link rel="preconnect" href="https://static.cloudflareinsights.com"> -->
-
-  <!-- Preload the WebP image (modern format) -->
+  <!-- Preload the profile photo -->
   <link rel="preload" as="image" href="/profile-photo.webp" type="image/webp">
 
-  <!-- Fallback for browsers that don't support WebP -->
-  <link rel="preload" as="image" href="/profile-photo.png" type="image/png">
-
-  <!-- Preload the Google Fonts stylesheet -->
-  <link rel="preload"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&family=Roboto+Mono&display=swap"
-    as="style">
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&family=Roboto+Mono&display=swap"
-    rel="stylesheet">
+  <!-- Self-hosted fonts (public/fonts/, declared in index.css) — preload the
+       two regular weights used above the fold; the rest load as needed. -->
+  <link rel="preload" href="/fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

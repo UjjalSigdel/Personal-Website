@@ -75,10 +75,21 @@ npm run build
 
 ---
 
+## Branch Model
+
+`main` is the engineering foundation, not the website: backend, shared logic
+and configuration, design-system primitives, the theme contract, and content
+(see FOUNDATION.md). The public site is built from a long-lived design
+branch (currently `redesign`); each complete visual identity gets its own.
+Changes flow one way, `main` → design branches.
+
+---
+
 ## Documentation
 
 Project documentation is stored in:
 
+- FOUNDATION.md
 - VISION.md
 - ARCHITECTURE.md
 - WORKFLOW.md

@@ -1,17 +1,14 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 import nodemailer from "nodemailer";
 import { z } from "zod";
-
-const insertContactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
+// Relative imports: the `@/` alias is Vite/tsconfig-path config that Vercel's
+// function bundler doesn't resolve for api/ files.
+import { SITE } from "../client/src/lib/site.config";
+import { contactSchema } from "../client/src/lib/contact.schema";
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+  req: VercelRequest,
+  res: VercelResponse
 ) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
@@ -21,7 +18,12 @@ export default async function handler(
     const body =
       typeof req.body === "string" ? JSON.parse(req.body) : req.body;
 
-    const data = insertContactSchema.parse(body);
+    const data = contactSchema.parse(body);
+
+    if (data.company) {
+      // Honeypot tripped — pretend success so the bot doesn't learn it was caught.
+      return res.status(200).json({ success: true });
+    }
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -33,7 +35,7 @@ export default async function handler(
 
     await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-      to: "contact@ujjalsigdel.com.np",
+      to: SITE.contact.email,
       replyTo: data.email,
       subject: `New Contact: ${data.subject}`,
       text: `Name: ${data.name}

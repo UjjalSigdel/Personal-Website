@@ -1,8 +1,6 @@
 {
   "include": [
-    "client/src/**/*",
-    "shared/**/*",
-    "server/**/*"
+    "client/src/**/*"
   ],
   "exclude": [
     "node_modules", // Exclude node_modules to avoid processing third-party packages
@@ -26,7 +24,6 @@
     "skipLibCheck": true, // Skip type checking for declaration files in node_modules
     "allowImportingTsExtensions": true,
     "moduleResolution": "bundler",
-    "baseUrl": ".",
     "types": [
       "node",
       "vite/client"
@@ -34,12 +31,6 @@
     "paths": {
       "@/*": [
         "./client/src/*"
-      ],
-      "@server/*": [
-        "./server/*"
-      ],
-      "@shared/*": [
-        "./shared/*"
       ]
     }
   }

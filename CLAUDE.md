@@ -2,23 +2,31 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project documentation (read before significant changes)
+## Read first
 
-This repo maintains its own planning docs. Read them before proposing architecture, design, or workflow changes:
+- `FOUNDATION.md` — **the architectural contract.** Before any change, identify
+  which layer it belongs to (foundation / design system / theme / content /
+  design branch); if unclear, stop and ask. Changes flow one way:
+  `main` → design branches. Never edit foundation files on a design branch;
+  never merge a design branch into `main`.
+- `VISION.md` (purpose and design philosophy), `ARCHITECTURE.md` (current
+  structure), `WORKFLOW.md` (process — feature branches, approval for large
+  changes), `ROADMAP.md`, `CHANGELOG.md` (update it for significant changes).
 
-- `VISION.md` — purpose, target audience, design philosophy, long-term direction
-- `ARCHITECTURE.md` — current structure and future direction
-- `WORKFLOW.md` — how changes should be proposed and reviewed
-- `ROADMAP.md` — phased plan (cleanup → architecture → UI refresh → projects → performance → a11y → SEO → future features)
-- `CHANGELOG.md` — should be updated for significant changes
+## Branch model
 
-Key rules from `WORKFLOW.md` that apply to AI assistants specifically:
-- Before making changes: understand the existing implementation, analyze affected files, explain the proposed solution, and wait for approval before major architectural/design changes.
-- Large changes require approval first (with rationale, affected files, drawbacks, alternatives): folder restructuring, routing changes, major UI redesign, new libraries, backend changes, removing functionality.
-- Never develop directly on `main` — use feature branches.
-- Update relevant docs when architecture/workflow changes; remove outdated info rather than leaving conflicting notes.
-
-Key points from `VISION.md`: avoid generic "AI-generated portfolio" aesthetics (centered hero with no personality, gradient-for-its-own-sake backgrounds, glassmorphism without function, repetitive feature-card grids, decorative animations that don't aid usability). The site is a single-page app today; `/projects` is planned as a full project archive with the homepage showing only featured projects.
+- `main` = the engineering foundation: `api/`, `client/src/lib/` (site
+  config, shared contact schema, navigation/SEO/motion helpers, content
+  data), hooks, token-driven `components/ui/` primitives, the theme contract
+  in `index.css`/`tailwind.config.ts`, build config, and docs. It renders a
+  placeholder page only.
+- Design branches (production is built from `redesign`) add the visual
+  identity: `components/sections/*`, `Header`, `Footer`, `SubPageLayout`,
+  `components/ui/terminal-*` and `project-card`, the real pages, their route
+  table in `App.tsx`, and their theme token values.
+- Key vision rule: avoid generic "AI-generated portfolio" aesthetics; the
+  homepage is a single-page experience and `/projects` (full archive) is a
+  deliberate secondary destination, never a primary-nav item.
 
 ## Commands
 
@@ -32,29 +40,43 @@ npm run check     # type-check with tsc (no emit)
 
 There is no lint script and no test runner configured in this repo.
 
-## Architecture
+## Architecture notes (both branches)
 
-This is a Vite + React SPA with a **separate serverless backend** deployed on Vercel — there is no long-running server; the earlier Express/Postgres backend was fully removed in the Phase 1 cleanup.
+- Vite + React 18 SPA, `wouter` routing, separate Vercel serverless backend
+  (`api/contact.ts` — zod validation from the shared
+  `client/src/lib/contact.schema.ts`, honeypot, Nodemailer/Gmail via
+  `EMAIL_USER`/`EMAIL_PASS`; no database). `api/` imports shared modules by
+  **relative path** — Vercel's bundler doesn't resolve the `@/` alias.
+- Path alias `@/*` → `client/src/*` (defined in `vite.config.ts` and
+  `tsconfig.json`). Build outputs to `dist/public`.
+- Framer Motion is loaded via `LazyMotion`/`m` with `strict` — always use
+  `m.div` etc., never `motion.div` (the full component throws). Wrap-level
+  `MotionConfig reducedMotion="user"` must survive any redesign.
+- **Theme tokens:** semantic CSS custom properties in `client/src/index.css`
+  (mapping comment at the top), consumed as Tailwind classes. Never hardcode
+  a color in a component — use token classes (`bg-surface`, `text-accent`,
+  `text-faint`, `border-border-strong`, `text-success`, …). Retheming means
+  editing `index.css` values.
+- **Tailwind content-scan gotcha:** every file under `client/src/` is
+  scanned as text, and a bare word in a comment that matches a utility class
+  (`inline`, `ring`, …) emits a phantom CSS rule. Watch comment wording;
+  verify with a build when in doubt.
+- Owner/deployment facts come from `client/src/lib/site.config.ts` — never
+  hardcode the email/URL/socials. The static `client/index.html` head and
+  `public/sitemap.xml` duplicate some values (static files can't import TS);
+  change them together.
+- Site-wide focus-visible treatment: `components/ui/focus-ring.ts`.
 
-### Frontend (`client/`)
+## Design-branch specifics (`redesign`)
 
-- Entry: `client/index.html` → `client/src/main.tsx` → `client/src/App.tsx`.
-- Routing uses `wouter`, not react-router. `App.tsx` defines routes with `<Switch>`/`<Route>`; currently just `/` (`pages/Home.tsx`) and a catch-all 404.
-- Routes: `/` (`pages/Home.tsx`), `/projects` (full project archive), `/projects/:slug` (project detail pages — rendered only for projects with an `overview` in `lib/projects.ts`; others redirect to the archive), `/blog` (under-construction state), and a catch-all 404 (`pages/NotFound.tsx`).
-- `pages/Home.tsx` composes the homepage from section components (`components/sections/HeroSection`, `AboutSection`, `SkillsSection`, `ProjectsSection`, `ContactSection`) plus `Header`/`Footer`. Header and Footer take a single `onNavigate(section)` prop (`SectionId` and the shared `NAV_ITEMS` list live in `lib/navigation.ts`); on the homepage it scrolls to section refs, on other pages it routes back to `/` with a `#section` hash that `Home.tsx` picks up on mount (via `useHomeSectionNavigate`).
-- Secondary pages (`/projects`, `/blog`) render inside `components/SubPageLayout.tsx`, which provides the Header/Footer wiring, the `$ cd ..` back link, and scroll-to-top on mount.
-- `components/ui/` is a small shadcn/ui-style component set (Radix primitives + `class-variance-authority` + `tailwind-merge`), pruned in the Phase 1 cleanup to only the components actually rendered: `card`, `form`, `input`, `label`, `textarea`, `toast`/`toaster`, plus the site-specific `project-card`, `terminal-window` (the three-dot terminal chrome used by Hero/Skills/Contact), and `terminal-button` (a cva factory for the `$ command`-style buttons/links). Re-add other shadcn components (and their Radix deps) only when something actually uses them.
-- Shared page data lives in `client/src/lib/` (`projects.ts`, `posts.ts`) as plain typed arrays. Shared Framer Motion scroll-reveal variants (`staggerContainer`, `fadeUpItem`) live in `lib/motion.ts`.
-- API calls go through the small `apiRequest` fetch helper in `client/src/lib/api.ts` (the only consumer is the contact form). There is no data-fetching library.
-- Framer Motion is loaded via `LazyMotion`/`m` (App.tsx wraps everything in `<LazyMotion features={domAnimation} strict>`) — always use `m.div` etc., never `motion.div`; `strict` makes the full component throw. Secondary pages are code-split with `React.lazy` in `App.tsx`; only Home ships in the main bundle.
-- Path alias (defined in both `vite.config.ts` and `tsconfig.json`): `@/*` → `client/src/*`.
-
-### Backend (`api/`)
-
-- `api/contact.ts` is a Vercel serverless function (typed with `@vercel/node`'s `VercelRequest`/`VercelResponse`) handling `POST` for the contact form. It validates input with `zod` inline and sends mail directly via `nodemailer` (Gmail SMTP, credentials from `EMAIL_USER`/`EMAIL_PASS` env vars). There is no database — form submissions are emailed, not persisted. The earlier Drizzle/Postgres persistence layer was removed in the Phase 1 cleanup.
-- Deployment target is Vercel (see `.vercel/`, `homepage` field in `package.json`, custom domain via `public/CNAME`). `vite build` outputs the static client to `dist/public`; `api/*.ts` files are deployed as Vercel serverless functions.
-
-### Config files worth knowing about
-
-- `vite.config.ts` sets `root` to `client/`, `publicDir` to the top-level `public/`, and build output to `dist/public`. Just the React plugin — no Replit-environment integrations remain (removed in the Phase 1 cleanup follow-up along with `.replit`).
-- The shadcn/ui theme tokens (`--background`, `--primary`, etc., consumed by `tailwind.config.ts`) are static CSS custom properties defined directly at the top of `client/src/index.css` (light `:root` + `prefers-color-scheme: dark` + `.light`/`.dark` overrides for manual toggling). They used to be generated at build time from a `theme.json` via `@replit/vite-plugin-shadcn-theme-json`; that plugin and `theme.json` are gone and the values are now hardcoded — edit `index.css` directly to retheme.
+- Routes: `/` (section composition), `/projects` (archive with DIP-switch
+  category filters), `/projects/:slug` (detail pages — only for projects
+  with an `overview`; others redirect), `/blog` (under-construction state
+  until `lib/posts.ts` has entries), catch-all 404. Secondary pages render
+  inside `SubPageLayout` and are code-split via `React.lazy`.
+- Header/Footer take a single `onNavigate(section)` prop; `NAV_ITEMS` and
+  the `#section`-hash protocol (producer `useHomeSectionNavigate`, consumer
+  `useSectionScroll`) live in `lib/navigation.ts`.
+- The terminal identity (`TerminalWindow`, `terminalButton` cva factory,
+  blueprint `ProjectCard`/`StatusStamp`) lives in `components/ui/` on that
+  branch; `STATUS_META` is exported for the detail page.
