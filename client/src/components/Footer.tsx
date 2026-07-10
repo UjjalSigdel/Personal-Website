@@ -22,11 +22,11 @@ export default function Footer({ onNavigate }: FooterProps) {
         <div className="grid md:grid-cols-3 gap-12">
           <div>
             <div className="flex items-center gap-2 font-mono font-bold text-base text-[#E7ECF5] mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4ADE80]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
               ~/ujjal
             </div>
             <div className="font-mono text-sm text-[#8a9a8f] leading-relaxed mb-5">
-              <span className="text-[#6EE7A8]">$</span> echo "thanks for scrolling this far"
+              <span className="text-accent-strong">$</span> echo "thanks for scrolling this far"
               <br />
               // EOF
             </div>
@@ -40,7 +40,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div>
-            <p className="text-xl font-bold mb-4 text-[#4ADE80]">
+            <p className="text-xl font-bold mb-4 text-accent">
               Quick Links
             </p>
             <ul className="space-y-3">
@@ -50,7 +50,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                     onClick={() => onNavigate(id)}
                     className="group flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
                   >
-                    <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+                    <span className="font-mono text-accent text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
                     {label}
                   </button>
                 </li>
@@ -59,13 +59,13 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div>
-            <p className="text-xl font-bold mb-4 text-[#4ADE80]">
+            <p className="text-xl font-bold mb-4 text-accent">
               Contact
             </p>
             <ul className="space-y-3">
               <li className="flex items-center">
                 <div className="w-8 h-8 rounded-lg bg-[#3B82F6]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#3B82F6]/20">
-                  <Mail className="h-4 w-4 text-[#4ADE80]" />
+                  <Mail className="h-4 w-4 text-accent" />
                 </div>
                 <a
                   href={`https://mail.google.com/mail/?view=cm&fs=1&to=${SITE.contact.email}&su=Inquiry&body=Hello Ujjal,`}
@@ -77,8 +77,8 @@ export default function Footer({ onNavigate }: FooterProps) {
                 </a>
               </li>
               <li className="flex items-center">
-                <div className="w-8 h-8 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#4ADE80]/20">
-                  <Phone className="h-4 w-4 text-[#4ADE80]" />
+                <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center mr-3 flex-shrink-0 border border-accent/20">
+                  <Phone className="h-4 w-4 text-accent" />
                 </div>
                 <a
                   href={SITE.contact.phoneHref}
@@ -88,8 +88,8 @@ export default function Footer({ onNavigate }: FooterProps) {
                 </a>
               </li>
               <li className="flex items-center">
-                <div className="w-8 h-8 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#A78BFA]/20">
-                  <MapPin className="h-4 w-4 text-[#4ADE80]" />
+                <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#A78BFA]/20">
+                  <MapPin className="h-4 w-4 text-accent" />
                 </div>
                 <a
                   href={SITE.contact.locationMapUrl}
@@ -120,7 +120,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href={SITE.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-[#1E293B] flex items-center justify-center hover:bg-[#4ADE80]/20 hover:text-[#4ADE80] transition-colors border border-gray-700"
+                  className="w-10 h-10 rounded-full bg-[#1E293B] flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-colors border border-gray-700"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="h-5 w-5" />

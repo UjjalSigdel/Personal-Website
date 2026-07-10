@@ -7,7 +7,7 @@ interface HeaderProps {
 }
 
 const focusRing =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A]";
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export default function Header({ onNavigate }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,10 +52,10 @@ export default function Header({ onNavigate }: HeaderProps) {
 
   return (
     <>
-    <header className="sticky top-0 z-50 bg-[#0F172A] border-b border-[#1f4a34] backdrop-blur-sm">
+    <header className="sticky top-0 z-50 bg-background border-b border-[#1f4a34] backdrop-blur-sm">
       <a
         href="#main-content"
-        className={`sr-only focus:not-sr-only focus:absolute focus:top-2.5 focus:left-3 focus:z-[70] font-mono text-sm px-3 py-2 rounded-md bg-[#173626] text-[#6EE7A8] border border-[#2b5940] ${focusRing}`}
+        className={`sr-only focus:not-sr-only focus:absolute focus:top-2.5 focus:left-3 focus:z-[70] font-mono text-sm px-3 py-2 rounded-md bg-primary text-primary-foreground border border-border-strong ${focusRing}`}
       >
         $ skip --to-content
       </a>
@@ -65,7 +65,7 @@ export default function Header({ onNavigate }: HeaderProps) {
             onClick={() => onNavigate("home")}
             className={`flex items-center gap-2 font-mono font-bold text-xl text-[#E7ECF5] text-left rounded ${focusRing}`}
           >
-            <span className="w-2 h-2 rounded-full bg-[#4ADE80] shadow-[0_0_0_3px_rgba(74,222,128,0.2)]" />
+            <span className="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_3px_hsl(var(--accent)/0.2)]" />
             ~/ujjal
           </button>
 
@@ -77,7 +77,7 @@ export default function Header({ onNavigate }: HeaderProps) {
                 onClick={() => handleNavClick(id)}
                 className={`group flex items-center gap-1 font-medium text-gray-300 hover:text-white transition-colors rounded ${focusRing}`}
               >
-                <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+                <span className="font-mono text-accent text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
                 {label}
               </button>
             ))}
@@ -116,7 +116,7 @@ export default function Header({ onNavigate }: HeaderProps) {
         onKeyDown={(e) => {
           if (e.key === "Escape") closeMenu();
         }}
-        className={`md:hidden fixed top-0 right-0 z-[60] h-full w-72 max-w-[80vw] bg-[#0F172A] border-l border-[#1f4a34] shadow-2xl ${
+        className={`md:hidden fixed top-0 right-0 z-[60] h-full w-72 max-w-[80vw] bg-background border-l border-[#1f4a34] shadow-2xl ${
           isMenuOpen
             ? "translate-x-0 visible [transition:transform_300ms_ease-in-out]"
             : // visibility flips only after the slide-out finishes, removing the
@@ -132,7 +132,7 @@ export default function Header({ onNavigate }: HeaderProps) {
               onClick={() => handleNavClick(id)}
               className={`group flex items-center gap-2 py-3 px-2 font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 rounded w-full text-left ${focusRing}`}
             >
-              <span className="font-mono text-[#4ADE80] text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+              <span className="font-mono text-accent text-sm opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
               {label}
             </button>
           ))}

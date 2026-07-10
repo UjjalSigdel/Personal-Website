@@ -15,18 +15,18 @@ export default function NotFound() {
   });
 
   return (
-    <main className="min-h-screen w-full flex items-center justify-center bg-[#0F172A] px-4">
+    <main className="min-h-screen w-full flex items-center justify-center bg-background px-4">
       <TerminalWindow title="ujjal@sagarmatha:~" className="w-full max-w-xl">
         <div className="px-6 py-7 font-mono text-sm leading-loose">
           <p>
-            <span className="text-[#4ADE80]">$</span>{" "}
+            <span className="text-accent">$</span>{" "}
             <span className="text-[#DCEFE3]">cd {location}</span>
           </p>
           <p className="text-[#f0a8a8]">
             bash: cd: {location}: No such file or directory
           </p>
           <p className="text-5xl font-bold text-white mt-4 mb-1">404</p>
-          <p className="text-[#5f8a71] text-xs mb-6">
+          <p className="text-faint text-xs mb-6">
             // nothing lives at this address — it may have moved, or never existed
           </p>
           <p className="flex items-center">
@@ -35,7 +35,7 @@ export default function NotFound() {
             </Link>
             <span
               aria-hidden="true"
-              className="inline-block w-2 h-4 bg-[#4ADE80] ml-2 animate-blink motion-reduce:animate-none"
+              className="inline-block w-2 h-4 bg-accent ml-2 animate-blink motion-reduce:animate-none"
             />
           </p>
         </div>

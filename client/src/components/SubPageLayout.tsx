@@ -32,14 +32,14 @@ export default function SubPageLayout({ children, backTo, title, description }: 
   usePageMeta({ title, description, path: location });
 
   return (
-    <div className="text-gray-800 bg-[#0F172A] min-h-screen">
+    <div className="text-gray-800 bg-background min-h-screen">
       <Header onNavigate={navigate} />
 
       <main id="main-content" className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => (backTo ? setLocation(backTo) : navigate("home"))}
-            className="inline-flex items-center gap-2 font-mono text-sm text-gray-400 hover:text-[#4ADE80] transition-colors mb-8"
+            className="inline-flex items-center gap-2 font-mono text-sm text-gray-400 hover:text-accent transition-colors mb-8"
           >
             <ArrowLeft className="h-4 w-4" />
             $ cd ..
