@@ -20,6 +20,29 @@ export const STATUS_META: Record<Project["status"], { label: string; className: 
   Ongoing: { label: "ongoing", className: "text-[#60a5fa] border-[#60a5fa]" },
 };
 
+// The bracket-style status stamp, shared by the project card and the project
+// detail header — one definition so the two renderings can't drift apart.
+export function StatusStamp({
+  status,
+  className,
+}: {
+  status: Project["status"];
+  className?: string;
+}) {
+  const meta = STATUS_META[status];
+  return (
+    <span
+      className={cn(
+        "font-mono text-[11px] tracking-wide uppercase px-2 py-0.5 border rounded-sm",
+        meta.className,
+        className,
+      )}
+    >
+      {meta.label}
+    </span>
+  );
+}
+
 interface ProjectCardProps {
   index: number;
   title: string;
@@ -45,7 +68,6 @@ export default function ProjectCard({
   titleAs: TitleTag = "h3",
 }: ProjectCardProps) {
   const [, setLocation] = useLocation();
-  const statusMeta = STATUS_META[status];
   const figNumber = String(index + 1).padStart(2, "0");
 
   return (
@@ -61,11 +83,7 @@ export default function ProjectCard({
       <span className="absolute -bottom-px -left-px w-2.5 h-2.5 border-b-2 border-l-2 border-accent" />
       <span className="absolute -bottom-px -right-px w-2.5 h-2.5 border-b-2 border-r-2 border-accent" />
 
-      <span
-        className={`absolute top-4 right-4 font-mono text-[11px] tracking-wide uppercase px-2 py-0.5 border rounded-sm ${statusMeta.className}`}
-      >
-        {statusMeta.label}
-      </span>
+      <StatusStamp status={status} className="absolute top-4 right-4" />
 
       <span className="font-mono text-xs tracking-wider uppercase text-faint mb-3 pr-24">
         FIG. {figNumber} — {category}

@@ -2,7 +2,7 @@ import { Redirect, useParams } from "wouter";
 import { ExternalLink } from "lucide-react";
 import SubPageLayout from "@/components/SubPageLayout";
 import TerminalWindow from "@/components/ui/terminal-window";
-import { STATUS_META } from "@/components/ui/project-card";
+import { STATUS_META, StatusStamp } from "@/components/ui/project-card";
 import { terminalButton } from "@/components/ui/terminal-button";
 import { projects } from "@/lib/projects";
 import { SITE } from "@/lib/site.config";
@@ -33,11 +33,7 @@ export default function ProjectDetail() {
         </span>
         <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">{project.title}</h1>
         <div className="flex flex-wrap items-center gap-2.5">
-          <span
-            className={`font-mono text-[11px] tracking-wide uppercase px-2 py-0.5 border rounded-sm ${statusMeta.className}`}
-          >
-            {statusMeta.label}
-          </span>
+          <StatusStamp status={project.status} />
           {project.tags.map((tag) => (
             <span
               key={tag}

@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { NAV_ITEMS, type SectionId } from "@/lib/navigation";
+import { focusRing } from "@/components/ui/focus-ring";
 
 interface HeaderProps {
   onNavigate: (section: SectionId) => void;
 }
-
-const focusRing =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export default function Header({ onNavigate }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

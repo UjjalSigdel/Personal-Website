@@ -5,6 +5,7 @@ import ProjectCard, { blueprintFieldStyle } from "@/components/ui/project-card";
 import { staggerContainer, fadeUpItem } from "@/lib/motion";
 import { projects, type Project } from "@/lib/projects";
 import { SITE } from "@/lib/site.config";
+import { focusRing } from "@/components/ui/focus-ring";
 
 const CATEGORIES: Array<Project["category"] | "All"> = [
   "All",
@@ -75,7 +76,7 @@ export default function Projects() {
               key={category}
               onClick={() => toggleCategory(category)}
               aria-pressed={isActive}
-              className="group flex items-center gap-2 font-mono text-[11px] tracking-wide uppercase rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className={`group flex items-center gap-2 font-mono text-[11px] tracking-wide uppercase rounded ${focusRing}`}
             >
               <span
                 className={`relative inline-block w-[30px] h-4 rounded-sm border transition-colors bg-[#081109] ${

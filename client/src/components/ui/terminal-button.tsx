@@ -1,10 +1,11 @@
 import { cva, type VariantProps } from "class-variance-authority";
+import { focusRing } from "@/components/ui/focus-ring";
 
 // Class factory for the site's `$ command`-style buttons and links.
 // A factory rather than a component so it works on <button>, <a>, and
 // wouter's <Link> alike; pair with cn() when adding per-case overrides.
 export const terminalButton = cva(
-  "inline-flex items-center justify-center font-mono rounded-md border transition-colors disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+  `inline-flex items-center justify-center font-mono rounded-md border transition-colors disabled:pointer-events-none disabled:opacity-50 ${focusRing}`,
   {
     variants: {
       tone: {
