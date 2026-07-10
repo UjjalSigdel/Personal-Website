@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "tsc"
+    "check": "tsc",
+    "check:foundation": "node scripts/check-foundation.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

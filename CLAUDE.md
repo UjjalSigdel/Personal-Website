@@ -36,9 +36,14 @@ npm run dev       # start Vite dev server (client only)
 npm run build     # production build (outputs to dist/public)
 npm run preview   # preview the production build locally
 npm run check     # type-check with tsc (no emit)
+npm run check:foundation  # mechanical FOUNDATION.md guardrails (scripts/check-foundation.mjs)
 ```
 
-There is no lint script and no test runner configured in this repo.
+There is no lint script and no test runner configured in this repo. CI
+(`.github/workflows/ci.yml`) runs check + check:foundation + build on every
+push and PR; the foundation check fails on new raw colors in
+`components/ui/`, full `motion` imports, and site facts hardcoded outside
+`site.config.ts`.
 
 ## Architecture notes (both branches)
 
