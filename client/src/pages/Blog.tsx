@@ -15,7 +15,7 @@ export default function Blog() {
     >
       {posts.length === 0 ? (
         <div className="max-w-xl mx-auto text-center py-16">
-          <p className="font-mono text-sm text-[#5f8a71] mb-4">~/blog</p>
+          <p className="font-mono text-sm text-faint mb-4">~/blog</p>
           <h1 className="font-mono text-3xl font-bold text-white mb-6">
             // under construction
           </h1>
@@ -33,7 +33,7 @@ export default function Blog() {
       ) : (
         <>
           <div className="mb-12">
-            <span className="inline-block font-mono text-xs tracking-wider uppercase text-[#4ADE80] mb-2">
+            <span className="inline-block font-mono text-xs tracking-wider uppercase text-accent mb-2">
               The Blog
             </span>
             <h1 className="text-4xl font-bold text-white mb-4">
@@ -55,7 +55,7 @@ export default function Blog() {
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs px-2 py-1 rounded-full bg-[#4ADE80]/10 text-[#4ADE80]"
+                      className="text-xs px-2 py-1 rounded-full bg-accent/10 text-accent"
                     >
                       {tag}
                     </span>

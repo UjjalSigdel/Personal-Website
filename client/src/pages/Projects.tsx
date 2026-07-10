@@ -56,7 +56,7 @@ export default function Projects() {
       description={`The full archive of ${SITE.owner.name}'s academic and personal projects — electronics, programming, and web development.`}
     >
       <div className="mb-10">
-        <span className="inline-block font-mono text-xs tracking-wider uppercase text-[#4ADE80] mb-2">
+        <span className="inline-block font-mono text-xs tracking-wider uppercase text-accent mb-2">
           The Full Archive
         </span>
         <h1 className="text-4xl font-bold text-white mb-4">
@@ -75,26 +75,26 @@ export default function Projects() {
               key={category}
               onClick={() => toggleCategory(category)}
               aria-pressed={isActive}
-              className="group flex items-center gap-2 font-mono text-[11px] tracking-wide uppercase rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A]"
+              className="group flex items-center gap-2 font-mono text-[11px] tracking-wide uppercase rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <span
                 className={`relative inline-block w-[30px] h-4 rounded-sm border transition-colors bg-[#081109] ${
-                  isActive ? "border-[#4ADE80]" : "border-[#1f3a2b]"
+                  isActive ? "border-accent" : "border-border"
                 }`}
               >
                 <span
                   className={`absolute top-[1px] bottom-[1px] w-[13px] rounded-[1px] transition-all ${
-                    isActive ? "left-[15px] bg-[#4ADE80]" : "left-[1px] bg-gray-700"
+                    isActive ? "left-[15px] bg-accent" : "left-[1px] bg-gray-700"
                   }`}
                 />
               </span>
               <span
                 className={
-                  isActive ? "text-[#4ADE80]" : "text-gray-400 group-hover:text-gray-300"
+                  isActive ? "text-accent" : "text-gray-400 group-hover:text-gray-300"
                 }
               >
                 {category}{" "}
-                <span className={isActive ? "text-[#6EE7A8]" : "text-[#5f8a71]"}>
+                <span className={isActive ? "text-accent-strong" : "text-faint"}>
                   [{categoryCount(category)}]
                 </span>
               </span>

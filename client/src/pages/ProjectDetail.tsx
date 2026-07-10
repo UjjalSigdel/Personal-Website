@@ -27,8 +27,8 @@ export default function ProjectDetail() {
       description={project.description}
     >
       {/* Header */}
-      <div className="border-b border-dashed border-[#1f3a2b] pb-7 mb-8">
-        <span className="block font-mono text-xs tracking-wider uppercase text-[#5f8a71] mb-2">
+      <div className="border-b border-dashed border-border pb-7 mb-8">
+        <span className="block font-mono text-xs tracking-wider uppercase text-faint mb-2">
           FIG. {figNumber} — {project.category}
         </span>
         <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">{project.title}</h1>
@@ -41,7 +41,7 @@ export default function ProjectDetail() {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="font-mono text-[11px] text-[#5f8a71] border border-[#1f3a2b] rounded px-2 py-0.5"
+              className="font-mono text-[11px] text-faint border border-border rounded px-2 py-0.5"
             >
               {tag}
             </span>
@@ -52,7 +52,7 @@ export default function ProjectDetail() {
       <div className="grid md:grid-cols-[1.6fr_0.9fr] gap-10 items-start">
         {/* Prose column */}
         <div>
-          <h2 className="font-mono text-xs tracking-wider uppercase text-[#4ADE80] mb-3">
+          <h2 className="font-mono text-xs tracking-wider uppercase text-accent mb-3">
             // overview
           </h2>
           <p className="text-gray-300 text-[15px] leading-relaxed max-w-2xl">
@@ -61,18 +61,18 @@ export default function ProjectDetail() {
 
           {project.notebook && project.notebook.length > 0 && (
             <>
-              <h2 className="font-mono text-xs tracking-wider uppercase text-[#4ADE80] mt-9 mb-4">
+              <h2 className="font-mono text-xs tracking-wider uppercase text-accent mt-9 mb-4">
                 // lab notebook
               </h2>
-              <div className="border-l border-dashed border-[#1f3a2b] pl-5 space-y-4">
+              <div className="border-l border-dashed border-border pl-5 space-y-4">
                 {project.notebook.map(({ date, entry }) => (
                   <div key={date + entry} className="relative">
                     <span
                       className={`absolute -left-[24px] top-1.5 w-[7px] h-[7px] rounded-full ${
-                        date === "now" ? "bg-[#4ADE80]" : "bg-[#5f8a71]"
+                        date === "now" ? "bg-accent" : "bg-faint"
                       }`}
                     />
-                    <span className="block font-mono text-[11px] text-[#5f8a71] mb-0.5">
+                    <span className="block font-mono text-[11px] text-faint mb-0.5">
                       {date}
                     </span>
                     <p className="text-gray-300 text-sm leading-relaxed">{entry}</p>
@@ -84,7 +84,7 @@ export default function ProjectDetail() {
 
           {project.screenshots && project.screenshots.length > 0 && (
             <>
-              <h2 className="font-mono text-xs tracking-wider uppercase text-[#4ADE80] mt-9 mb-4">
+              <h2 className="font-mono text-xs tracking-wider uppercase text-accent mt-9 mb-4">
                 // screenshots
               </h2>
               <div className="grid sm:grid-cols-2 gap-3">
@@ -93,10 +93,10 @@ export default function ProjectDetail() {
                     <img
                       src={src}
                       alt={caption}
-                      className="w-full rounded-md border border-[#1f3a2b]"
+                      className="w-full rounded-md border border-border"
                       loading="lazy"
                     />
-                    <figcaption className="font-mono text-[11px] text-[#5f8a71] mt-1.5">
+                    <figcaption className="font-mono text-[11px] text-faint mt-1.5">
                       {caption}
                     </figcaption>
                   </figure>
@@ -111,23 +111,23 @@ export default function ProjectDetail() {
           <TerminalWindow title="project.yaml">
             <div className="p-5 font-mono text-[13px] leading-loose">
               <div>
-                <span className="text-[#4ADE80]">status:</span>{" "}
+                <span className="text-accent">status:</span>{" "}
                 <span className="text-[#DCEFE3]">
                   {statusMeta.label.replace(" ", "_")}
                 </span>
               </div>
               <div>
-                <span className="text-[#4ADE80]">category:</span>{" "}
+                <span className="text-accent">category:</span>{" "}
                 <span className="text-[#DCEFE3]">{project.category.toLowerCase()}</span>
               </div>
               {project.tools && (
                 <>
                   <div>
-                    <span className="text-[#4ADE80]">tools:</span>
+                    <span className="text-accent">tools:</span>
                   </div>
                   {project.tools.map((tool) => (
                     <div key={tool}>
-                      <span className="text-[#5f8a71]">{"  "}-</span>{" "}
+                      <span className="text-faint">{"  "}-</span>{" "}
                       <span className="text-[#DCEFE3]">{tool}</span>
                     </div>
                   ))}
@@ -135,7 +135,7 @@ export default function ProjectDetail() {
               )}
               {project.started && (
                 <div>
-                  <span className="text-[#4ADE80]">started:</span>{" "}
+                  <span className="text-accent">started:</span>{" "}
                   <span className="text-[#DCEFE3]">{project.started}</span>
                 </div>
               )}
