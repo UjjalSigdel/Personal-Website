@@ -38,7 +38,7 @@ export default function HeroSection({
   const uptime = getUptime(BIRTH_DATE);
 
   return (
-    <section className="bg-[#0F172A] text-white pt-14 pb-20 md:pt-20 md:pb-28">
+    <section className="bg-background text-white pt-14 pb-20 md:pt-20 md:pb-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-stretch">
           <m.div
@@ -51,7 +51,7 @@ export default function HeroSection({
               <img
                 src="/profile-photo.webp"
                 alt="Ujjal Sigdel"
-                className="w-16 h-16 lg:w-24 lg:h-24 rounded-full object-cover object-top border border-[#2b5940] bg-[#0e1f16]"
+                className="w-16 h-16 lg:w-24 lg:h-24 rounded-full object-cover object-top border border-border-strong bg-[#0e1f16]"
               />
               <div className="leading-tight">
                 <span className="block font-semibold text-[#DCEFE3] text-base lg:text-xl">
@@ -67,7 +67,7 @@ export default function HeroSection({
               // still compiling
               <span
                 aria-hidden="true"
-                className="inline-block w-[0.5em] h-[0.75em] bg-[#4ADE80] ml-2 align-middle animate-blink motion-reduce:animate-none"
+                className="inline-block w-[0.5em] h-[0.75em] bg-accent ml-2 align-middle animate-blink motion-reduce:animate-none"
               />
             </h1>
 
@@ -78,7 +78,7 @@ export default function HeroSection({
               from basic circuits to my first lines of C++.
             </p>
 
-            <p className="font-serif italic text-lg text-[#CBD9D0] border-l-[3px] border-[#2b5940] pl-5 max-w-lg mb-9">
+            <p className="font-serif italic text-lg text-[#CBD9D0] border-l-[3px] border-border-strong pl-5 max-w-lg mb-9">
               Turns out engineering is mostly learning in public.
             </p>
 
@@ -114,37 +114,37 @@ export default function HeroSection({
             >
               <div className="font-mono text-base leading-[2.15] px-6 py-10 flex-1 flex flex-col justify-center">
                 <div className="flex gap-4">
-                  <span className="text-[#5f8a71] w-28 flex-shrink-0">whoami</span>
+                  <span className="text-faint w-28 flex-shrink-0">whoami</span>
                   <span className="text-[#DCEFE3]">Ujjal Sigdel</span>
                 </div>
                 <div className="flex gap-4">
-                  <span className="text-[#5f8a71] w-28 flex-shrink-0">role</span>
+                  <span className="text-faint w-28 flex-shrink-0">role</span>
                   <span className="text-[#DCEFE3]">BEI Student, Year 2</span>
                 </div>
                 <div className="flex gap-4">
-                  <span className="text-[#5f8a71] w-28 flex-shrink-0">college</span>
+                  <span className="text-faint w-28 flex-shrink-0">college</span>
                   <span className="text-[#DCEFE3]">Sagarmatha Eng. College (TU)</span>
                 </div>
                 <div className="flex gap-4">
-                  <span className="text-[#5f8a71] w-28 flex-shrink-0">member</span>
+                  <span className="text-faint w-28 flex-shrink-0">member</span>
                   <span className="text-[#DCEFE3]">SEIS — Electronic Society</span>
                 </div>
                 <div className="flex gap-4">
-                  <span className="text-[#5f8a71] w-28 flex-shrink-0">status</span>
-                  <span className="text-[#4ADE80] flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#4ADE80]" />
+                  <span className="text-faint w-28 flex-shrink-0">status</span>
+                  <span className="text-accent flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-accent" />
                     learning
                   </span>
                 </div>
                 <div className="flex gap-4">
-                  <span className="text-[#5f8a71] w-28 flex-shrink-0">uptime</span>
+                  <span className="text-faint w-28 flex-shrink-0">uptime</span>
                   <span className="text-[#DCEFE3]">{uptime}</span>
                 </div>
               </div>
             </TerminalWindow>
 
-            <div className="mt-5 rounded-lg border border-[#1f3a2b] bg-[#0B1710] px-6 py-5">
-              <div className="font-mono text-sm text-[#5f8a71] mb-2">
+            <div className="mt-5 rounded-lg border border-border bg-surface px-6 py-5">
+              <div className="font-mono text-sm text-faint mb-2">
                 // next up
               </div>
               <p className="text-[#DCEFE3] text-base leading-relaxed">
@@ -162,7 +162,7 @@ export default function HeroSection({
         >
           <button
             onClick={onLearnMoreClick}
-            className="inline-block text-gray-400 hover:text-[#4ADE80] transition-colors"
+            className="inline-block text-gray-400 hover:text-accent transition-colors"
           >
             <span className="block mb-2">Explore More</span>
             <ChevronDown className="h-6 w-6 mx-auto animate-bounce motion-reduce:animate-none" />

@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
 const inputClass =
-  "w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg placeholder:text-gray-500 focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors";
+  "w-full px-4 py-2 bg-background border border-border-strong rounded-lg placeholder:text-gray-500 focus-visible:ring-2 focus-visible:ring-accent focus:border-accent text-white transition-colors";
 
 export default function ContactSection() {
   const { toast } = useToast();
@@ -67,10 +67,10 @@ export default function ContactSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-[#0F172A]">
+    <section ref={sectionRef} className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
-          <span className="inline-block text-[#4ADE80] font-medium mb-2">GET IN TOUCH</span>
+          <span className="inline-block text-accent font-medium mb-2">GET IN TOUCH</span>
           <h2 className="text-4xl font-bold text-white">Let's work together</h2>
         </div>
 
@@ -82,7 +82,7 @@ export default function ContactSection() {
         >
           <m.div variants={fadeUpItem()}>
             <Card className="bg-[#1E293B] border-none rounded-lg p-8 shadow-xl">
-              <h3 className="text-2xl font-semibold text-[#4ADE80] mb-6">Send a Message</h3>
+              <h3 className="text-2xl font-semibold text-accent mb-6">Send a Message</h3>
 
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -102,7 +102,7 @@ export default function ContactSection() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-[#4ADE80]">Your Name</FormLabel>
+                        <FormLabel className="text-sm font-medium text-accent">Your Name</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="John Doe"
@@ -120,7 +120,7 @@ export default function ContactSection() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-[#4ADE80]">Your Email</FormLabel>
+                        <FormLabel className="text-sm font-medium text-accent">Your Email</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="johndoe@example.com"
@@ -139,7 +139,7 @@ export default function ContactSection() {
                     name="subject"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-[#4ADE80]">Subject</FormLabel>
+                        <FormLabel className="text-sm font-medium text-accent">Subject</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="Project Inquiry"
@@ -157,7 +157,7 @@ export default function ContactSection() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-[#4ADE80]">Message</FormLabel>
+                        <FormLabel className="text-sm font-medium text-accent">Message</FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="Your message here..."
@@ -194,7 +194,7 @@ export default function ContactSection() {
             <TerminalWindow title="faq.log">
               <div className="p-6 space-y-5">
                 <div>
-                  <p className="font-mono text-[#4ADE80] text-sm mb-1.5">
+                  <p className="font-mono text-accent text-sm mb-1.5">
                     Q: Are you open to internships?
                   </p>
                   <p className="text-gray-400 text-base leading-relaxed pl-4">
@@ -203,7 +203,7 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <p className="font-mono text-[#4ADE80] text-sm mb-1.5">
+                  <p className="font-mono text-accent text-sm mb-1.5">
                     Q: What should the subject line say?
                   </p>
                   <p className="text-gray-400 text-base leading-relaxed pl-4">
@@ -212,7 +212,7 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <p className="font-mono text-[#4ADE80] text-sm mb-1.5">
+                  <p className="font-mono text-accent text-sm mb-1.5">
                     Q: How fast do you reply?
                   </p>
                   <p className="text-gray-400 text-base leading-relaxed pl-4">

@@ -19,10 +19,10 @@ export default function ProjectsSection({
   const featuredProjects = projects.filter((project) => project.featured);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-[#0F172A]">
+    <section ref={sectionRef} className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
-          <span className="inline-block font-mono text-xs tracking-wider uppercase text-[#4ADE80] mb-2">
+          <span className="inline-block font-mono text-xs tracking-wider uppercase text-accent mb-2">
             Featured Projects
           </span>
           <h2 className="text-4xl font-bold text-white mb-4">
