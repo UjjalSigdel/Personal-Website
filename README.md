@@ -11,6 +11,15 @@ The goal of this project is to showcase my technical skills, projects, achieveme
 
 This repository is intended to evolve continuously throughout my academic and professional career. It is treated as a long-term software project rather than a one-time portfolio.
 
+**How this repository is organized:** engineering and visual design are
+deliberately separated. The branch you are probably looking at, `main`, is
+the engineering foundation — it is **not** the production portfolio and
+renders only a placeholder page. The current visual implementation lives on
+the `redesign` branch; `main` exists so that future redesigns inherit the
+engineering (backend, accessibility, SEO, performance, tooling) without
+inheriting a visual identity. See the Branch Model section below and
+`FOUNDATION.md`.
+
 ---
 
 ## Tech Stack
@@ -77,11 +86,18 @@ npm run build
 
 ## Branch Model
 
-`main` is the engineering foundation, not the website: backend, shared logic
-and configuration, design-system primitives, the theme contract, and content
-(see FOUNDATION.md). The public site is built from a long-lived design
-branch (currently `redesign`); each complete visual identity gets its own.
-Changes flow one way, `main` → design branches.
+- `main` — the engineering foundation, not the website: backend, shared
+  logic and configuration, design-system primitives, the theme contract,
+  and content (see FOUNDATION.md). Changes flow one way,
+  `main` → design branches.
+- `redesign` — the current production design. It predates the foundation
+  contract and is intentionally preserved as-is (see ARCHITECTURE.md).
+- `v1.0-original` — frozen archive of the first version of the site.
+
+Future redesigns branch from `main`, never from `redesign`.
+
+Note: `npm run dev` on `main` serves the foundation's placeholder page.
+To see the current production site locally, check out `redesign`.
 
 ---
 

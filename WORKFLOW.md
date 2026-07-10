@@ -57,29 +57,32 @@ Avoid:
 
 ## Git Workflow
 
-Development should happen on feature branches.
+`main` is the engineering foundation (see `FOUNDATION.md`). All new work
+starts from it:
 
-Never develop directly on `main`.
+feature/your-change
 
-Example:
+↓
 
 main
 
 ↓
 
-feature/project-redesign
+(merged down into) future design branches
 
-↓
+Rules:
 
-Commit frequently
-
-↓
-
-Review
-
-↓
-
-Merge
+- Foundation and content work happens on short-lived `feature/*` branches
+  off `main`, reviewed, then merged into `main`.
+- Design work happens on feature branches off the design branch being
+  worked on.
+- Design branches receive foundation updates by merging `main` down.
+  Nothing ever merges from a design branch into `main`.
+- `redesign` (current production) predates the foundation and is not an
+  engineering source — never base new work on it (see `ARCHITECTURE.md`).
+- Never develop directly on `main` or on a long-lived design branch.
+- CI (`.github/workflows/ci.yml`) must pass: type check, foundation
+  guardrails, production build.
 
 ---
 

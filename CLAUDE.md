@@ -20,10 +20,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   data), hooks, token-driven `components/ui/` primitives, the theme contract
   in `index.css`/`tailwind.config.ts`, build config, and docs. It renders a
   placeholder page only.
-- Design branches (production is built from `redesign`) add the visual
-  identity: `components/sections/*`, `Header`, `Footer`, `SubPageLayout`,
-  `components/ui/terminal-*` and `project-card`, the real pages, their route
-  table in `App.tsx`, and their theme token values.
+- Design branches add the visual identity: `components/sections/*`,
+  `Header`, `Footer`, `SubPageLayout`, `components/ui/terminal-*` and
+  `project-card`, the real pages, their route table in `App.tsx`, and their
+  theme token values. Future design branches are created from `main`.
+- **Caution — `redesign` predates the foundation.** The current production
+  branch was the code the foundation was extracted from and is preserved
+  as-is: it has its own inline contact schema, hardcoded site facts and
+  colors, and no `site.config.ts`/`contact.schema.ts`/CI. The "shared
+  module" statements below are true on `main` and on future design
+  branches, not on `redesign`. Treat `redesign` as frozen production, never
+  as an engineering source (see `ARCHITECTURE.md`).
 - Key vision rule: avoid generic "AI-generated portfolio" aesthetics; the
   homepage is a single-page experience and `/projects` (full archive) is a
   deliberate secondary destination, never a primary-nav item.

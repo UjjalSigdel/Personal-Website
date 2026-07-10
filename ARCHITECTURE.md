@@ -8,12 +8,33 @@ The boundary rules it implements live in `FOUNDATION.md`.
 - **`main`** — the engineering foundation. Everything below describes `main`
   unless noted. `main` builds and renders a minimal placeholder page; it is
   never the public website.
-- **Design branches** (currently `redesign`, which the production site is
-  built from) — one long-lived branch per visual identity. A design branch
-  is `main` plus: the section components, Header/Footer, the page shell,
-  design-specific primitives (terminal window/button, project card), its
-  own pages and route table, and its theme token values.
+- **Design branches** — one long-lived branch per visual identity. Under the
+  contract, a design branch is `main` plus: section components,
+  Header/Footer, the page shell, design-specific primitives, its own pages
+  and route table, and its theme token values. **Future design branches are
+  created from `main`.**
 - Changes flow one way: `main` → design branches. See `WORKFLOW.md`.
+
+### The `redesign` branch — read this before checking it out
+
+`redesign` is the current production design, and it **predates the
+architectural contract**. It was the codebase the foundation was *extracted
+from*, and it has deliberately not been modified since:
+
+- It does not consume the foundation modules — it carries its own inline
+  copies of what `main` centralized (an inline contact schema, hardcoded
+  site facts and colors, no `site.config.ts`, no CI workflow).
+- This is intentional preservation, not drift: `redesign` is kept untouched
+  as the stable production implementation. **No migration of the foundation
+  into `redesign` is planned**; if one is ever wanted, it will be a
+  deliberate, separately reviewed undertaking.
+- `redesign` is therefore **not an engineering source**. Do not base new
+  work on it; do not copy patterns from it into `main`.
+- The next design does not start from `redesign` — it starts from `main`.
+  A fully token-migrated variant of the terminal design (the code the
+  foundation was distilled from) is preserved in `main`'s history as the
+  second parent of the "M9" promotion merge, if a future design wants it
+  as a base.
 
 ## Stack
 

@@ -8,6 +8,18 @@ Follow the format below.
 
 ## Unreleased
 
+### Changed
+
+- Documentation reconciliation pass (stable-v2 pass, 2026-07-10): `ROADMAP.md` rewritten so completed work (site Phases 1–7, foundation M2–M10) is recorded as done rather than future, with the genuinely remaining items listed; `ARCHITECTURE.md` gains "The `redesign` branch — read this before checking it out" (redesign predates the contract, is intentionally preserved untouched, is not an engineering source, and no migration into it is planned; future designs branch from `main`); `FOUNDATION.md` gains one grandfather-clause sentence for pre-contract branches; `WORKFLOW.md`'s Git Workflow section now describes the actual `feature/* → main → design branches` flow with the one-way rule and CI requirement; `README.md` states up front that `main` is not the production portfolio and how to see the real site locally; `CLAUDE.md` gains the same `redesign` caution (its shared-module statements are true on `main`, not on `redesign`). This changelog's completed body of work is now dated below instead of sitting in Unreleased.
+
+---
+
+## 2026-07-10 — v2 engineering foundation
+
+The engineering/design separation defined in `FOUNDATION.md`, landed on
+`main` via the M9 promotion merge. Entries below include the earlier
+design-line work (site Phases 1–7) this was distilled from.
+
 ### Added
 
 - `/projects` page: the full project archive with category filtering (Electronics / Programming / Web Development), per `ROADMAP.md` Phase 4 and `VISION.md`'s homepage/archive split.

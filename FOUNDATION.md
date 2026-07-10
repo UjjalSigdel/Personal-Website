@@ -96,6 +96,11 @@ voice, and design-specific components built on the primitives. Design
 branches exist for experimentation — a branch may change all of this
 completely, and that must never require touching foundation code.
 
+This contract governs branches created from `main` after it was adopted.
+A design branch that predates the contract (currently `redesign` — see
+`ARCHITECTURE.md`) is preserved as-is and is exempt until deliberately
+migrated; it is not an engineering source either way.
+
 ## 3. Boundary Rules
 
 These rules are the contract. They apply to human contributors and AI
