@@ -1,6 +1,9 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import nodemailer from "nodemailer";
 import { z } from "zod";
+// Relative import: the `@/` alias is Vite/tsconfig-path config that Vercel's
+// function bundler doesn't resolve for api/ files.
+import { SITE } from "../client/src/lib/site.config";
 
 const insertContactSchema = z.object({
   name: z
@@ -52,7 +55,7 @@ export default async function handler(
 
     await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-      to: "contact@ujjalsigdel.com.np",
+      to: SITE.contact.email,
       replyTo: data.email,
       subject: `New Contact: ${data.subject}`,
       text: `Name: ${data.name}

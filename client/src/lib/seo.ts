@@ -1,9 +1,9 @@
 import { useEffect } from "react";
+import { SITE } from "@/lib/site.config";
 
-const BASE_URL = "https://www.ujjalsigdel.com.np";
-const DEFAULT_TITLE = "Ujjal Sigdel | Portfolio";
-const DEFAULT_DESCRIPTION =
-  "Portfolio of Ujjal Sigdel, a second-year Electronics, Communication and Information Engineering (BEI) student at Sagarmatha Engineering College — projects, skills, and a learning-in-public log.";
+const BASE_URL = SITE.url;
+const DEFAULT_TITLE = SITE.title;
+const DEFAULT_DESCRIPTION = SITE.description;
 
 function setMetaByName(name: string, content: string) {
   document.querySelector(`meta[name="${name}"]`)?.setAttribute("content", content);

@@ -8,6 +8,7 @@ import {
   Linkedin,
 } from "lucide-react";
 import { NAV_ITEMS, type SectionId } from "@/lib/navigation";
+import { SITE } from "@/lib/site.config";
 import { terminalButton } from "@/components/ui/terminal-button";
 
 interface FooterProps {
@@ -30,8 +31,8 @@ export default function Footer({ onNavigate }: FooterProps) {
               // EOF
             </div>
             <a
-              href="/MyCV.pdf"
-              download="Ujjal_Sigdel_CV.pdf"
+              href={SITE.cv.path}
+              download={SITE.cv.downloadName}
               className={terminalButton()}
             >
               $ download --resume
@@ -67,12 +68,12 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <Mail className="h-4 w-4 text-[#4ADE80]" />
                 </div>
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@ujjalsigdel.com.np&su=Inquiry&body=Hello Ujjal,"
+                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=${SITE.contact.email}&su=Inquiry&body=Hello Ujjal,`}
                   className="text-gray-300 hover:text-[#3B82F6] transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  contact@ujjalsigdel.com.np
+                  {SITE.contact.email}
                 </a>
               </li>
               <li className="flex items-center">
@@ -80,10 +81,10 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <Phone className="h-4 w-4 text-[#4ADE80]" />
                 </div>
                 <a
-                  href="tel:+9779761622468"
+                  href={SITE.contact.phoneHref}
                   className="text-gray-300 hover:text-[#3B82F6] transition-colors"
                 >
-                  +977 9761622468
+                  {SITE.contact.phone}
                 </a>
               </li>
               <li className="flex items-center">
@@ -91,12 +92,12 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <MapPin className="h-4 w-4 text-[#4ADE80]" />
                 </div>
                 <a
-                  href="https://www.google.com/maps/place/Kathmandu,+Nepal"
+                  href={SITE.contact.locationMapUrl}
                   className="text-gray-300 hover:text-[#3B82F6] transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Kathmandu, Nepal
+                  {SITE.contact.location}
                 </a>
               </li>
             </ul>
@@ -107,7 +108,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               </p>
               <div className="flex space-x-3">
                 <a
-                  href="https://github.com/UjjalSigdel"
+                  href={SITE.social.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-[#1E293B] flex items-center justify-center hover:bg-[#3B82F6]/20 hover:text-[#3B82F6] transition-colors border border-gray-700"
@@ -116,7 +117,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <Github className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/ujjal-sigdel-07a292330/"
+                  href={SITE.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-[#1E293B] flex items-center justify-center hover:bg-[#4ADE80]/20 hover:text-[#4ADE80] transition-colors border border-gray-700"
@@ -125,7 +126,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <Linkedin className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://www.facebook.com/ujjalsigdel"
+                  href={SITE.social.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-[#1E293B] flex items-center justify-center hover:bg-[#A78BFA]/20 hover:text-[#A78BFA] transition-colors border border-gray-700"
@@ -134,7 +135,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <Facebook className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://www.instagram.com/ujjalsigdel"
+                  href={SITE.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-[#1E293B] flex items-center justify-center hover:bg-[#FB7185]/20 hover:text-[#FB7185] transition-colors border border-gray-700"
@@ -149,7 +150,7 @@ export default function Footer({ onNavigate }: FooterProps) {
 
         <div className="mt-12 pt-8 border-t border-gray-800 text-center">
           <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} Ujjal Sigdel. All rights reserved.
+            &copy; {new Date().getFullYear()} {SITE.owner.name}. All rights reserved.
           </p>
         </div>
       </div>

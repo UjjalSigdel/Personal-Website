@@ -5,6 +5,7 @@ import TerminalWindow from "@/components/ui/terminal-window";
 import { STATUS_META } from "@/components/ui/project-card";
 import { terminalButton } from "@/components/ui/terminal-button";
 import { projects } from "@/lib/projects";
+import { SITE } from "@/lib/site.config";
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -22,7 +23,7 @@ export default function ProjectDetail() {
   return (
     <SubPageLayout
       backTo="/projects"
-      title={`${project.title} — Ujjal Sigdel`}
+      title={`${project.title} — ${SITE.owner.name}`}
       description={project.description}
     >
       {/* Header */}

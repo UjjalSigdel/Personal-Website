@@ -3,14 +3,15 @@ import { terminalButton } from "@/components/ui/terminal-button";
 import { cn } from "@/lib/utils";
 import { useHomeSectionNavigate } from "@/lib/navigation";
 import { posts } from "@/lib/posts";
+import { SITE } from "@/lib/site.config";
 
 export default function Blog() {
   const navigate = useHomeSectionNavigate();
 
   return (
     <SubPageLayout
-      title="Blog — Ujjal Sigdel"
-      description="Notes on what Ujjal Sigdel is learning and building — coming soon."
+      title={`Blog — ${SITE.owner.name}`}
+      description={`Notes on what ${SITE.owner.name} is learning and building — coming soon.`}
     >
       {posts.length === 0 ? (
         <div className="max-w-xl mx-auto text-center py-16">

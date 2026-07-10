@@ -1,5 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { usePageMeta } from "@/lib/seo";
+import { SITE } from "@/lib/site.config";
 import TerminalWindow from "@/components/ui/terminal-window";
 import { terminalButton } from "@/components/ui/terminal-button";
 
@@ -7,7 +8,7 @@ export default function NotFound() {
   const [location] = useLocation();
 
   usePageMeta({
-    title: "404 — Ujjal Sigdel",
+    title: `404 — ${SITE.owner.name}`,
     description: "This page doesn't exist.",
     path: location,
     noindex: true,

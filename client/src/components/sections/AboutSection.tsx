@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { useRef } from "react";
 import { terminalButton } from "@/components/ui/terminal-button";
 import { staggerContainer, fadeUpItem } from "@/lib/motion";
+import { SITE } from "@/lib/site.config";
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -61,8 +62,8 @@ export default function AboutSection() {
             </div>
 
             <a
-              href="/MyCV.pdf"
-              download="Ujjal_Sigdel_CV.pdf"
+              href={SITE.cv.path}
+              download={SITE.cv.downloadName}
               className={terminalButton({ size: "md" })}
             >
               $ download --resume

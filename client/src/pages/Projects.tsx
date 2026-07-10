@@ -4,6 +4,7 @@ import SubPageLayout from "@/components/SubPageLayout";
 import ProjectCard, { blueprintFieldStyle } from "@/components/ui/project-card";
 import { staggerContainer, fadeUpItem } from "@/lib/motion";
 import { projects, type Project } from "@/lib/projects";
+import { SITE } from "@/lib/site.config";
 
 const CATEGORIES: Array<Project["category"] | "All"> = [
   "All",
@@ -51,8 +52,8 @@ export default function Projects() {
 
   return (
     <SubPageLayout
-      title="All Projects — Ujjal Sigdel"
-      description="The full archive of Ujjal Sigdel's academic and personal projects — electronics, programming, and web development."
+      title={`All Projects — ${SITE.owner.name}`}
+      description={`The full archive of ${SITE.owner.name}'s academic and personal projects — electronics, programming, and web development.`}
     >
       <div className="mb-10">
         <span className="inline-block font-mono text-xs tracking-wider uppercase text-[#4ADE80] mb-2">
