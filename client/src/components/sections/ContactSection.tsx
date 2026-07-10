@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { m, useInView } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { contactSchema, type ContactFormValues } from "@/lib/contact.schema";
 import { apiRequest } from "@/lib/api";
 import { Card } from "@/components/ui/card";
 import {
@@ -21,17 +21,6 @@ import { staggerContainer, fadeUpItem } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  subject: z.string().min(5, { message: "Subject must be at least 5 characters" }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters" }),
-  // Honeypot — always empty for real visitors, see the field's own comment below.
-  company: z.string().optional()
-});
-
-type FormValues = z.infer<typeof formSchema>;
-
 const inputClass =
   "w-full px-4 py-2 bg-[#0F172A] border border-[#2b5940] rounded-lg placeholder:text-gray-500 focus-visible:ring-2 focus-visible:ring-[#4ADE80] focus:border-[#4ADE80] text-white transition-colors";
 
@@ -41,8 +30,8 @@ export default function ContactSection() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -54,7 +43,7 @@ export default function ContactSection() {
 
   const [isPending, setIsPending] = useState(false);
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: ContactFormValues) => {
     setIsPending(true);
     try {
       await apiRequest("POST", "/api/contact", data);

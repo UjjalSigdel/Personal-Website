@@ -1,30 +1,10 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import nodemailer from "nodemailer";
 import { z } from "zod";
-// Relative import: the `@/` alias is Vite/tsconfig-path config that Vercel's
+// Relative imports: the `@/` alias is Vite/tsconfig-path config that Vercel's
 // function bundler doesn't resolve for api/ files.
 import { SITE } from "../client/src/lib/site.config";
-
-const insertContactSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(2, "Name must be at least 2 characters")
-    .max(100, "Name is too long")
-    .regex(/^[^\r\n]+$/, "Name cannot contain line breaks"),
-  email: z.string().trim().email("Invalid email address").max(254, "Email is too long"),
-  subject: z
-    .string()
-    .trim()
-    .min(5, "Subject must be at least 5 characters")
-    .max(200, "Subject is too long")
-    .regex(/^[^\r\n]+$/, "Subject cannot contain line breaks"),
-  message: z.string().trim().min(10, "Message must be at least 10 characters").max(5000, "Message is too long"),
-  // Honeypot: real visitors never see or fill this field. Bots that
-  // autofill every input they find will, so a non-empty value here
-  // means we can silently drop the submission instead of emailing it.
-  company: z.string().max(200).optional(),
-});
+import { contactSchema } from "../client/src/lib/contact.schema";
 
 export default async function handler(
   req: VercelRequest,
@@ -38,7 +18,7 @@ export default async function handler(
     const body =
       typeof req.body === "string" ? JSON.parse(req.body) : req.body;
 
-    const data = insertContactSchema.parse(body);
+    const data = contactSchema.parse(body);
 
     if (data.company) {
       // Honeypot tripped — pretend success so the bot doesn't learn it was caught.
