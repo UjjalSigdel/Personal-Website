@@ -63,7 +63,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             </p>
             <ul className="space-y-3">
               <li className="flex items-center">
-                <div className="w-8 h-8 rounded-lg bg-[#3B82F6]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#3B82F6]/20">
+                <div className="w-8 h-8 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#4ADE80]/20">
                   <Mail className="h-4 w-4 text-[#4ADE80]" />
                 </div>
                 <a
@@ -87,7 +87,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 </a>
               </li>
               <li className="flex items-center">
-                <div className="w-8 h-8 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#A78BFA]/20">
+                <div className="w-8 h-8 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center mr-3 flex-shrink-0 border border-[#4ADE80]/20">
                   <MapPin className="h-4 w-4 text-[#4ADE80]" />
                 </div>
                 <a
